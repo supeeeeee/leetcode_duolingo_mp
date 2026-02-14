@@ -1,0 +1,104 @@
+<!--pages/lesson/lesson.wxml-->
+<view class="container" style="justify-content: flex-start;">
+
+  <!-- Result View -->
+  <view wx:if="{{finished}}" class="result-view animate-pop">
+    <view class="result-header">
+      <text class="result-emoji">🎉</text>
+      <text class="result-title">课程完成！</text>
+    </view>
+
+    <view class="stat-row">
+      <view class="stat-item">
+        <text class="stat-val xp">+{{earnedXP}}</text>
+        <text class="stat-label">获得经验</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-val">{{accuracy}}%</text>
+        <text class="stat-label">正确率</text>
+      </view>
+    </view>
+
+    <button class="btn" bindtap="goBack">继续</button>
+  </view>
+
+  <!-- Quiz View -->
+  <block wx:else>
+    <!-- Progress Header -->
+    <view class="quiz-header">
+      <view class="close-btn" bindtap="goBack">✕</view>
+      <view class="quiz-progress-bar">
+        <view class="quiz-progress-fill" style="width: {{ totalQuestions ? ((currentIndex + 1) / totalQuestions) * 100 : 0 }}%"></view>
+      </view>
+      <text class="quiz-progress-text">{{currentIndex + 1}}/{{totalQuestions}}</text>
+    </view>
+
+    <!-- Question Area -->
+    <view class="question-area">
+      <view class="question-header-row">
+        <text class="question-text">{{currentQuestion.question}}</text>
+        <view class="detail-toggle" bindtap="toggleDetail">
+          <text class="toggle-icon">{{showDetail ? '📖' : '📘'}}</text>
+          <text class="toggle-text">{{showDetail ? '隐藏详情' : '详细描述'}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{showDetail}}" class="description-card animate-fade">
+        <text class="description-content">{{currentQuestion.description}}</text>
+      </view>
+
+      <view wx:if="{{currentQuestion.codeSnippet}}" class="code-container">
+        <view class="lang-selector">
+          <view 
+            wx:for="{{availableLangs}}" 
+            wx:key="*this" 
+            class="lang-tab {{selectedLang === item ? 'active' : ''}}" 
+            bindtap="switchLang" 
+            data-lang="{{item}}"
+          >{{item}}</view>
+        </view>
+        <view class="code-block">
+          <rich-text nodes="{{highlightedCode}}"></rich-text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Options Area -->
+    <view class="options-area {{shakeActive ? 'animate-shake' : ''}}">
+      <block wx:for="{{currentQuestion.options}}" wx:key="*this">
+        <view
+          class="option-card {{selectedOption === index ? 'selected' : ''}} {{status !== 'answering' && index === currentQuestion.correctIndex ? 'correct' : ''}} {{status === 'checked_wrong' && selectedOption === index ? 'wrong' : ''}}"
+          bindtap="selectOption"
+          data-index="{{index}}"
+        >
+          <view class="option-key">{{['A','B','C','D'][index] || (index + 1)}}</view>
+          <text class="option-text">{{item}}</text>
+        </view>
+      </block>
+    </view>
+
+    <!-- Footer Action (fixed layout to avoid jump) -->
+    <view class="footer {{status === 'checked_correct' ? 'footer-correct' : (status === 'checked_wrong' ? 'footer-wrong' : '')}} {{status !== 'answering' ? 'animate-slide-up' : ''}}">
+      <view class="feedback-wrap">
+        <view wx:if="{{status !== 'answering'}}" class="feedback-msg animate-pop">
+          <view class="feedback-title">{{status === 'checked_correct' ? '正确！' : '错误'}}</view>
+          <view class="feedback-desc">{{currentQuestion.explanation}}</view>
+          <view wx:if="{{currentQuestion.learning}}" class="thinking-card">
+            <view class="thinking-item"><text class="thinking-label">核心心法：</text><text class="thinking-value">{{currentQuestion.learning.insight}}</text></view>
+            <view class="thinking-item"><text class="thinking-label">解题模板：</text>
+              <view class="template-box">
+                <text class="template-text">{{currentQuestion.learning.template}}</text>
+              </view>
+            </view>
+            <view class="thinking-item"><text class="thinking-label">易错点：</text><text class="thinking-value">{{currentQuestion.learning.pitfalls[0]}}</text></view>
+          </view>
+        </view>
+      </view>
+
+      <button class="btn {{status === 'answering' && selectedOption === null ? 'disabled' : ''}}" bindtap="handleAction">
+        {{status === 'answering' ? '检查' : '下一步'}}
+      </button>
+    </view>
+  </block>
+
+</view>

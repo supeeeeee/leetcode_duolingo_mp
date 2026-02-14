@@ -1,0 +1,151 @@
+/* components/skeleton/skeleton.wxss */
+.skeleton-container {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Card Skeleton */
+.skeleton-card {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background: white;
+  border-radius: 20rpx;
+  border: 2rpx solid #e5e5e5;
+}
+
+.skeleton-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background: #e5e5e5;
+  border-radius: 16rpx;
+  margin-right: 20rpx;
+}
+
+.skeleton-content {
+  flex: 1;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 32rpx;
+  background: #e5e5e5;
+  border-radius: 8rpx;
+  margin-bottom: 12rpx;
+}
+
+.skeleton-desc {
+  width: 80%;
+  height: 24rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+}
+
+/* Stat Skeleton */
+.skeleton-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx;
+}
+
+.skeleton-icon-circle {
+  width: 64rpx;
+  height: 64rpx;
+  background: #e5e5e5;
+  border-radius: 50%;
+  margin-bottom: 12rpx;
+}
+
+.skeleton-text {
+  width: 80rpx;
+  height: 40rpx;
+  background: #e5e5e5;
+  border-radius: 8rpx;
+  margin-bottom: 8rpx;
+}
+
+.skeleton-text-sm {
+  width: 100rpx;
+  height: 24rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+}
+
+/* List Skeleton */
+.skeleton-list-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.skeleton-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  background: #e5e5e5;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.skeleton-list-content {
+  flex: 1;
+}
+
+.skeleton-line {
+  width: 100%;
+  height: 28rpx;
+  background: #e5e5e5;
+  border-radius: 6rpx;
+  margin-bottom: 10rpx;
+}
+
+.skeleton-line-sm {
+  width: 60%;
+  height: 24rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+}
+
+/* Quiz Skeleton */
+.skeleton-quiz {
+  padding: 40rpx;
+}
+
+.skeleton-progress {
+  width: 100%;
+  height: 16rpx;
+  background: #e5e5e5;
+  border-radius: 8rpx;
+  margin-bottom: 40rpx;
+}
+
+.skeleton-question {
+  width: 100%;
+  height: 48rpx;
+  background: #e5e5e5;
+  border-radius: 12rpx;
+  margin-bottom: 40rpx;
+}
+
+.skeleton-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.skeleton-option {
+  width: 100%;
+  height: 80rpx;
+  background: #f5f5f5;
+  border-radius: 16rpx;
+  border: 2rpx solid #e5e5e5;
+}

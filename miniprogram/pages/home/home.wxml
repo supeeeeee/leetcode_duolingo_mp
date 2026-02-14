@@ -1,0 +1,49 @@
+<!--pages/home/home.wxml-->
+<view class="container {{loading ? 'loading' : ''}}">
+  <view class="header animate-fade">
+    <view class="stat-box">
+      <text class="emoji">🔥</text>
+      <text class="stat-value">{{streak}}</text>
+    </view>
+    <view class="stat-box">
+      <text class="emoji">💎</text>
+      <text class="stat-value">{{xp}} XP</text>
+    </view>
+  </view>
+
+  <view class="hero animate-pop" wx:if="{{!loading}}">
+    <view class="mascot">🦉</view>
+    <text class="hero-title">准备好开始今日刷题了吗？</text>
+    <text class="hero-subtitle">保持你的连胜记录！</text>
+  </view>
+
+  <!-- Daily Challenge Card -->
+  <view class="daily-challenge-card animate-fade" wx:if="{{!loading}}" hover-class="active-state" hover-stay-time="100" bindtap="startDailyChallenge">
+    <view class="challenge-badge" wx:if="{{dailyStatus && !dailyStatus.isCompleted}}">新</view>
+    <view class="challenge-icon">🎯</view>
+    <view class="challenge-info">
+      <text class="challenge-title">每日挑战</text>
+      <text class="challenge-desc">5 道题目 • {{dailyChallengeXP}} XP</text>
+    </view>
+    <view class="challenge-arrow">〉</view>
+  </view>
+
+  <view class="action-area animate-fade" wx:if="{{!loading}}">
+    <button class="btn" hover-class="none" bindtap="startDailyReview">开始复习</button>
+  </view>
+
+  <view class="daily-goals animate-fade" wx:if="{{!loading}}">
+    <view class="card">
+      <text class="card-title">今日目标</text>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{ todayGoalPercent }}%"></view>
+      </view>
+      <text class="card-desc">再赚取 {{ 50 - todayXP > 0 ? 50 - todayXP : 0 }} XP 即可达成今日目标。你今天已获得 {{todayXP}} XP。</text>
+    </view>
+  </view>
+
+  <!-- Loading Placeholder -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <view class="spinner"></view>
+  </view>
+</view>

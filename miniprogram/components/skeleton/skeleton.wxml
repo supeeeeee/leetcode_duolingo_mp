@@ -1,0 +1,43 @@
+<!--components/skeleton/skeleton.wxml-->
+<view class="skeleton-container {{type}}">
+  <block wx:if="{{type === 'card'}}">
+    <view class="skeleton-card">
+      <view class="skeleton-icon"></view>
+      <view class="skeleton-content">
+        <view class="skeleton-title"></view>
+        <view class="skeleton-desc"></view>
+      </view>
+    </view>
+  </block>
+  
+  <block wx:if="{{type === 'stat'}}">
+    <view class="skeleton-stat">
+      <view class="skeleton-icon-circle"></view>
+      <view class="skeleton-text"></view>
+      <view class="skeleton-text-sm"></view>
+    </view>
+  </block>
+  
+  <block wx:if="{{type === 'list'}}">
+    <view class="skeleton-list-item" wx:for="{{count}}" wx:key="index">
+      <view class="skeleton-avatar"></view>
+      <view class="skeleton-list-content">
+        <view class="skeleton-line"></view>
+        <view class="skeleton-line-sm"></view>
+      </view>
+    </view>
+  </block>
+  
+  <block wx:if="{{type === 'quiz'}}">
+    <view class="skeleton-quiz">
+      <view class="skeleton-progress"></view>
+      <view class="skeleton-question"></view>
+      <view class="skeleton-options">
+        <view class="skeleton-option"></view>
+        <view class="skeleton-option"></view>
+        <view class="skeleton-option"></view>
+        <view class="skeleton-option"></view>
+      </view>
+    </view>
+  </block>
+</view>

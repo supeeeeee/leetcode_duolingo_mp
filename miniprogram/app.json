@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/path/path",
+    "pages/lesson/lesson",
+    "pages/profile/profile",
+    "pages/daily/daily"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "力扣灵犀",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#afafaf",
+    "selectedColor": "#58cc02",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "学习",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/path/path",
+        "text": "路径",
+        "iconPath": "images/path.png",
+        "selectedIconPath": "images/path-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/profile.png",
+        "selectedIconPath": "images/profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

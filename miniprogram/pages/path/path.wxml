@@ -1,0 +1,60 @@
+<!--pages/path/path.wxml-->
+<view class="container">
+  <view class="path-header">
+    <text class="path-title">学习路径</text>
+    <text class="path-subtitle">按主题逐一攻克 LeetCode</text>
+  </view>
+
+  <scroll-view scroll-y class="path-scroll">
+    <view class="path-container">
+      <view class="path-line"></view>
+
+      <block wx:if="{{topics.length > 0}}">
+        <view class="topic-item {{item.isCompleted ? 'completed' : ''}} {{item.isMastered ? 'mastered' : ''}}" wx:for="{{topics}}" wx:key="id" bindtap="startTopic" data-id="{{item.id}}" hover-class="topic-active" hover-stay-time="100">
+
+          <!-- Progress badge -->
+          <view class="progress-badge" wx:if="{{item.isCompleted}}">
+            <text>{{item.lessonsDone}}/{{item.totalLessons}}</text>
+          </view>
+
+          <view class="topic-icon-wrapper">
+            <view class="topic-icon" style="background: linear-gradient(135deg, {{item.color}}, {{item.color}}cc)">
+              <text class="topic-emoji">{{getTopicEmoji(item.id)}}</text>
+            </view>
+          </view>
+
+          <view class="topic-content">
+            <view class="topic-header">
+              <text class="topic-title">{{item.title}}</text>
+              <view class="level-badge level-{{item.level}}">等级 {{item.level}}</view>
+            </view>
+            <text class="topic-desc">{{item.description}}</text>
+            <view class="topic-progress" wx:if="{{item.isCompleted}}">
+              <view class="progress-track">
+                <view class="progress-fill" style="width: {{item.percent}}%; background-color: {{item.color}}"></view>
+              </view>
+              <text class="progress-text">{{item.percent}}%</text>
+            </view>
+          </view>
+
+          <view class="topic-arrow">〉</view>
+        </view>
+      </block>
+
+      <block wx:else>
+        <view class="empty-state">
+          <view class="empty-icon">📚</view>
+          <text class="empty-title">暂无主题</text>
+          <text class="empty-desc">请稍后再来看看新的学习路径！</text>
+        </view>
+      </block>
+      
+      <!-- Completion Reward -->
+      <view class="path-reward" wx:if="{{isAllCompleted && topics.length > 0}}">
+        <view class="reward-icon">🏆</view>
+        <text class="reward-text">路径已全部完成！</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+

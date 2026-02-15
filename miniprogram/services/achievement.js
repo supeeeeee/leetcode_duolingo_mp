@@ -1,5 +1,16 @@
 // services/achievement.js
 const storage = require('./storage');
+const topicStats = require('./topicStats');
+
+function getCoreMasteredTopicCount() {
+  const progressMap = topicStats.getTopicProgressMap();
+  const entries = Object.values(progressMap).filter(topic => Number(topic.coreTotal) > 0);
+  const mastered = entries.filter(topic => Number(topic.coreDone) >= Number(topic.coreTotal));
+  return {
+    masteredCount: mastered.length,
+    totalCount: entries.length
+  };
+}
 
 const ACHIEVEMENTS = [
   {
@@ -91,13 +102,19 @@ const ACHIEVEMENTS = [
   },
   {
     id: 'topic_master',
-    name: '知识领主',
-    description: '完成一个主题的所有课程',
+    name: '章节精通',
+    description: '完成任一章节的核心题',
     icon: '🏅',
-    condition: (data) => {
-      const topics = require('../data/topics');
-      const progress = data.topicProgress || {};
-      return topics.every(t => (progress[t.id] || 0) >= t.totalLessons);
+    condition: () => getCoreMasteredTopicCount().masteredCount >= 1
+  },
+  {
+    id: 'all_chapters_mastered',
+    name: '全章精通',
+    description: '完成全部章节的核心题',
+    icon: '👑',
+    condition: () => {
+      const progress = getCoreMasteredTopicCount();
+      return progress.totalCount > 0 && progress.masteredCount >= progress.totalCount;
     }
   }
 ];

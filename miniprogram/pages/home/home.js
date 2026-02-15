@@ -3,9 +3,7 @@ const storage = require('../../services/storage');
 const dailyChallenge = require('../../services/dailyChallenge');
 const history = require('../../services/history');
 const achievement = require('../../services/achievement');
-const topicStats = require('../../services/topicStats');
-const topics = require('../../data/topics');
-const questions = require('../../data/questions');
+const recommendation = require('../../services/recommendation');
 
 function getTodayStr() {
   const now = new Date();
@@ -54,41 +52,9 @@ Page({
     const dailyData = dailyChallenge.getDailyData();
     const todayStats = history.getTodayStats();
     const achievements = achievement.getAchievementProgress();
-    const topicProgressMap = topicStats.getTopicProgressMap();
-    const reviewHistory = history.getHistory();
-    const wrongSet = new Set(reviewHistory.wrongQuestions || []);
-
-    const questionTopicMap = {};
-    questions.forEach(question => {
-      questionTopicMap[question.id] = question.topicId;
-    });
-
-    const wrongByTopic = {};
-    wrongSet.forEach(questionId => {
-      const topicId = questionTopicMap[questionId];
-      if (!topicId) return;
-      wrongByTopic[topicId] = (wrongByTopic[topicId] || 0) + 1;
-    });
-
-    const chapterProgress = topics.map(topic => {
-      const stats = topicProgressMap[topic.id] || {
-        coreDone: 0,
-        coreTotal: 0
-      };
-      const dueCore = Math.max(0, Number(stats.coreTotal || 0) - Number(stats.coreDone || 0));
-      const wrong = Number(wrongByTopic[topic.id]) || 0;
-      return {
-        id: topic.id,
-        title: topic.title,
-        dueCore,
-        wrong
-      };
-    });
-
-    const dueCoreTotal = chapterProgress.reduce((sum, topic) => sum + topic.dueCore, 0);
-    const dueCoreChapterCount = chapterProgress.filter(topic => topic.dueCore > 0).length;
-
-    const recommendedTopic = chapterProgress.find(topic => topic.dueCore > 0) || null;
+    const learningRecommendation = recommendation.getLearningRecommendation();
+    const chapterProgress = learningRecommendation.chapterProgress;
+    const recommendedTopic = learningRecommendation.recommendedTopic;
 
     const chapterSuggestions = chapterProgress
       .filter(topic => topic.dueCore > 0 || topic.wrong > 0)
@@ -97,16 +63,6 @@ Page({
     const recommendedTopicDesc = recommendedTopic
       ? `核心优先：剩余 ${recommendedTopic.dueCore} 题${recommendedTopic.wrong > 0 ? `，错题 ${recommendedTopic.wrong} 题` : ''}`
       : '';
-
-    let recommendedActionType = 'dailyChallenge';
-    let recommendedActionText = '开始每日挑战';
-    if (wrongSet.size > 0) {
-      recommendedActionType = 'wrongReview';
-      recommendedActionText = `优先复习错题（${wrongSet.size}）`;
-    } else if (dueCoreTotal > 0) {
-      recommendedActionType = 'continueChapter';
-      recommendedActionText = recommendedTopic ? `继续推荐章节：${recommendedTopic.title}` : '继续推荐章节';
-    }
 
     let todayXP = todayStats.correct * 10;
     if (dailyStatus.isCompleted && dailyData && dailyData.date === getTodayStr()) {
@@ -122,18 +78,18 @@ Page({
       todayXP,
       todayGoalPercent,
       achievements,
-      dueCoreTotal,
-      dueCoreChapterCount,
-      wrongCount: wrongSet.size,
+      dueCoreTotal: learningRecommendation.dueCoreTotal,
+      dueCoreChapterCount: learningRecommendation.dueCoreChapterCount,
+      wrongCount: learningRecommendation.wrongCount,
       chapterSuggestions,
       recommendedTopicId: recommendedTopic ? recommendedTopic.id : '',
       recommendedTopicTitle: recommendedTopic ? recommendedTopic.title : '',
       recommendedTopicDueCore: recommendedTopic ? recommendedTopic.dueCore : 0,
       recommendedTopicWrong: recommendedTopic ? recommendedTopic.wrong : 0,
       recommendedTopicDesc,
-      recommendedActionType,
-      recommendedActionText,
-      wrongReviewSessionCount: Math.min(5, wrongSet.size)
+      recommendedActionType: learningRecommendation.recommendedActionType,
+      recommendedActionText: learningRecommendation.recommendedActionText,
+      wrongReviewSessionCount: Math.min(5, learningRecommendation.wrongCount)
     });
   },
 

@@ -29,7 +29,25 @@
       </view>
     </view>
 
-    <button class="btn" bindtap="goBack">继续</button>
+    <view wx:if="{{isWrongMode}}" class="wrong-completion-wrap">
+      <view class="wrong-completion-stats">
+        <view class="wrong-completion-item">
+          <text class="wrong-completion-value cleared">{{wrongClearedCount}}</text>
+          <text class="wrong-completion-label">本轮清除错题</text>
+        </view>
+        <view class="wrong-completion-item">
+          <text class="wrong-completion-value">{{wrongRemainingCount}}</text>
+          <text class="wrong-completion-label">错题本剩余</text>
+        </view>
+      </view>
+      <view class="wrong-next-card">
+        <text class="wrong-next-title">下一步建议</text>
+        <text class="wrong-next-desc">{{wrongPrimaryHint}}</text>
+      </view>
+      <button class="btn" bindtap="handleWrongPrimaryAction">{{wrongPrimaryActionText}}</button>
+      <button class="btn btn-secondary" bindtap="handleWrongSecondaryAction">学习路径</button>
+    </view>
+    <button wx:else class="btn" bindtap="goBack">继续</button>
   </view>
 
   <!-- Quiz View -->

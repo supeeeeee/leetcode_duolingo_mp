@@ -4,6 +4,7 @@ const progress = require('../../services/progress');
 const history = require('../../services/history');
 const highlighter = require('../../services/highlighter');
 const userSettings = require('../../services/userSettings');
+const recommendation = require('../../services/recommendation');
 
 Page({
   data: {
@@ -30,8 +31,14 @@ Page({
     emptyCtaText: '',
     isWrongMode: false,
     wrongRemainingCount: 0,
+    wrongSessionStartCount: 0,
+    wrongClearedCount: 0,
     wrongSessionTarget: 0,
     wrongAnsweredCount: 0,
+    wrongPrimaryActionType: 'wrongReview',
+    wrongPrimaryActionText: '继续错题复习',
+    wrongPrimaryTopicId: '',
+    wrongPrimaryHint: '',
     completionTitle: '课程完成！'
   },
 
@@ -75,8 +82,14 @@ Page({
       emptyCtaText: this.getEmptyCtaText(mode),
       isWrongMode,
       wrongRemainingCount,
+      wrongSessionStartCount: wrongRemainingCount,
+      wrongClearedCount: 0,
       wrongSessionTarget,
       wrongAnsweredCount: 0,
+      wrongPrimaryActionType: 'wrongReview',
+      wrongPrimaryActionText: '继续错题复习',
+      wrongPrimaryTopicId: '',
+      wrongPrimaryHint: '',
       completionTitle: isWrongMode ? '错题复习完成' : '课程完成！'
     });
 
@@ -208,15 +221,52 @@ Page({
   finishLesson: function() {
     const total = this.data.totalQuestions;
     const accuracy = total > 0 ? Math.round((this.data.correctCount / total) * 100) : 0;
-    
+    const resultPatch = {
+      finished: true,
+      accuracy
+    };
+
     if (total > 0) {
       progress.completeLesson(this.data.earnedXP, this.mode === 'wrong' ? null : this.topicId);
     }
 
-    this.setData({
-      finished: true,
-      accuracy
-    });
+    if (this.mode === 'wrong') {
+      const latestWrongIds = history.getHistory().wrongQuestions || [];
+      const wrongRemainingCount = latestWrongIds.length;
+      const wrongClearedCount = Math.max(0, this.data.wrongSessionStartCount - wrongRemainingCount);
+      const learningRecommendation = recommendation.getLearningRecommendation({
+        wrongIds: latestWrongIds
+      });
+
+      let wrongPrimaryActionType = 'wrongReview';
+      let wrongPrimaryActionText = '继续错题复习';
+      let wrongPrimaryTopicId = '';
+      let wrongPrimaryHint = '';
+
+      if (wrongRemainingCount > 0) {
+        wrongPrimaryHint = `还有 ${wrongRemainingCount} 题待巩固，建议立刻继续。`;
+      } else if (learningRecommendation.dueCoreTotal > 0 && learningRecommendation.recommendedTopic) {
+        wrongPrimaryActionType = 'continueChapter';
+        wrongPrimaryActionText = '去推荐章节';
+        wrongPrimaryTopicId = learningRecommendation.recommendedTopic.id;
+        wrongPrimaryHint = `推荐先学习 ${learningRecommendation.recommendedTopic.title}，核心题还剩 ${learningRecommendation.recommendedTopic.dueCore} 题。`;
+      } else {
+        wrongPrimaryActionType = 'dailyChallenge';
+        wrongPrimaryActionText = '去每日挑战';
+        wrongPrimaryHint = '错题与核心章节都已清空，来一场今日挑战保持手感。';
+      }
+
+      Object.assign(resultPatch, {
+        wrongRemainingCount,
+        wrongClearedCount,
+        wrongPrimaryActionType,
+        wrongPrimaryActionText,
+        wrongPrimaryTopicId,
+        wrongPrimaryHint
+      });
+    }
+
+    this.setData(resultPatch);
   },
 
   goBack: function() {
@@ -228,6 +278,22 @@ Page({
       wx.navigateTo({ url: '/pages/daily/daily' });
       return;
     }
+    wx.switchTab({ url: '/pages/path/path' });
+  },
+
+  handleWrongPrimaryAction: function() {
+    if (this.data.wrongPrimaryActionType === 'wrongReview') {
+      wx.redirectTo({ url: '/pages/lesson/lesson?mode=wrong' });
+      return;
+    }
+    if (this.data.wrongPrimaryActionType === 'continueChapter' && this.data.wrongPrimaryTopicId) {
+      wx.redirectTo({ url: `/pages/lesson/lesson?mode=topic&id=${this.data.wrongPrimaryTopicId}` });
+      return;
+    }
+    wx.navigateTo({ url: '/pages/daily/daily' });
+  },
+
+  handleWrongSecondaryAction: function() {
     wx.switchTab({ url: '/pages/path/path' });
   }
 })

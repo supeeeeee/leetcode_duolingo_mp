@@ -29,44 +29,60 @@
   </view>
 
   <view class="today-suggestions animate-fade" wx:if="{{!loading}}">
-    <view class="card">
-      <text class="card-title">今日建议</text>
-      <view class="suggestion-stats-row">
-        <view class="suggestion-stat-item">
-          <text class="suggestion-stat-value">{{dueCoreTotal}}</text>
-          <text class="suggestion-stat-label">待做核心题</text>
-        </view>
-        <view class="suggestion-stat-item">
-          <text class="suggestion-stat-value">{{dueCoreChapterCount}}</text>
-          <text class="suggestion-stat-label">涉及章节</text>
-        </view>
-        <view class="suggestion-stat-item">
-          <text class="suggestion-stat-value">{{wrongCount}}</text>
-          <text class="suggestion-stat-label">错题待复习</text>
-        </view>
+    <view class="card suggestion-card">
+      <view class="card-header-row">
+        <text class="card-title">💡 今日建议</text>
       </view>
-
-      <view wx:if="{{recommendedTopicId}}" class="recommended-topic">
-        <text class="recommended-topic-title">推荐继续：{{recommendedTopicTitle}}</text>
-        <text class="recommended-topic-desc">{{recommendedTopicDesc}}</text>
-      </view>
-
-      <view class="chapter-list" wx:if="{{chapterSuggestions.length > 0}}">
-        <view class="chapter-item" wx:for="{{chapterSuggestions}}" wx:key="id">
-          <text class="chapter-item-title">{{item.title}}</text>
-          <text class="chapter-item-meta">核心待做 {{item.dueCore}} · 错题 {{item.wrong}}</text>
+      
+      <view class="stats-pills">
+        <view class="stat-pill">
+          <text class="pill-num">{{dueCoreTotal}}</text>
+          <text class="pill-lbl">待做核心</text>
+        </view>
+        <view class="stat-pill">
+          <text class="pill-num">{{dueCoreChapterCount}}</text>
+          <text class="pill-lbl">涉及章节</text>
+        </view>
+        <view class="stat-pill {{wrongCount > 0 ? 'highlight' : ''}}">
+          <text class="pill-num">{{wrongCount}}</text>
+          <text class="pill-lbl">错题待复习</text>
         </view>
       </view>
 
-      <view wx:if="{{wrongCount > 0}}" class="wrong-review-entry" bindtap="startWrongReview">
-        <text class="wrong-review-entry-label">错题复习 {{wrongReviewSessionCount}} 题</text>
-        <text class="wrong-review-entry-sub">错题本剩余 {{wrongCount}}</text>
+      <view class="divider" wx:if="{{recommendedTopicId || wrongCount > 0}}"></view>
+
+      <view wx:if="{{recommendedTopicId}}" class="rec-section">
+        <view class="rec-tag">推荐练习</view>
+        <text class="rec-title">{{recommendedTopicTitle}}</text>
+        <text class="rec-desc">{{recommendedTopicDesc}}</text>
       </view>
 
-      <view class="today-cta-row">
-        <button class="today-btn primary" hover-class="none" bindtap="startRecommendedAction">{{recommendedActionText}}</button>
-        <button class="today-btn" hover-class="none" bindtap="goPath">路径</button>
-        <button class="today-btn" hover-class="none" bindtap="startDailyChallenge">每日</button>
+      <view wx:if="{{wrongCount > 0}}" class="wrong-review-widget" bindtap="startWrongReview" hover-class="widget-hover">
+        <view class="wr-icon">🩹</view>
+        <view class="wr-info">
+          <text class="wr-main">错题复习</text>
+          <text class="wr-sub">本次建议复习 {{wrongReviewSessionCount}} 题</text>
+        </view>
+        <view class="wr-arrow">👉</view>
+      </view>
+
+      <view class="chapter-list-mini" wx:if="{{chapterSuggestions.length > 0}}">
+         <text class="list-label">重点关注章节</text>
+         <view class="mini-item" wx:for="{{chapterSuggestions}}" wx:key="id">
+            <text class="mini-title">{{item.title}}</text>
+            <view class="mini-tags">
+               <text wx:if="{{item.dueCore > 0}}" class="tag core">核心 {{item.dueCore}}</text>
+               <text wx:if="{{item.wrong > 0}}" class="tag wrong">错题 {{item.wrong}}</text>
+            </view>
+         </view>
+      </view>
+
+      <view class="action-footer">
+        <button class="primary-action-btn" hover-class="btn-active" bindtap="startRecommendedAction">{{recommendedActionText}}</button>
+        <view class="sub-actions">
+           <button class="sub-action-btn" hover-class="sub-active" bindtap="goPath">路径</button>
+           <button class="sub-action-btn" hover-class="sub-active" bindtap="startDailyChallenge">每日</button>
+        </view>
       </view>
     </view>
   </view>

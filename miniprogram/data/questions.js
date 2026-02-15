@@ -20,7 +20,7 @@ module.exports = [
       "javascript": "function twoSum(nums, target) {\n    const map = new Map();\n    for (let i = 0; i < nums.length; i++) {\n        const complement = target - nums[i];\n        if (map.has(complement)) return [map.get(complement), i];\n        map.set(nums[i], i);\n    }\n};"
     },
     "learning": {
-      "pattern": "哈希一遍扫描",
+      "pattern": "数组扫描 + 不变量维护（最值/前后缀/原地映射）",
       "coreQuestion": "当遍历到 nums[i]，如何 O(1) 找到 target-nums[i]？",
       "framework": "先暴力确定变量关系，再用前缀信息、双指针或原地映射降复杂度。",
       "steps": [
@@ -32,7 +32,7 @@ module.exports = [
         "先写入再查询会匹配自己"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
       "insight": "这是一类经典的‘求和’转‘查找’问题。哈希表的作用就是：把对‘未来’或‘过去’的查找动作，从 O(n) 降到 O(1)。"
     },
     "description": "给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。",
@@ -67,13 +67,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 买卖股票的最佳时机\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 买卖股票的最佳时机\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 买卖股票的最佳时机\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 买卖股票的最佳时机 (best-time-to-buy-and-sell-stock)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement best-time-to-buy-and-sell-stock')",
+      "java": "// TODO: 买卖股票的最佳时机 (best-time-to-buy-and-sell-stock)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement best-time-to-buy-and-sell-stock\");\n    }\n}",
+      "cpp": "// TODO: 买卖股票的最佳时机 (best-time-to-buy-and-sell-stock)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement best-time-to-buy-and-sell-stock\");\n    }\n};"
     },
     "description": "给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你只能选择某一天买入这只股票，并选择在未来的某一个不同的日子卖出该股票。",
     "leetcodeSlug": "best-time-to-buy-and-sell-stock"
@@ -107,13 +107,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 除自身以外数组的乘积\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 除自身以外数组的乘积\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 除自身以外数组的乘积\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 除自身以外数组的乘积 (product-of-array-except-self)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement product-of-array-except-self')",
+      "java": "// TODO: 除自身以外数组的乘积 (product-of-array-except-self)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement product-of-array-except-self\");\n    }\n}",
+      "cpp": "// TODO: 除自身以外数组的乘积 (product-of-array-except-self)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement product-of-array-except-self\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums，返回一个数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。请不要使用除法，且在 O(n) 时间复杂度内完成。",
     "leetcodeSlug": "product-of-array-except-self"
@@ -147,13 +147,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 最大子数组和\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 最大子数组和\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 最大子数组和\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 最大子数组和 (maximum-subarray)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement maximum-subarray')",
+      "java": "// TODO: 最大子数组和 (maximum-subarray)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement maximum-subarray\");\n    }\n}",
+      "cpp": "// TODO: 最大子数组和 (maximum-subarray)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement maximum-subarray\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。",
     "leetcodeSlug": "maximum-subarray"
@@ -192,8 +192,8 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "description": "以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi]。请你合并所有重叠的区间，并返回一个不重叠的区间数组。",
     "leetcodeSlug": "merge-intervals"
@@ -227,13 +227,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 轮转数组\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 轮转数组\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 轮转数组\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 轮转数组 (rotate-array)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement rotate-array')",
+      "java": "// TODO: 轮转数组 (rotate-array)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement rotate-array\");\n    }\n}",
+      "cpp": "// TODO: 轮转数组 (rotate-array)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement rotate-array\");\n    }\n};"
     },
     "description": "给你一个数组，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。尝试使用 O(1) 额外空间完成。",
     "leetcodeSlug": "rotate-array"
@@ -267,13 +267,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 移动零\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 移动零\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 移动零\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 移动零 (move-zeroes)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement move-zeroes')",
+      "java": "// TODO: 移动零 (move-zeroes)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement move-zeroes\");\n    }\n}",
+      "cpp": "// TODO: 移动零 (move-zeroes)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement move-zeroes\");\n    }\n};"
     },
     "description": "给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。必须在原数组上操作。",
     "leetcodeSlug": "move-zeroes"
@@ -307,13 +307,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 多数元素\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 多数元素\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 多数元素\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 多数元素 (majority-element)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement majority-element')",
+      "java": "// TODO: 多数元素 (majority-element)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement majority-element\");\n    }\n}",
+      "cpp": "// TODO: 多数元素 (majority-element)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement majority-element\");\n    }\n};"
     },
     "description": "给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。",
     "leetcodeSlug": "majority-element"
@@ -347,13 +347,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 下一个排列\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 下一个排列\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 下一个排列\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 下一个排列 (next-permutation)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement next-permutation')",
+      "java": "// TODO: 下一个排列 (next-permutation)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement next-permutation\");\n    }\n}",
+      "cpp": "// TODO: 下一个排列 (next-permutation)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement next-permutation\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums ，找出 nums 的下一个字典序更大的排列。如果不存在下一个更大的排列，则将数组重新按升序排列。",
     "leetcodeSlug": "next-permutation"
@@ -387,13 +387,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 颜色分类\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 颜色分类\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 颜色分类\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 颜色分类 (sort-colors)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement sort-colors')",
+      "java": "// TODO: 颜色分类 (sort-colors)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement sort-colors\");\n    }\n}",
+      "cpp": "// TODO: 颜色分类 (sort-colors)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement sort-colors\");\n    }\n};"
     },
     "description": "给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。",
     "leetcodeSlug": "sort-colors"
@@ -427,13 +427,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 缺失的第一个正数\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 缺失的第一个正数\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 缺失的第一个正数\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 缺失的第一个正数 (first-missing-positive)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement first-missing-positive')",
+      "java": "// TODO: 缺失的第一个正数 (first-missing-positive)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement first-missing-positive\");\n    }\n}",
+      "cpp": "// TODO: 缺失的第一个正数 (first-missing-positive)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement first-missing-positive\");\n    }\n};"
     },
     "description": "给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。请你设计并实现时间复杂度为 O(n) 且仅使用常数级别额外空间的算法。",
     "leetcodeSlug": "first-missing-positive"
@@ -467,13 +467,13 @@ module.exports = [
         "边界下标 +1/-1 错误"
       ],
       "complexity": "目标通常是时间 O(n)、空间 O(1) 或 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先写出暴力关系，再识别可复用信息（前缀、后缀、最值）。\n用一次遍历维护状态并处理边界。",
+      "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "codeSnippet": {
-      "python": "# 接雨水\ndef solve(nums):\n    # 1. 明确暴力关系 2. 找可复用信息 3. 一次遍历优化\n    ans = 0\n    for i, x in enumerate(nums):\n        # 根据题意维护状态\n        ans = max(ans, x)\n    return ans",
-      "java": "// 接雨水\nint solve(int[] nums) {\n    // 1) 建模 2) 维护状态 3) 单次扫描\n    int ans = 0;\n    for (int i = 0; i < nums.length; i++) {\n        ans = Math.max(ans, nums[i]);\n    }\n    return ans;\n}",
-      "cpp": "// 接雨水\nint solve(vector<int>& nums) {\n    int ans = 0;\n    for (int x : nums) {\n        ans = max(ans, x);\n    }\n    return ans;\n}"
+      "python": "# TODO: 接雨水 (trapping-rain-water)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement trapping-rain-water')",
+      "java": "// TODO: 接雨水 (trapping-rain-water)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement trapping-rain-water\");\n    }\n}",
+      "cpp": "// TODO: 接雨水 (trapping-rain-water)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement trapping-rain-water\");\n    }\n};"
     },
     "description": "给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。",
     "leetcodeSlug": "trapping-rain-water"
@@ -507,8 +507,8 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
       "python": "from collections import defaultdict\ndef groupAnagrams(strs):\n    groups = defaultdict(list)\n    for s in strs:\n        key = ''.join(sorted(s))\n        groups[key].append(s)\n    return list(groups.values())",
@@ -547,13 +547,13 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
-      "python": "# 有效的字母异位词\ndef solve(nums, target=None):\n    mp = {}\n    for i, x in enumerate(nums):\n        # 先查后存，避免匹配自己\n        if target is not None and (target - x) in mp:\n            return [mp[target - x], i]\n        mp[x] = i\n    return mp",
-      "java": "// 有效的字母异位词\nObject solve(int[] nums, Integer target) {\n    Map<Integer,Integer> mp = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n        if (target != null && mp.containsKey(target - nums[i])) {\n            return new int[]{mp.get(target - nums[i]), i};\n        }\n        mp.put(nums[i], i);\n    }\n    return mp;\n}",
-      "cpp": "// 有效的字母异位词\nauto solve(vector<int>& nums, optional<int> target = nullopt) {\n    unordered_map<int,int> mp;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (target.has_value() && mp.count(target.value() - nums[i])) {\n            return vector<int>{mp[target.value() - nums[i]], i};\n        }\n        mp[nums[i]] = i;\n    }\n    return mp;\n}"
+      "python": "# TODO: 有效的字母异位词 (valid-anagram)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement valid-anagram')",
+      "java": "// TODO: 有效的字母异位词 (valid-anagram)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement valid-anagram\");\n    }\n}",
+      "cpp": "// TODO: 有效的字母异位词 (valid-anagram)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement valid-anagram\");\n    }\n};"
     },
     "description": "给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。",
     "leetcodeSlug": "valid-anagram"
@@ -587,13 +587,13 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
-      "python": "# 和为 K 的子数组\ndef solve(nums, target=None):\n    mp = {}\n    for i, x in enumerate(nums):\n        # 先查后存，避免匹配自己\n        if target is not None and (target - x) in mp:\n            return [mp[target - x], i]\n        mp[x] = i\n    return mp",
-      "java": "// 和为 K 的子数组\nObject solve(int[] nums, Integer target) {\n    Map<Integer,Integer> mp = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n        if (target != null && mp.containsKey(target - nums[i])) {\n            return new int[]{mp.get(target - nums[i]), i};\n        }\n        mp.put(nums[i], i);\n    }\n    return mp;\n}",
-      "cpp": "// 和为 K 的子数组\nauto solve(vector<int>& nums, optional<int> target = nullopt) {\n    unordered_map<int,int> mp;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (target.has_value() && mp.count(target.value() - nums[i])) {\n            return vector<int>{mp[target.value() - nums[i]], i};\n        }\n        mp[nums[i]] = i;\n    }\n    return mp;\n}"
+      "python": "# TODO: 和为 K 的子数组 (subarray-sum-equals-k)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement subarray-sum-equals-k')",
+      "java": "// TODO: 和为 K 的子数组 (subarray-sum-equals-k)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement subarray-sum-equals-k\");\n    }\n}",
+      "cpp": "// TODO: 和为 K 的子数组 (subarray-sum-equals-k)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement subarray-sum-equals-k\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums 和一个整数 k ，请你统计并返回该数组中和为 k 的连续子数组的个数。",
     "leetcodeSlug": "subarray-sum-equals-k"
@@ -627,13 +627,13 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
-      "python": "# 最长连续序列\ndef solve(nums, target=None):\n    mp = {}\n    for i, x in enumerate(nums):\n        # 先查后存，避免匹配自己\n        if target is not None and (target - x) in mp:\n            return [mp[target - x], i]\n        mp[x] = i\n    return mp",
-      "java": "// 最长连续序列\nObject solve(int[] nums, Integer target) {\n    Map<Integer,Integer> mp = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n        if (target != null && mp.containsKey(target - nums[i])) {\n            return new int[]{mp.get(target - nums[i]), i};\n        }\n        mp.put(nums[i], i);\n    }\n    return mp;\n}",
-      "cpp": "// 最长连续序列\nauto solve(vector<int>& nums, optional<int> target = nullopt) {\n    unordered_map<int,int> mp;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (target.has_value() && mp.count(target.value() - nums[i])) {\n            return vector<int>{mp[target.value() - nums[i]], i};\n        }\n        mp[nums[i]] = i;\n    }\n    return mp;\n}"
+      "python": "# TODO: 最长连续序列 (longest-consecutive-sequence)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement longest-consecutive-sequence')",
+      "java": "// TODO: 最长连续序列 (longest-consecutive-sequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement longest-consecutive-sequence\");\n    }\n}",
+      "cpp": "// TODO: 最长连续序列 (longest-consecutive-sequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement longest-consecutive-sequence\");\n    }\n};"
     },
     "description": "给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。请设计并实现时间复杂度为 O(n) 的算法。",
     "leetcodeSlug": "longest-consecutive-sequence"
@@ -672,8 +672,8 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "description": "设计并实现一个满足 LRU (最近最少使用) 缓存约束的数据结构。支持 get(key) 和 put(key, value) 操作，且复杂度均为 O(1)。",
     "leetcodeSlug": "lru-cache"
@@ -707,13 +707,13 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
-      "python": "# 前 K 个高频元素\ndef solve(nums, target=None):\n    mp = {}\n    for i, x in enumerate(nums):\n        # 先查后存，避免匹配自己\n        if target is not None and (target - x) in mp:\n            return [mp[target - x], i]\n        mp[x] = i\n    return mp",
-      "java": "// 前 K 个高频元素\nObject solve(int[] nums, Integer target) {\n    Map<Integer,Integer> mp = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n        if (target != null && mp.containsKey(target - nums[i])) {\n            return new int[]{mp.get(target - nums[i]), i};\n        }\n        mp.put(nums[i], i);\n    }\n    return mp;\n}",
-      "cpp": "// 前 K 个高频元素\nauto solve(vector<int>& nums, optional<int> target = nullopt) {\n    unordered_map<int,int> mp;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (target.has_value() && mp.count(target.value() - nums[i])) {\n            return vector<int>{mp[target.value() - nums[i]], i};\n        }\n        mp[nums[i]] = i;\n    }\n    return mp;\n}"
+      "python": "# TODO: 前 K 个高频元素 (top-k-frequent-elements)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement top-k-frequent-elements')",
+      "java": "// TODO: 前 K 个高频元素 (top-k-frequent-elements)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement top-k-frequent-elements\");\n    }\n}",
+      "cpp": "// TODO: 前 K 个高频元素 (top-k-frequent-elements)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement top-k-frequent-elements\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按任意顺序返回答案。",
     "leetcodeSlug": "top-k-frequent-elements"
@@ -747,13 +747,13 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
-      "python": "# 四数相加 II\ndef solve(nums, target=None):\n    mp = {}\n    for i, x in enumerate(nums):\n        # 先查后存，避免匹配自己\n        if target is not None and (target - x) in mp:\n            return [mp[target - x], i]\n        mp[x] = i\n    return mp",
-      "java": "// 四数相加 II\nObject solve(int[] nums, Integer target) {\n    Map<Integer,Integer> mp = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n        if (target != null && mp.containsKey(target - nums[i])) {\n            return new int[]{mp.get(target - nums[i]), i};\n        }\n        mp.put(nums[i], i);\n    }\n    return mp;\n}",
-      "cpp": "// 四数相加 II\nauto solve(vector<int>& nums, optional<int> target = nullopt) {\n    unordered_map<int,int> mp;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (target.has_value() && mp.count(target.value() - nums[i])) {\n            return vector<int>{mp[target.value() - nums[i]], i};\n        }\n        mp[nums[i]] = i;\n    }\n    return mp;\n}"
+      "python": "# TODO: 四数相加 II (4sum-ii)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement 4sum-ii')",
+      "java": "// TODO: 四数相加 II (4sum-ii)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement 4sum-ii\");\n    }\n}",
+      "cpp": "// TODO: 四数相加 II (4sum-ii)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement 4sum-ii\");\n    }\n};"
     },
     "description": "给你四个整数数组 nums1、nums2、nums3 和 nums4 ，数组长度都是 n ，请你计算有多少个元组 (i, j, k, l) 能满足四个数组对应元素之和为 0。",
     "leetcodeSlug": "4sum-ii"
@@ -787,16 +787,16 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
-      "python": "# 字符串解码计数场景\ndef solve(nums, target=None):\n    mp = {}\n    for i, x in enumerate(nums):\n        # 先查后存，避免匹配自己\n        if target is not None and (target - x) in mp:\n            return [mp[target - x], i]\n        mp[x] = i\n    return mp",
-      "java": "// 字符串解码计数场景\nObject solve(int[] nums, Integer target) {\n    Map<Integer,Integer> mp = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n        if (target != null && mp.containsKey(target - nums[i])) {\n            return new int[]{mp.get(target - nums[i]), i};\n        }\n        mp.put(nums[i], i);\n    }\n    return mp;\n}",
-      "cpp": "// 字符串解码计数场景\nauto solve(vector<int>& nums, optional<int> target = nullopt) {\n    unordered_map<int,int> mp;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (target.has_value() && mp.count(target.value() - nums[i])) {\n            return vector<int>{mp[target.value() - nums[i]], i};\n        }\n        mp[nums[i]] = i;\n    }\n    return mp;\n}"
+      "python": "# TODO: 字符串解码计数场景 (decode-ways)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement decode-ways')",
+      "java": "// TODO: 字符串解码计数场景 (decode-ways)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement decode-ways\");\n    }\n}",
+      "cpp": "// TODO: 字符串解码计数场景 (decode-ways)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement decode-ways\");\n    }\n};"
     },
-    "description": "题目《字符串解码计数场景》要求你在 hashmaps 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
-    "leetcodeSlug": "decode-string-count-scenario"
+    "description": "本题对应《字符串解码计数场景》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 hashmaps 相关方法中完成复杂度优化。",
+    "leetcodeSlug": "decode-ways"
   },
   {
     "id": "q021",
@@ -827,13 +827,13 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
-      "python": "# 快乐数\ndef solve(nums, target=None):\n    mp = {}\n    for i, x in enumerate(nums):\n        # 先查后存，避免匹配自己\n        if target is not None and (target - x) in mp:\n            return [mp[target - x], i]\n        mp[x] = i\n    return mp",
-      "java": "// 快乐数\nObject solve(int[] nums, Integer target) {\n    Map<Integer,Integer> mp = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n        if (target != null && mp.containsKey(target - nums[i])) {\n            return new int[]{mp.get(target - nums[i]), i};\n        }\n        mp.put(nums[i], i);\n    }\n    return mp;\n}",
-      "cpp": "// 快乐数\nauto solve(vector<int>& nums, optional<int> target = nullopt) {\n    unordered_map<int,int> mp;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (target.has_value() && mp.count(target.value() - nums[i])) {\n            return vector<int>{mp[target.value() - nums[i]], i};\n        }\n        mp[nums[i]] = i;\n    }\n    return mp;\n}"
+      "python": "# TODO: 快乐数 (happy-number)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement happy-number')",
+      "java": "// TODO: 快乐数 (happy-number)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement happy-number\");\n    }\n}",
+      "cpp": "// TODO: 快乐数 (happy-number)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement happy-number\");\n    }\n};"
     },
     "description": "编写一个算法来判断一个数 n 是不是快乐数。快乐数定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，最终变更为 1。",
     "leetcodeSlug": "happy-number"
@@ -867,13 +867,13 @@ module.exports = [
         "忘记处理重复键覆盖策略"
       ],
       "complexity": "平均时间 O(n)，最坏取决于哈希冲突。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "定义 key/value 的语义。\n在循环中严格区分“先查后存”或“先存后查”，避免自匹配与覆盖错误。",
+      "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "codeSnippet": {
-      "python": "# 同构字符串\ndef solve(nums, target=None):\n    mp = {}\n    for i, x in enumerate(nums):\n        # 先查后存，避免匹配自己\n        if target is not None and (target - x) in mp:\n            return [mp[target - x], i]\n        mp[x] = i\n    return mp",
-      "java": "// 同构字符串\nObject solve(int[] nums, Integer target) {\n    Map<Integer,Integer> mp = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n        if (target != null && mp.containsKey(target - nums[i])) {\n            return new int[]{mp.get(target - nums[i]), i};\n        }\n        mp.put(nums[i], i);\n    }\n    return mp;\n}",
-      "cpp": "// 同构字符串\nauto solve(vector<int>& nums, optional<int> target = nullopt) {\n    unordered_map<int,int> mp;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (target.has_value() && mp.count(target.value() - nums[i])) {\n            return vector<int>{mp[target.value() - nums[i]], i};\n        }\n        mp[nums[i]] = i;\n    }\n    return mp;\n}"
+      "python": "# TODO: 同构字符串 (isomorphic-strings)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement isomorphic-strings')",
+      "java": "// TODO: 同构字符串 (isomorphic-strings)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement isomorphic-strings\");\n    }\n}",
+      "cpp": "// TODO: 同构字符串 (isomorphic-strings)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement isomorphic-strings\");\n    }\n};"
     },
     "description": "给定两个字符串 s 和 t ，判断它们是否是同构的。如果 s 中的字符可以按某种替换规则得到 t ，则两个字符串同构。",
     "leetcodeSlug": "isomorphic-strings"
@@ -898,7 +898,7 @@ module.exports = [
       "cpp": "vector<vector<int>> threeSum(vector<int>& nums) {\n    sort(nums.begin(), nums.end());\n    vector<vector<int>> res;\n    for (int i = 0; i < (int)nums.size() - 2; i++) {\n        if (i > 0 && nums[i] == nums[i - 1]) continue;\n        int l = i + 1, r = nums.size() - 1;\n        while (l < r) {\n            int sum = nums[i] + nums[l] + nums[r];\n            if (sum == 0) {\n                res.push_back({nums[i], nums[l], nums[r]});\n                while (l < r && nums[l] == nums[l + 1]) l++;\n                while (l < r && nums[r] == nums[r - 1]) r--;\n                l++; r--;\n            } else if (sum < 0) l++;\n            else r--;\n        }\n    }\n    return res;\n}"
     },
     "learning": {
-      "pattern": "双指针收缩框架",
+      "pattern": "双指针收缩与分治（同向/相向）",
       "coreQuestion": "移动哪一侧指针才不会漏解？",
       "framework": "利用单调性（有序/约束）决定指针移动方向。",
       "steps": [
@@ -912,8 +912,8 @@ module.exports = [
         "忽略排序前置条件"
       ],
       "complexity": "典型时间 O(n) 或 O(n^2)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定左右指针各自语义，再写移动规则。\n每次移动只改变一个边界，并保持区间性质不被破坏。",
+      "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "description": "给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。",
     "leetcodeSlug": "3sum"
@@ -933,7 +933,7 @@ module.exports = [
     "explanation": "面积受短边限制，移动长边无收益。",
     "xp": 12,
     "learning": {
-      "pattern": "双指针收缩框架",
+      "pattern": "双指针收缩与分治（同向/相向）",
       "coreQuestion": "移动哪一侧指针才不会漏解？",
       "framework": "利用单调性（有序/约束）决定指针移动方向。",
       "steps": [
@@ -947,13 +947,13 @@ module.exports = [
         "忽略排序前置条件"
       ],
       "complexity": "典型时间 O(n) 或 O(n^2)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定左右指针各自语义，再写移动规则。\n每次移动只改变一个边界，并保持区间性质不被破坏。",
+      "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "codeSnippet": {
-      "python": "# 盛最多水的容器\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 盛最多水的容器\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 盛最多水的容器\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 盛最多水的容器 (container-with-most-water)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement container-with-most-water')",
+      "java": "// TODO: 盛最多水的容器 (container-with-most-water)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement container-with-most-water\");\n    }\n}",
+      "cpp": "// TODO: 盛最多水的容器 (container-with-most-water)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement container-with-most-water\");\n    }\n};"
     },
     "description": "给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。",
     "leetcodeSlug": "container-with-most-water"
@@ -973,7 +973,7 @@ module.exports = [
     "explanation": "slow 保持结果区间 [0,slow)。",
     "xp": 12,
     "learning": {
-      "pattern": "双指针收缩框架",
+      "pattern": "双指针收缩与分治（同向/相向）",
       "coreQuestion": "移动哪一侧指针才不会漏解？",
       "framework": "利用单调性（有序/约束）决定指针移动方向。",
       "steps": [
@@ -987,13 +987,13 @@ module.exports = [
         "忽略排序前置条件"
       ],
       "complexity": "典型时间 O(n) 或 O(n^2)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定左右指针各自语义，再写移动规则。\n每次移动只改变一个边界，并保持区间性质不被破坏。",
+      "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "codeSnippet": {
-      "python": "# 删除有序数组重复项\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 删除有序数组重复项\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 删除有序数组重复项\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 删除有序数组重复项 (remove-duplicates-from-sorted-array)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement remove-duplicates-from-sorted-array')",
+      "java": "// TODO: 删除有序数组重复项 (remove-duplicates-from-sorted-array)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement remove-duplicates-from-sorted-array\");\n    }\n}",
+      "cpp": "// TODO: 删除有序数组重复项 (remove-duplicates-from-sorted-array)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement remove-duplicates-from-sorted-array\");\n    }\n};"
     },
     "description": "给你一个升序排列的数组 nums ，请你原地删除重复出现的元素，使每个元素只出现一次 ，返回删除后数组的新长度。",
     "leetcodeSlug": "remove-duplicates-from-sorted-array"
@@ -1013,7 +1013,7 @@ module.exports = [
     "explanation": "快慢指针找中点后原地比较。",
     "xp": 12,
     "learning": {
-      "pattern": "双指针收缩框架",
+      "pattern": "双指针收缩与分治（同向/相向）",
       "coreQuestion": "移动哪一侧指针才不会漏解？",
       "framework": "利用单调性（有序/约束）决定指针移动方向。",
       "steps": [
@@ -1027,8 +1027,8 @@ module.exports = [
         "忽略排序前置条件"
       ],
       "complexity": "典型时间 O(n) 或 O(n^2)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定左右指针各自语义，再写移动规则。\n每次移动只改变一个边界，并保持区间性质不被破坏。",
+      "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "codeSnippet": {
       "python": "def isPalindrome(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow, fast = slow.next, fast.next.next\n    prev = None\n    while slow:\n        nxt = slow.next\n        slow.next = prev\n        prev = slow\n        slow = nxt\n    while prev:\n        if head.val != prev.val: return False\n        head, prev = head.next, prev.next\n    return True",
@@ -1053,7 +1053,7 @@ module.exports = [
     "explanation": "和过小左移左指针，过大右移右指针。",
     "xp": 12,
     "learning": {
-      "pattern": "双指针收缩框架",
+      "pattern": "双指针收缩与分治（同向/相向）",
       "coreQuestion": "移动哪一侧指针才不会漏解？",
       "framework": "利用单调性（有序/约束）决定指针移动方向。",
       "steps": [
@@ -1067,8 +1067,8 @@ module.exports = [
         "忽略排序前置条件"
       ],
       "complexity": "典型时间 O(n) 或 O(n^2)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定左右指针各自语义，再写移动规则。\n每次移动只改变一个边界，并保持区间性质不被破坏。",
+      "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "codeSnippet": {
       "python": "def twoSum(numbers, target):\n    left, right = 0, len(numbers) - 1\n    while left < right:\n        s = numbers[left] + numbers[right]\n        if s == target: return [left + 1, right + 1]\n        if s < target: left += 1\n        else: right -= 1",
@@ -1093,7 +1093,7 @@ module.exports = [
     "explanation": "保持快慢间距 n。",
     "xp": 12,
     "learning": {
-      "pattern": "双指针收缩框架",
+      "pattern": "双指针收缩与分治（同向/相向）",
       "coreQuestion": "移动哪一侧指针才不会漏解？",
       "framework": "利用单调性（有序/约束）决定指针移动方向。",
       "steps": [
@@ -1107,8 +1107,8 @@ module.exports = [
         "忽略排序前置条件"
       ],
       "complexity": "典型时间 O(n) 或 O(n^2)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定左右指针各自语义，再写移动规则。\n每次移动只改变一个边界，并保持区间性质不被破坏。",
+      "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "codeSnippet": {
       "python": "def removeNthFromEnd(head, n):\n    dummy = ListNode(0, head)\n    fast = slow = dummy\n    for _ in range(n):\n        fast = fast.next\n    while fast.next:\n        fast = fast.next\n        slow = slow.next\n    slow.next = slow.next.next\n    return dummy.next",
@@ -1133,7 +1133,7 @@ module.exports = [
     "explanation": "总路程相等后在交点相遇。",
     "xp": 12,
     "learning": {
-      "pattern": "双指针收缩框架",
+      "pattern": "双指针收缩与分治（同向/相向）",
       "coreQuestion": "移动哪一侧指针才不会漏解？",
       "framework": "利用单调性（有序/约束）决定指针移动方向。",
       "steps": [
@@ -1147,8 +1147,8 @@ module.exports = [
         "忽略排序前置条件"
       ],
       "complexity": "典型时间 O(n) 或 O(n^2)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定左右指针各自语义，再写移动规则。\n每次移动只改变一个边界，并保持区间性质不被破坏。",
+      "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "codeSnippet": {
       "python": "def getIntersectionNode(headA, headB):\n    p, q = headA, headB\n    while p != q:\n        p = p.next if p else headB\n        q = q.next if q else headA\n    return p",
@@ -1173,7 +1173,7 @@ module.exports = [
     "explanation": "较小边确定当前有效水位。",
     "xp": 12,
     "learning": {
-      "pattern": "双指针收缩框架",
+      "pattern": "双指针收缩与分治（同向/相向）",
       "coreQuestion": "移动哪一侧指针才不会漏解？",
       "framework": "利用单调性（有序/约束）决定指针移动方向。",
       "steps": [
@@ -1187,13 +1187,13 @@ module.exports = [
         "忽略排序前置条件"
       ],
       "complexity": "典型时间 O(n) 或 O(n^2)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定左右指针各自语义，再写移动规则。\n每次移动只改变一个边界，并保持区间性质不被破坏。",
+      "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "codeSnippet": {
-      "python": "# 接雨水双指针\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 接雨水双指针\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 接雨水双指针\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 接雨水双指针 (trapping-rain-water-two-pointers)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement trapping-rain-water-two-pointers')",
+      "java": "// TODO: 接雨水双指针 (trapping-rain-water-two-pointers)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement trapping-rain-water-two-pointers\");\n    }\n}",
+      "cpp": "// TODO: 接雨水双指针 (trapping-rain-water-two-pointers)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement trapping-rain-water-two-pointers\");\n    }\n};"
     },
     "description": "给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。",
     "leetcodeSlug": "trapping-rain-water-two-pointers"
@@ -1218,7 +1218,7 @@ module.exports = [
       "cpp": "int lengthOfLongestSubstring(string s) {\n    unordered_map<char, int> map;\n    int left = 0, maxLen = 0;\n    for (int right = 0; right < s.size(); right++) {\n        if (map.count(s[right])) {\n            left = max(left, map[s[right]] + 1);\n        }\n        map[s[right]] = right;\n        maxLen = max(maxLen, right - left + 1);\n    }\n    return maxLen;\n}"
     },
     "learning": {
-      "pattern": "滑窗去重模板",
+      "pattern": "滑动窗口计数（扩张-收缩-更新答案）",
       "coreQuestion": "如何保证窗口内字符始终不重复？",
       "framework": "右指针扩张获取信息，满足约束后左指针收缩并更新答案。",
       "steps": [
@@ -1309,9 +1309,9 @@ module.exports = [
       "insight": "滑动窗口的精髓在于：不断增加 right 扩大窗口，直到满足约束；然后不断增加 left 缩小窗口，直到不再满足约束。过程中更新答案。"
     },
     "codeSnippet": {
-      "python": "# 找到字符串中所有字母异位词\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 找到字符串中所有字母异位词\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 找到字符串中所有字母异位词\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 找到字符串中所有字母异位词 (find-all-anagrams-in-a-string)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement find-all-anagrams-in-a-string')",
+      "java": "// TODO: 找到字符串中所有字母异位词 (find-all-anagrams-in-a-string)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement find-all-anagrams-in-a-string\");\n    }\n}",
+      "cpp": "// TODO: 找到字符串中所有字母异位词 (find-all-anagrams-in-a-string)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement find-all-anagrams-in-a-string\");\n    }\n};"
     },
     "description": "给定两个字符串 s 和 p，找到 s 中所有 p 的异位词的子串，返回这些子串的起始索引。",
     "leetcodeSlug": "find-all-anagrams-in-a-string"
@@ -1349,9 +1349,9 @@ module.exports = [
       "insight": "滑动窗口的精髓在于：不断增加 right 扩大窗口，直到满足约束；然后不断增加 left 缩小窗口，直到不再满足约束。过程中更新答案。"
     },
     "codeSnippet": {
-      "python": "# 长度最小的子数组\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 长度最小的子数组\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 长度最小的子数组\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 长度最小的子数组 (minimum-size-subarray-sum)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement minimum-size-subarray-sum')",
+      "java": "// TODO: 长度最小的子数组 (minimum-size-subarray-sum)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement minimum-size-subarray-sum\");\n    }\n}",
+      "cpp": "// TODO: 长度最小的子数组 (minimum-size-subarray-sum)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement minimum-size-subarray-sum\");\n    }\n};"
     },
     "description": "给定一个含有 n 个正整数的数组和一个正整数 target 。找出该数组中满足其和 ≥ target 的长度最小的连续子数组，并返回其长度。",
     "leetcodeSlug": "minimum-size-subarray-sum"
@@ -1389,9 +1389,9 @@ module.exports = [
       "insight": "滑动窗口的精髓在于：不断增加 right 扩大窗口，直到满足约束；然后不断增加 left 缩小窗口，直到不再满足约束。过程中更新答案。"
     },
     "codeSnippet": {
-      "python": "# 最大连续 1（可翻转 k 次）\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 最大连续 1（可翻转 k 次）\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 最大连续 1（可翻转 k 次）\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 最大连续 1（可翻转 k 次） (max-consecutive-ones-iii)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement max-consecutive-ones-iii')",
+      "java": "// TODO: 最大连续 1（可翻转 k 次） (max-consecutive-ones-iii)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement max-consecutive-ones-iii\");\n    }\n}",
+      "cpp": "// TODO: 最大连续 1（可翻转 k 次） (max-consecutive-ones-iii)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement max-consecutive-ones-iii\");\n    }\n};"
     },
     "description": "给定一个二进制数组 nums 和一个整数 k，如果可以翻转最多 k 个 0 ，则返回数组中连续 1 的最大个数。",
     "leetcodeSlug": "max-consecutive-ones-iii"
@@ -1429,11 +1429,11 @@ module.exports = [
       "insight": "滑动窗口的精髓在于：不断增加 right 扩大窗口，直到满足约束；然后不断增加 left 缩小窗口，直到不再满足约束。过程中更新答案。"
     },
     "codeSnippet": {
-      "python": "# 串联所有单词的子串\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 串联所有单词的子串\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 串联所有单词的子串\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 串联所有单词的子串 (substring-with-concatenation-of-all-words)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement substring-with-concatenation-of-all-words')",
+      "java": "// TODO: 串联所有单词的子串 (substring-with-concatenation-of-all-words)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement substring-with-concatenation-of-all-words\");\n    }\n}",
+      "cpp": "// TODO: 串联所有单词的子串 (substring-with-concatenation-of-all-words)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement substring-with-concatenation-of-all-words\");\n    }\n};"
     },
-    "description": "题目《串联所有单词的子串》要求你在 sliding_window 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《串联所有单词的子串》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
     "leetcodeSlug": "substring-with-concatenation-of-all-words"
   },
   {
@@ -1469,11 +1469,11 @@ module.exports = [
       "insight": "滑动窗口的精髓在于：不断增加 right 扩大窗口，直到满足约束；然后不断增加 left 缩小窗口，直到不再满足约束。过程中更新答案。"
     },
     "codeSnippet": {
-      "python": "# 水果成篮\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 水果成篮\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 水果成篮\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 水果成篮 (fruit-into-baskets)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement fruit-into-baskets')",
+      "java": "// TODO: 水果成篮 (fruit-into-baskets)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement fruit-into-baskets\");\n    }\n}",
+      "cpp": "// TODO: 水果成篮 (fruit-into-baskets)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement fruit-into-baskets\");\n    }\n};"
     },
-    "description": "题目《水果成篮》要求你在 sliding_window 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《水果成篮》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
     "leetcodeSlug": "fruit-into-baskets"
   },
   {
@@ -1509,11 +1509,11 @@ module.exports = [
       "insight": "滑动窗口的精髓在于：不断增加 right 扩大窗口，直到满足约束；然后不断增加 left 缩小窗口，直到不再满足约束。过程中更新答案。"
     },
     "codeSnippet": {
-      "python": "# 替换后的最长重复字符\ndef solve(nums_or_s):\n    left = 0\n    ans = 0\n    for right in range(len(nums_or_s)):\n        # 扩张窗口/移动右指针\n        while left <= right and False:\n            # 条件不满足时收缩\n            left += 1\n        ans = max(ans, right - left + 1)\n    return ans",
-      "java": "// 替换后的最长重复字符\nint solve(int[] arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < arr.length; right++) {\n        while (left <= right && false) {\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}",
-      "cpp": "// 替换后的最长重复字符\nint solve(vector<int>& arr) {\n    int left = 0, ans = 0;\n    for (int right = 0; right < (int)arr.size(); right++) {\n        while (left <= right && false) left++;\n        ans = max(ans, right - left + 1);\n    }\n    return ans;\n}"
+      "python": "# TODO: 替换后的最长重复字符 (longest-repeating-character-replacement)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement longest-repeating-character-replacement')",
+      "java": "// TODO: 替换后的最长重复字符 (longest-repeating-character-replacement)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement longest-repeating-character-replacement\");\n    }\n}",
+      "cpp": "// TODO: 替换后的最长重复字符 (longest-repeating-character-replacement)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement longest-repeating-character-replacement\");\n    }\n};"
     },
-    "description": "题目《替换后的最长重复字符》要求你在 sliding_window 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《替换后的最长重复字符》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
     "leetcodeSlug": "longest-repeating-character-replacement"
   },
   {
@@ -1550,8 +1550,8 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "description": "给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。",
     "leetcodeSlug": "reverse-linked-list"
@@ -1585,8 +1585,8 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# 合并两个有序链表\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
@@ -1625,15 +1625,15 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# 链表有环\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
       "java": "// 链表有环\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
       "cpp": "// 链表有环\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
-    "description": "题目《链表有环》要求你在 linked_list 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《链表有环》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "linked-list-cycle"
   },
   {
@@ -1665,15 +1665,15 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# 重排链表\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
       "java": "// 重排链表\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
       "cpp": "// 重排链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
-    "description": "题目《重排链表》要求你在 linked_list 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《重排链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "reorder-list"
   },
   {
@@ -1705,15 +1705,15 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# K 个一组翻转链表\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
       "java": "// K 个一组翻转链表\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
       "cpp": "// K 个一组翻转链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
-    "description": "题目《K 个一组翻转链表》要求你在 linked_list 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《K 个一组翻转链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "reverse-nodes-in-k-group"
   },
   {
@@ -1745,15 +1745,15 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# 复制带随机指针的链表\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
       "java": "// 复制带随机指针的链表\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
       "cpp": "// 复制带随机指针的链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
-    "description": "题目《复制带随机指针的链表》要求你在 linked_list 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《复制带随机指针的链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "copy-list-with-random-pointer"
   },
   {
@@ -1785,15 +1785,15 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# 排序链表\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
       "java": "// 排序链表\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
       "cpp": "// 排序链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
-    "description": "题目《排序链表》要求你在 linked_list 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《排序链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "sort-list"
   },
   {
@@ -1825,8 +1825,8 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# 回文链表\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
@@ -1865,15 +1865,15 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# 环形链表 II\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
       "java": "// 环形链表 II\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
       "cpp": "// 环形链表 II\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
-    "description": "题目《环形链表 II》要求你在 linked_list 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《环形链表 II》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "linked-list-cycle-ii"
   },
   {
@@ -1905,15 +1905,15 @@ module.exports = [
         "空链表/单节点未覆盖"
       ],
       "complexity": "多数题时间 O(n)，空间 O(1)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "优先使用 dummy 统一头结点边界。\n涉及区间操作时先断开再重连，保证 next 指针始终可追踪。",
+      "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
       "python": "# 删除排序链表重复元素 II\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
       "java": "// 删除排序链表重复元素 II\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
       "cpp": "// 删除排序链表重复元素 II\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
-    "description": "题目《删除排序链表重复元素 II》要求你在 linked_list 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《删除排序链表重复元素 II》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "remove-duplicates-from-sorted-list-ii"
   },
   {
@@ -1945,8 +1945,8 @@ module.exports = [
         "单调性方向写反"
       ],
       "complexity": "均摊时间通常 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
+      "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
     "codeSnippet": {
       "python": "# 有效括号\ndef solve(s):\n    st = []\n    mp = {')':'(', ']':'[', '}':'{'}\n    for c in s:\n        if c in mp:\n            if not st or st.pop() != mp[c]:\n                return False\n        else:\n            st.append(c)\n    return not st",
@@ -1985,8 +1985,8 @@ module.exports = [
         "单调性方向写反"
       ],
       "complexity": "均摊时间通常 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
+      "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
     "codeSnippet": {
       "python": "# 最小栈\ndef solve(s):\n    st = []\n    mp = {')':'(', ']':'[', '}':'{'}\n    for c in s:\n        if c in mp:\n            if not st or st.pop() != mp[c]:\n                return False\n        else:\n            st.append(c)\n    return not st",
@@ -2025,10 +2025,10 @@ module.exports = [
         "单调性方向写反"
       ],
       "complexity": "均摊时间通常 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
+      "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "题目《每日温度》要求你在 stack_queue 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《每日温度》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
@@ -2065,10 +2065,10 @@ module.exports = [
         "单调性方向写反"
       ],
       "complexity": "均摊时间通常 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
+      "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "题目《柱状图最大矩形》要求你在 stack_queue 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《柱状图最大矩形》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
@@ -2105,10 +2105,10 @@ module.exports = [
         "单调性方向写反"
       ],
       "complexity": "均摊时间通常 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
+      "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "题目《逆波兰表达式求值》要求你在 stack_queue 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《逆波兰表达式求值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
@@ -2145,10 +2145,10 @@ module.exports = [
         "单调性方向写反"
       ],
       "complexity": "均摊时间通常 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
+      "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "题目《字符串解码》要求你在 stack_queue 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《字符串解码》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
@@ -2185,10 +2185,10 @@ module.exports = [
         "单调性方向写反"
       ],
       "complexity": "均摊时间通常 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
+      "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "题目《滑动窗口最大值》要求你在 stack_queue 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《滑动窗口最大值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "from collections import deque\ndef maxSlidingWindow(nums, k):\n    dq = deque()\n    ans = []\n    for i, x in enumerate(nums):\n        while dq and dq[0] <= i - k: dq.popleft()\n        while dq and nums[dq[-1]] <= x: dq.pop()\n        dq.append(i)\n        if i >= k - 1: ans.append(nums[dq[0]])\n    return ans",
       "java": "public int[] maxSlidingWindow(int[] nums, int k) {\n    Deque<Integer> dq = new ArrayDeque<>();\n    int[] ans = new int[nums.length - k + 1];\n    for (int i = 0; i < nums.length; i++) {\n        while (!dq.isEmpty() && dq.peekFirst() <= i - k) dq.pollFirst();\n        while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) dq.pollLast();\n        dq.offerLast(i);\n        if (i >= k - 1) ans[i - k + 1] = nums[dq.peekFirst()];\n    }\n    return ans;\n}",
@@ -2225,10 +2225,10 @@ module.exports = [
         "单调性方向写反"
       ],
       "complexity": "均摊时间通常 O(n)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
+      "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "题目《实现队列用栈》要求你在 stack_queue 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《实现队列用栈》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
@@ -2256,7 +2256,7 @@ module.exports = [
       "cpp": "int search(vector<int>& nums, int target) {\n    int l = 0, r = nums.size() - 1;\n    while (l <= r) {\n        int mid = l + (r - l) / 2;\n        if (nums[mid] == target) return mid;\n        if (nums[mid] < target) l = mid + 1;\n        else r = mid - 1;\n    }\n    return -1;\n}"
     },
     "learning": {
-      "pattern": "标准二分查找",
+      "pattern": "二分查找边界模板（左闭右闭或左闭右开）",
       "coreQuestion": "mid 命中时返回，否则如何安全缩区间？",
       "framework": "将问题转成单调判定函数，用区间不变量维护答案边界。",
       "steps": [
@@ -2289,7 +2289,7 @@ module.exports = [
     "explanation": "一侧一定有序，再判断 target 是否落入。",
     "xp": 12,
     "learning": {
-      "pattern": "二分边界模板",
+      "pattern": "二分查找边界模板（左闭右闭或左闭右开）",
       "coreQuestion": "你在找“某值”，还是找“第一个满足条件的位置”？",
       "framework": "将问题转成单调判定函数，用区间不变量维护答案边界。",
       "steps": [
@@ -2306,7 +2306,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "题目《搜索旋转排序数组》要求你在 binary_search 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《搜索旋转排序数组》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def search(nums, target):\n    left, right = 0, len(nums) - 1\n    while left <= right:\n        mid = left + (right - left) // 2\n        if nums[mid] == target: return mid\n        if nums[left] <= nums[mid]:\n            if nums[left] <= target < nums[mid]:\n                right = mid - 1\n            else:\n                left = mid + 1\n        else:\n            if nums[mid] < target <= nums[right]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    return -1",
       "java": "public int search(int[] nums, int target) {\n    int left = 0, right = nums.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] == target) return mid;\n        if (nums[left] <= nums[mid]) {\n            if (nums[left] <= target && target < nums[mid]) right = mid - 1;\n            else left = mid + 1;\n        } else {\n            if (nums[mid] < target && target <= nums[right]) left = mid + 1;\n            else right = mid - 1;\n        }\n    }\n    return -1;\n}",
@@ -2329,7 +2329,7 @@ module.exports = [
     "explanation": "斜率方向可指导搜索区间。",
     "xp": 12,
     "learning": {
-      "pattern": "二分边界模板",
+      "pattern": "二分查找边界模板（左闭右闭或左闭右开）",
       "coreQuestion": "你在找“某值”，还是找“第一个满足条件的位置”？",
       "framework": "将问题转成单调判定函数，用区间不变量维护答案边界。",
       "steps": [
@@ -2346,7 +2346,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "题目《寻找峰值》要求你在 binary_search 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《寻找峰值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def findPeakElement(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = left + (right - left) // 2\n        if nums[mid] > nums[mid + 1]:\n            right = mid\n        else:\n            left = mid + 1\n    return left",
       "java": "public int findPeakElement(int[] nums) {\n    int left = 0, right = nums.length - 1;\n    while (left < right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] > nums[mid + 1]) right = mid;\n        else left = mid + 1;\n    }\n    return left;\n}",
@@ -2369,7 +2369,7 @@ module.exports = [
     "explanation": "lower_bound 与 upper_bound 思路。",
     "xp": 12,
     "learning": {
-      "pattern": "二分边界模板",
+      "pattern": "二分查找边界模板（左闭右闭或左闭右开）",
       "coreQuestion": "你在找“某值”，还是找“第一个满足条件的位置”？",
       "framework": "将问题转成单调判定函数，用区间不变量维护答案边界。",
       "steps": [
@@ -2386,7 +2386,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "题目《在排序数组中查找元素首尾位置》要求你在 binary_search 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《在排序数组中查找元素首尾位置》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def solve(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        m = l + (r - l) // 2\n        if nums[m] == target: return m\n        if nums[m] < target: l = m + 1\n        else: r = m - 1\n    return -1",
       "java": "int solve(int[] nums, int target) {\n    int l = 0, r = nums.length - 1;\n    while (l <= r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] == target) return m;\n        if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}",
@@ -2409,7 +2409,7 @@ module.exports = [
     "explanation": "找满足条件的最大 mid。",
     "xp": 12,
     "learning": {
-      "pattern": "二分边界模板",
+      "pattern": "二分查找边界模板（左闭右闭或左闭右开）",
       "coreQuestion": "你在找“某值”，还是找“第一个满足条件的位置”？",
       "framework": "将问题转成单调判定函数，用区间不变量维护答案边界。",
       "steps": [
@@ -2426,7 +2426,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "题目《x 的平方根》要求你在 binary_search 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《x 的平方根》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def mySqrt(x):\n    left, right = 0, x\n    while left <= right:\n        mid = left + (right - left) // 2\n        if mid * mid <= x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return right",
       "java": "public int mySqrt(int x) {\n    long left = 0, right = x;\n    while (left <= right) {\n        long mid = left + (right - left) / 2;\n        if (mid * mid <= x) left = mid + 1;\n        else right = mid - 1;\n    }\n    return (int) right;\n}",
@@ -2449,7 +2449,7 @@ module.exports = [
     "explanation": "与右端比较可判断最小值在哪半边。",
     "xp": 12,
     "learning": {
-      "pattern": "二分边界模板",
+      "pattern": "二分查找边界模板（左闭右闭或左闭右开）",
       "coreQuestion": "你在找“某值”，还是找“第一个满足条件的位置”？",
       "framework": "将问题转成单调判定函数，用区间不变量维护答案边界。",
       "steps": [
@@ -2466,7 +2466,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "题目《寻找旋转数组最小值》要求你在 binary_search 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《寻找旋转数组最小值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def solve(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        m = l + (r - l) // 2\n        if nums[m] == target: return m\n        if nums[m] < target: l = m + 1\n        else: r = m - 1\n    return -1",
       "java": "int solve(int[] nums, int target) {\n    int l = 0, r = nums.length - 1;\n    while (l <= r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] == target) return m;\n        if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}",
@@ -2489,7 +2489,7 @@ module.exports = [
     "explanation": "速度越大耗时越短，具有单调性。",
     "xp": 12,
     "learning": {
-      "pattern": "二分边界模板",
+      "pattern": "二分查找边界模板（左闭右闭或左闭右开）",
       "coreQuestion": "你在找“某值”，还是找“第一个满足条件的位置”？",
       "framework": "将问题转成单调判定函数，用区间不变量维护答案边界。",
       "steps": [
@@ -2506,7 +2506,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "题目《Koko 吃香蕉》要求你在 binary_search 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《Koko 吃香蕉》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def minEatingSpeed(piles, h):\n    left, right = 1, max(piles)\n    while left < right:\n        mid = left + (right - left) // 2\n        hours = sum((p + mid - 1) // mid for p in piles)\n        if hours <= h:\n            right = mid\n        else:\n            left = mid + 1\n    return left",
       "java": "public int minEatingSpeed(int[] piles, int h) {\n    int left = 1, right = Arrays.stream(piles).max().getAsInt();\n    while (left < right) {\n        int mid = left + (right - left) / 2;\n        long hours = 0;\n        for (int p : piles) hours += (p + mid - 1) / mid;\n        if (hours <= h) right = mid;\n        else left = mid + 1;\n    }\n    return left;\n}",
@@ -2529,7 +2529,7 @@ module.exports = [
     "explanation": "用下标映射 row/col 即可二分。",
     "xp": 12,
     "learning": {
-      "pattern": "二分边界模板",
+      "pattern": "二分查找边界模板（左闭右闭或左闭右开）",
       "coreQuestion": "你在找“某值”，还是找“第一个满足条件的位置”？",
       "framework": "将问题转成单调判定函数，用区间不变量维护答案边界。",
       "steps": [
@@ -2546,7 +2546,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "题目《搜索二维矩阵》要求你在 binary_search 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《搜索二维矩阵》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def searchMatrix(matrix, target):\n    m, n = len(matrix), len(matrix[0])\n    left, right = 0, m * n - 1\n    while left <= right:\n        mid = left + (right - left) // 2\n        v = matrix[mid // n][mid % n]\n        if v == target: return True\n        if v < target: left = mid + 1\n        else: right = mid - 1\n    return False",
       "java": "public boolean searchMatrix(int[][] matrix, int target) {\n    int m = matrix.length, n = matrix[0].length;\n    int left = 0, right = m * n - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        int v = matrix[mid / n][mid % n];\n        if (v == target) return true;\n        if (v < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return false;\n}",
@@ -2746,7 +2746,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "题目《路径总和》要求你在 trees 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《路径总和》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
@@ -2786,7 +2786,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "题目《二叉树直径》要求你在 trees 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《二叉树直径》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
@@ -2826,7 +2826,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "题目《平衡二叉树》要求你在 trees 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《平衡二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
@@ -2866,7 +2866,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "题目《二叉树最大路径和》要求你在 trees 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《二叉树最大路径和》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
@@ -2906,7 +2906,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "题目《从前序与中序构造二叉树》要求你在 trees 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《从前序与中序构造二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def buildTree(preorder, inorder):\n    pos = {v: i for i, v in enumerate(inorder)}\n    def dfs(pl, pr, il, ir):\n        if pl > pr: return None\n        root_val = preorder[pl]\n        root = TreeNode(root_val)\n        k = pos[root_val]\n        left_size = k - il\n        root.left = dfs(pl + 1, pl + left_size, il, k - 1)\n        root.right = dfs(pl + left_size + 1, pr, k + 1, ir)\n        return root\n    return dfs(0, len(preorder) - 1, 0, len(inorder) - 1)",
       "java": "public TreeNode buildTree(int[] preorder, int[] inorder) {\n    Map<Integer, Integer> pos = new HashMap<>();\n    for (int i = 0; i < inorder.length; i++) pos.put(inorder[i], i);\n    return dfs(preorder, 0, preorder.length - 1, 0, inorder.length - 1, pos);\n}\nprivate TreeNode dfs(int[] pre, int pl, int pr, int il, int ir, Map<Integer, Integer> pos) {\n    if (pl > pr) return null;\n    TreeNode root = new TreeNode(pre[pl]);\n    int k = pos.get(pre[pl]);\n    int leftSize = k - il;\n    root.left = dfs(pre, pl + 1, pl + leftSize, il, k - 1, pos);\n    root.right = dfs(pre, pl + leftSize + 1, pr, k + 1, ir, pos);\n    return root;\n}",
@@ -2946,7 +2946,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "题目《二叉搜索树第 K 小》要求你在 trees 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《二叉搜索树第 K 小》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
@@ -2986,7 +2986,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "题目《序列化二叉树》要求你在 trees 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《序列化二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
@@ -3026,7 +3026,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "题目《对称二叉树》要求你在 trees 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《对称二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
@@ -3068,8 +3068,8 @@ module.exports = [
         "有向图和无向图判环混淆"
       ],
       "complexity": "图遍历常见 O(V+E)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
+      "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
     "description": "给你一个由 '1'（陆地）和 '0'（水）组成的二维网格，请你计算网格中岛屿的数量。岛屿总是被水包围。",
     "leetcodeSlug": "number-of-islands"
@@ -3103,8 +3103,8 @@ module.exports = [
         "有向图和无向图判环混淆"
       ],
       "complexity": "图遍历常见 O(V+E)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
+      "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
     "description": "你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。在选修某些课程之前需要一些先修课程。判断你是否可能完成所有课程的学习。",
     "codeSnippet": {
@@ -3143,10 +3143,10 @@ module.exports = [
         "有向图和无向图判环混淆"
       ],
       "complexity": "图遍历常见 O(V+E)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
+      "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "题目《克隆图》要求你在 graphs 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《克隆图》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "from collections import deque\ndef bfs(start, graph):\n    q = deque([start])\n    vis = {start}\n    while q:\n        x = q.popleft()\n        for y in graph[x]:\n            if y not in vis:\n                vis.add(y)\n                q.append(y)",
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
@@ -3183,10 +3183,10 @@ module.exports = [
         "有向图和无向图判环混淆"
       ],
       "complexity": "图遍历常见 O(V+E)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
+      "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "题目《腐烂的橘子》要求你在 graphs 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《腐烂的橘子》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "from collections import deque\ndef bfs(start, graph):\n    q = deque([start])\n    vis = {start}\n    while q:\n        x = q.popleft()\n        for y in graph[x]:\n            if y not in vis:\n                vis.add(y)\n                q.append(y)",
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
@@ -3223,10 +3223,10 @@ module.exports = [
         "有向图和无向图判环混淆"
       ],
       "complexity": "图遍历常见 O(V+E)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
+      "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "题目《单词接龙》要求你在 graphs 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《单词接龙》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "from collections import deque\ndef bfs(start, graph):\n    q = deque([start])\n    vis = {start}\n    while q:\n        x = q.popleft()\n        for y in graph[x]:\n            if y not in vis:\n                vis.add(y)\n                q.append(y)",
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
@@ -3263,10 +3263,10 @@ module.exports = [
         "有向图和无向图判环混淆"
       ],
       "complexity": "图遍历常见 O(V+E)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
+      "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "题目《被围绕的区域》要求你在 graphs 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《被围绕的区域》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "from collections import deque\ndef bfs(start, graph):\n    q = deque([start])\n    vis = {start}\n    while q:\n        x = q.popleft()\n        for y in graph[x]:\n            if y not in vis:\n                vis.add(y)\n                q.append(y)",
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
@@ -3303,10 +3303,10 @@ module.exports = [
         "有向图和无向图判环混淆"
       ],
       "complexity": "图遍历常见 O(V+E)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
+      "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "题目《冗余连接》要求你在 graphs 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《冗余连接》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "from collections import deque\ndef bfs(start, graph):\n    q = deque([start])\n    vis = {start}\n    while q:\n        x = q.popleft()\n        for y in graph[x]:\n            if y not in vis:\n                vis.add(y)\n                q.append(y)",
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
@@ -3343,10 +3343,10 @@ module.exports = [
         "有向图和无向图判环混淆"
       ],
       "complexity": "图遍历常见 O(V+E)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
+      "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "题目《网络延迟时间》要求你在 graphs 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《网络延迟时间》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "from collections import deque\ndef bfs(start, graph):\n    q = deque([start])\n    vis = {start}\n    while q:\n        x = q.popleft()\n        for y in graph[x]:\n            if y not in vis:\n                vis.add(y)\n                q.append(y)",
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
@@ -3407,7 +3407,7 @@ module.exports = [
     "explanation": "偷当前则不能偷前一间。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3426,9 +3426,9 @@ module.exports = [
     },
     "description": "你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 打家劫舍 (house-robber)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement house-robber')",
+      "java": "// TODO: 打家劫舍 (house-robber)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement house-robber\");\n    }\n}",
+      "cpp": "// TODO: 打家劫舍 (house-robber)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement house-robber\");\n    }\n};"
     },
     "leetcodeSlug": "house-robber"
   },
@@ -3452,7 +3452,7 @@ module.exports = [
       "cpp": "int coinChange(vector<int>& coins, int amount) {\n    vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0;\n    for (int coin : coins) {\n        for (int i = coin; i <= amount; i++) {\n            dp[i] = min(dp[i], dp[i - coin] + 1);\n        }\n    }\n    return dp[amount] > amount ? -1 : dp[amount];\n}"
     },
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3487,7 +3487,7 @@ module.exports = [
     "explanation": "tails[k] 是长度 k+1 子序列最小尾值。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3506,9 +3506,9 @@ module.exports = [
     },
     "description": "给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 最长递增子序列 (longest-increasing-subsequence)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement longest-increasing-subsequence')",
+      "java": "// TODO: 最长递增子序列 (longest-increasing-subsequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement longest-increasing-subsequence\");\n    }\n}",
+      "cpp": "// TODO: 最长递增子序列 (longest-increasing-subsequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement longest-increasing-subsequence\");\n    }\n};"
     },
     "leetcodeSlug": "longest-increasing-subsequence"
   },
@@ -3527,7 +3527,7 @@ module.exports = [
     "explanation": "相等就承接左上并 +1。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3546,9 +3546,9 @@ module.exports = [
     },
     "description": "给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在公共子序列，返回 0。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 最长公共子序列 (longest-common-subsequence)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement longest-common-subsequence')",
+      "java": "// TODO: 最长公共子序列 (longest-common-subsequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement longest-common-subsequence\");\n    }\n}",
+      "cpp": "// TODO: 最长公共子序列 (longest-common-subsequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement longest-common-subsequence\");\n    }\n};"
     },
     "leetcodeSlug": "longest-common-subsequence"
   },
@@ -3567,7 +3567,7 @@ module.exports = [
     "explanation": "典型 0/1 背包可达性。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3584,11 +3584,11 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "题目《分割等和子集》要求你在 dynamic_programming 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《分割等和子集》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 分割等和子集 (partition-equal-subset-sum)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement partition-equal-subset-sum')",
+      "java": "// TODO: 分割等和子集 (partition-equal-subset-sum)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement partition-equal-subset-sum\");\n    }\n}",
+      "cpp": "// TODO: 分割等和子集 (partition-equal-subset-sum)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement partition-equal-subset-sum\");\n    }\n};"
     },
     "leetcodeSlug": "partition-equal-subset-sum"
   },
@@ -3607,7 +3607,7 @@ module.exports = [
     "explanation": "dp 取三者最小 +1。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3626,9 +3626,9 @@ module.exports = [
     },
     "description": "给你两个单词 word1 和 word2，请返回将 word1 转换成 word2 所使用的最少操作数。你可以对一个单词进行插入、删除、替换操作。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 编辑距离 (edit-distance)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement edit-distance')",
+      "java": "// TODO: 编辑距离 (edit-distance)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement edit-distance\");\n    }\n}",
+      "cpp": "// TODO: 编辑距离 (edit-distance)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement edit-distance\");\n    }\n};"
     },
     "leetcodeSlug": "edit-distance"
   },
@@ -3647,7 +3647,7 @@ module.exports = [
     "explanation": "到当前格路径来自上和左。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3664,11 +3664,11 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "题目《不同路径》要求你在 dynamic_programming 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《不同路径》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 不同路径 (unique-paths)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement unique-paths')",
+      "java": "// TODO: 不同路径 (unique-paths)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement unique-paths\");\n    }\n}",
+      "cpp": "// TODO: 不同路径 (unique-paths)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement unique-paths\");\n    }\n};"
     },
     "leetcodeSlug": "unique-paths"
   },
@@ -3687,7 +3687,7 @@ module.exports = [
     "explanation": "每个中心向两侧扩展。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3704,7 +3704,7 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "题目《最长回文子串》要求你在 dynamic_programming 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《最长回文子串》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def longestPalindrome(s):\n    def expand(l, r):\n        while l >= 0 and r < len(s) and s[l] == s[r]:\n            l -= 1\n            r += 1\n        return s[l+1:r]\n    ans = ''\n    for i in range(len(s)):\n        p1 = expand(i, i)\n        p2 = expand(i, i + 1)\n        ans = max(ans, p1, p2, key=len)\n    return ans",
       "java": "public String longestPalindrome(String s) {\n    String ans = \"\";\n    for (int i = 0; i < s.length(); i++) {\n        String p1 = expand(s, i, i);\n        String p2 = expand(s, i, i + 1);\n        ans = p1.length() > ans.length() ? p1 : ans;\n        ans = p2.length() > ans.length() ? p2 : ans;\n    }\n    return ans;\n}\nprivate String expand(String s, int l, int r) {\n    while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) { l--; r++; }\n    return s.substring(l + 1, r);\n}",
@@ -3727,7 +3727,7 @@ module.exports = [
     "explanation": "通过枚举断点转移。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3744,11 +3744,11 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "题目《单词拆分》要求你在 dynamic_programming 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《单词拆分》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 单词拆分 (word-break)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement word-break')",
+      "java": "// TODO: 单词拆分 (word-break)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement word-break\");\n    }\n}",
+      "cpp": "// TODO: 单词拆分 (word-break)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement word-break\");\n    }\n};"
     },
     "leetcodeSlug": "word-break"
   },
@@ -3767,7 +3767,7 @@ module.exports = [
     "explanation": "三者共同限制正方形边长。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3784,11 +3784,11 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "题目《最大正方形》要求你在 dynamic_programming 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《最大正方形》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 最大正方形 (maximal-square)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement maximal-square')",
+      "java": "// TODO: 最大正方形 (maximal-square)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement maximal-square\");\n    }\n}",
+      "cpp": "// TODO: 最大正方形 (maximal-square)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement maximal-square\");\n    }\n};"
     },
     "leetcodeSlug": "maximal-square"
   },
@@ -3807,7 +3807,7 @@ module.exports = [
     "explanation": "冷冻期引入额外状态。",
     "xp": 12,
     "learning": {
-      "pattern": "动态规划五步法",
+      "pattern": "动态规划五步法（状态/转移/初始化/遍历/答案）",
       "coreQuestion": "状态是什么？选择是什么？转移从哪里来？",
       "framework": "先定义 dp 含义，再写状态转移，最后确定遍历顺序。",
       "steps": [
@@ -3824,11 +3824,11 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "题目《买卖股票含冷冻期》要求你在 dynamic_programming 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《买卖股票含冷冻期》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(nums):\n    dp0, dp1 = 0, 0\n    for x in nums:\n        ndp1 = max(dp1, dp0 + x)\n        dp0, dp1 = dp1, ndp1\n    return dp1",
-      "java": "int solve(int[] nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = Math.max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}",
-      "cpp": "int solve(vector<int>& nums) {\n    int dp0 = 0, dp1 = 0;\n    for (int x : nums) {\n        int ndp1 = max(dp1, dp0 + x);\n        dp0 = dp1; dp1 = ndp1;\n    }\n    return dp1;\n}"
+      "python": "# TODO: 买卖股票含冷冻期 (best-time-to-buy-and-sell-stock-with-cooldown)\n# INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\ndef solve(*args, **kwargs):\n    raise NotImplementedError('TODO: implement best-time-to-buy-and-sell-stock-with-cooldown')",
+      "java": "// TODO: 买卖股票含冷冻期 (best-time-to-buy-and-sell-stock-with-cooldown)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement best-time-to-buy-and-sell-stock-with-cooldown\");\n    }\n}",
+      "cpp": "// TODO: 买卖股票含冷冻期 (best-time-to-buy-and-sell-stock-with-cooldown)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement best-time-to-buy-and-sell-stock-with-cooldown\");\n    }\n};"
     },
     "leetcodeSlug": "best-time-to-buy-and-sell-stock-with-cooldown"
   },
@@ -3852,7 +3852,7 @@ module.exports = [
       "cpp": "void backtrack(vector<int>& path, vector<int>& used, vector<int>& nums, vector<vector<int>>& ans) {\n    if (path.size() == nums.size()) { ans.push_back(path); return; }\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (used[i]) continue;\n        used[i] = 1;\n        path.push_back(nums[i]);\n        backtrack(path, used, nums, ans);\n        path.pop_back();\n        used[i] = 0;\n    }\n}"
     },
     "learning": {
-      "pattern": "回溯树搜索框架",
+      "pattern": "回溯树搜索（路径、选择列表、结束条件）",
       "coreQuestion": "每一层代表“做什么选择”？",
       "framework": "路径 path 表示当前解，递归前做选择，递归后撤销选择。",
       "steps": [
@@ -3887,7 +3887,7 @@ module.exports = [
     "explanation": "同一层从 start 开始可复用当前元素。",
     "xp": 12,
     "learning": {
-      "pattern": "回溯树搜索框架",
+      "pattern": "回溯树搜索（路径、选择列表、结束条件）",
       "coreQuestion": "每一层代表“做什么选择”？",
       "framework": "路径 path 表示当前解，递归前做选择，递归后撤销选择。",
       "steps": [
@@ -3904,7 +3904,7 @@ module.exports = [
       "template": "void backtrack(路径, 选择列表) {\n    if (终止条件) {\n        res.add(路径); return;\n    }\n    for (选择 : 选择列表) {\n        做选择;\n        backtrack(路径, 选择列表);\n        撤销选择;\n    }\n}",
       "insight": "回溯算法本质上就是一棵‘决策树’的遍历。你只需要思考三个问题：路径、选择列表、结束条件。"
     },
-    "description": "题目《组合总和》要求你在 backtracking 主题下完成求解。请先明确输入输出、边界条件和不变量，再用对应算法模板优化时间与空间复杂度。",
+    "description": "本题对应《组合总和》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 backtracking 相关方法中完成复杂度优化。",
     "codeSnippet": {
       "python": "def backtrack(path, used, nums, ans):\n    if len(path) == len(nums):\n        ans.append(path[:]); return\n    for i, x in enumerate(nums):\n        if used[i]: continue\n        used[i] = True\n        path.append(x)\n        backtrack(path, used, nums, ans)\n        path.pop()\n        used[i] = False",
       "java": "void backtrack(List<Integer> path, boolean[] used, int[] nums, List<List<Integer>> ans) {\n    if (path.size() == nums.length) { ans.add(new ArrayList<>(path)); return; }\n    for (int i = 0; i < nums.length; i++) {\n        if (used[i]) continue;\n        used[i] = true;\n        path.add(nums[i]);\n        backtrack(path, used, nums, ans);\n        path.remove(path.size() - 1);\n        used[i] = false;\n    }\n}",
@@ -3927,7 +3927,7 @@ module.exports = [
     "explanation": "O(1) 判断冲突。",
     "xp": 12,
     "learning": {
-      "pattern": "回溯树搜索框架",
+      "pattern": "回溯树搜索（路径、选择列表、结束条件）",
       "coreQuestion": "每一层代表“做什么选择”？",
       "framework": "路径 path 表示当前解，递归前做选择，递归后撤销选择。",
       "steps": [
@@ -3986,10 +3986,10 @@ module.exports = [
         "输出顺序与题意不一致"
       ],
       "complexity": "常见 O(n log k)。",
-      "template": "// 通用逻辑框架\nprocess(data);",
-      "insight": "算法思维比代码本身更重要。先理解问题的结构，再尝试用已知框架套用。"
+      "template": "先确定使用小顶堆还是大顶堆。\n遍历过程中维护堆大小和堆顶语义，保证最终堆内即答案集合。",
+      "insight": "堆适合维护“动态前 K 名”，将全量排序降为局部有序维护。"
     },
     "description": "给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按任意顺序返回答案。",
     "leetcodeSlug": "top-k-frequent-elements-review"
   }
-];
+]

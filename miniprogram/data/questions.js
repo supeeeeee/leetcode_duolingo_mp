@@ -1794,9 +1794,9 @@ module.exports = [
       "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
-      "python": "# 重排链表\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
-      "java": "// 重排链表\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
-      "cpp": "// 重排链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
+      "python": "def reorderList(head):\n    if not head or not head.next:\n        return\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    prev = None\n    cur = slow\n    while cur:\n        nxt = cur.next\n        cur.next = prev\n        prev = cur\n        cur = nxt\n    first, second = head, prev\n    while second and second.next:\n        t1 = first.next\n        t2 = second.next\n        first.next = second\n        second.next = t1\n        first = t1\n        second = t2\n",
+      "java": "public void reorderList(ListNode head) {\n    if (head == null || head.next == null) return;\n    ListNode slow=head, fast=head;\n    while (fast != null && fast.next != null) {\n        slow = slow.next;\n        fast = fast.next.next;\n    }\n    ListNode prev=null, cur=slow;\n    while (cur != null) {\n        ListNode nxt=cur.next;\n        cur.next=prev;\n        prev=cur;\n        cur=nxt;\n    }\n    ListNode first=head, second=prev;\n    while (second != null && second.next != null) {\n        ListNode t1=first.next;\n        ListNode t2=second.next;\n        first.next=second;\n        second.next=t1;\n        first=t1;\n        second=t2;\n    }\n}\n",
+      "cpp": "void reorderList(ListNode* head) {\n    if(!head || !head->next) return;\n    ListNode* slow=head;\n    ListNode* fast=head;\n    while(fast && fast->next){ slow=slow->next; fast=fast->next->next; }\n    ListNode* prev=nullptr;\n    ListNode* cur=slow;\n    while(cur){\n        ListNode* nxt=cur->next;\n        cur->next=prev;\n        prev=cur;\n        cur=nxt;\n    }\n    ListNode* first=head;\n    ListNode* second=prev;\n    while(second && second->next){\n        ListNode* t1=first->next;\n        ListNode* t2=second->next;\n        first->next=second;\n        second->next=t1;\n        first=t1;\n        second=t2;\n    }\n}\n"
     },
     "description": "本题对应《重排链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "reorder-list",
@@ -1958,9 +1958,9 @@ module.exports = [
       "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
-      "python": "# 回文链表\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
-      "java": "// 回文链表\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
-      "cpp": "// 回文链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
+      "python": "def isPalindrome(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    prev = None\n    cur = slow\n    while cur:\n        nxt = cur.next\n        cur.next = prev\n        prev = cur\n        cur = nxt\n    left, right = head, prev\n    while right:\n        if left.val != right.val:\n            return False\n        left = left.next\n        right = right.next\n    return True\n",
+      "java": "public boolean isPalindrome(ListNode head) {\n    if (head == null) return true;\n    ListNode slow = head, fast = head;\n    while (fast != null && fast.next != null) {\n        slow = slow.next;\n        fast = fast.next.next;\n    }\n    ListNode prev = null, cur = slow;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    ListNode left = head, right = prev;\n    while (right != null) {\n        if (left.val != right.val) return false;\n        left = left.next;\n        right = right.next;\n    }\n    return true;\n}\n",
+      "cpp": "bool isPalindrome(ListNode* head) {\n    ListNode* slow=head;\n    ListNode* fast=head;\n    while(fast && fast->next){ slow=slow->next; fast=fast->next->next; }\n    ListNode* prev=nullptr;\n    ListNode* cur=slow;\n    while(cur){\n        ListNode* nxt=cur->next;\n        cur->next=prev;\n        prev=cur;\n        cur=nxt;\n    }\n    ListNode* left=head;\n    ListNode* right=prev;\n    while(right){\n        if(left->val!=right->val) return false;\n        left=left->next;\n        right=right->next;\n    }\n    return true;\n}\n"
     },
     "description": "给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。",
     "leetcodeSlug": "palindrome-linked-list-review",
@@ -2047,9 +2047,9 @@ module.exports = [
       "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "codeSnippet": {
-      "python": "# 删除排序链表重复元素 II\ndef solve(head):\n    dummy = ListNode(0, head)\n    prev, cur = None, head\n    while cur:\n        nxt = cur.next\n        # 典型链表操作：先存 nxt，再改指针\n        cur.next = prev\n        prev, cur = cur, nxt\n    return prev",
-      "java": "// 删除排序链表重复元素 II\nListNode solve(ListNode head) {\n    ListNode prev = null, cur = head;\n    while (cur != null) {\n        ListNode nxt = cur.next;\n        cur.next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}",
-      "cpp": "// 删除排序链表重复元素 II\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
+      "python": "def deleteDuplicates(head):\n    dummy = ListNode(0, head)\n    prev = dummy\n    cur = head\n    while cur:\n        dup = False\n        while cur.next and cur.val == cur.next.val:\n            dup = True\n            cur = cur.next\n        if dup:\n            prev.next = cur.next\n        else:\n            prev = prev.next\n        cur = cur.next\n    return dummy.next\n",
+      "java": "public ListNode deleteDuplicates(ListNode head) {\n    ListNode dummy = new ListNode(0);\n    dummy.next = head;\n    ListNode prev = dummy;\n    ListNode cur = head;\n    while (cur != null) {\n        boolean dup = false;\n        while (cur.next != null && cur.val == cur.next.val) {\n            dup = true;\n            cur = cur.next;\n        }\n        if (dup) prev.next = cur.next;\n        else prev = prev.next;\n        cur = cur.next;\n    }\n    return dummy.next;\n}\n",
+      "cpp": "ListNode* deleteDuplicates(ListNode* head) {\n    ListNode dummy(0);\n    dummy.next = head;\n    ListNode* prev = &dummy;\n    ListNode* cur = head;\n    while(cur){\n        bool dup=false;\n        while(cur->next && cur->val==cur->next->val){ dup=true; cur=cur->next; }\n        if(dup) prev->next = cur->next;\n        else prev = prev->next;\n        cur = cur->next;\n    }\n    return dummy.next;\n}\n"
     },
     "description": "本题对应《删除排序链表重复元素 II》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
     "leetcodeSlug": "remove-duplicates-from-sorted-list-ii",
@@ -2088,9 +2088,9 @@ module.exports = [
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
     "codeSnippet": {
-      "python": "# 有效括号\ndef solve(s):\n    st = []\n    mp = {')':'(', ']':'[', '}':'{'}\n    for c in s:\n        if c in mp:\n            if not st or st.pop() != mp[c]:\n                return False\n        else:\n            st.append(c)\n    return not st",
-      "java": "// 有效括号\nboolean solve(String s) {\n    Deque<Character> st = new ArrayDeque<>();\n    Map<Character,Character> mp = Map.of(')','(',']','[','}','{');\n    for (char c : s.toCharArray()) {\n        if (mp.containsKey(c)) {\n            if (st.isEmpty() || st.pop() != mp.get(c)) return false;\n        } else st.push(c);\n    }\n    return st.isEmpty();\n}",
-      "cpp": "// 有效括号\nbool solve(string s) {\n    stack<char> st; unordered_map<char,char> mp{{')','('},{']','['},{'}','{'}};\n    for (char c : s) {\n        if (mp.count(c)) {\n            if (st.empty() || st.top() != mp[c]) return false;\n            st.pop();\n        } else st.push(c);\n    }\n    return st.empty();\n}"
+      "python": "def isValid(s):\n    st = []\n    mp = {')':'(', ']':'[', '}':'{'}\n    for ch in s:\n        if ch in mp:\n            if not st or st[-1] != mp[ch]:\n                return False\n            st.pop()\n        else:\n            st.append(ch)\n    return not st\n",
+      "java": "public boolean isValid(String s) {\n    Deque<Character> st = new ArrayDeque<>();\n    for (char ch : s.toCharArray()) {\n        if (ch == ')' || ch == ']' || ch == '}') {\n            if (st.isEmpty()) return false;\n            char top = st.pop();\n            if ((ch == ')' && top != '(') || (ch == ']' && top != '[') || (ch == '}' && top != '{')) return false;\n        } else {\n            st.push(ch);\n        }\n    }\n    return st.isEmpty();\n}\n",
+      "cpp": "bool isValid(string s) {\n    vector<char> st;\n    for(char ch: s){\n        if(ch==')' || ch==']' || ch=='}'){\n            if(st.empty()) return false;\n            char top=st.back(); st.pop_back();\n            if((ch==')' && top!='(') || (ch==']' && top!='[') || (ch=='}' && top!='{')) return false;\n        } else st.push_back(ch);\n    }\n    return st.empty();\n}\n"
     },
     "description": "给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。",
     "leetcodeSlug": "valid-parentheses",
@@ -2129,9 +2129,9 @@ module.exports = [
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
     "codeSnippet": {
-      "python": "# 最小栈\ndef solve(s):\n    st = []\n    mp = {')':'(', ']':'[', '}':'{'}\n    for c in s:\n        if c in mp:\n            if not st or st.pop() != mp[c]:\n                return False\n        else:\n            st.append(c)\n    return not st",
-      "java": "// 最小栈\nboolean solve(String s) {\n    Deque<Character> st = new ArrayDeque<>();\n    Map<Character,Character> mp = Map.of(')','(',']','[','}','{');\n    for (char c : s.toCharArray()) {\n        if (mp.containsKey(c)) {\n            if (st.isEmpty() || st.pop() != mp.get(c)) return false;\n        } else st.push(c);\n    }\n    return st.isEmpty();\n}",
-      "cpp": "// 最小栈\nbool solve(string s) {\n    stack<char> st; unordered_map<char,char> mp{{')','('},{']','['},{'}','{'}};\n    for (char c : s) {\n        if (mp.count(c)) {\n            if (st.empty() || st.top() != mp[c]) return false;\n            st.pop();\n        } else st.push(c);\n    }\n    return st.empty();\n}"
+      "python": "class MinStack:\n    def __init__(self):\n        self.st = []\n        self.mn = []\n\n    def push(self, val):\n        self.st.append(val)\n        if not self.mn:\n            self.mn.append(val)\n        else:\n            self.mn.append(min(val, self.mn[-1]))\n\n    def pop(self):\n        self.st.pop()\n        self.mn.pop()\n\n    def top(self):\n        return self.st[-1]\n\n    def getMin(self):\n        return self.mn[-1]\n",
+      "java": "class MinStack {\n    Deque<Integer> st = new ArrayDeque<>();\n    Deque<Integer> mn = new ArrayDeque<>();\n\n    public void push(int val) {\n        st.push(val);\n        if (mn.isEmpty()) mn.push(val);\n        else mn.push(Math.min(val, mn.peek()));\n    }\n\n    public void pop() {\n        st.pop();\n        mn.pop();\n    }\n\n    public int top() {\n        return st.peek();\n    }\n\n    public int getMin() {\n        return mn.peek();\n    }\n}\n",
+      "cpp": "class MinStack {\npublic:\n    stack<int> st, mn;\n    void push(int val) {\n        st.push(val);\n        if (mn.empty()) mn.push(val);\n        else mn.push(std::min(val, mn.top()));\n    }\n    void pop() { st.pop(); mn.pop(); }\n    int top() { return st.top(); }\n    int getMin() { return mn.top(); }\n};\n"
     },
     "description": "设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。",
     "leetcodeSlug": "min-stack",
@@ -2171,9 +2171,9 @@ module.exports = [
     },
     "description": "本题对应《每日温度》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
-      "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
-      "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
+      "python": "def dailyTemperatures(temperatures):\n    n = len(temperatures)\n    res = [0]*n\n    st = []  # indices, temps decreasing\n    for i, t in enumerate(temperatures):\n        while st and temperatures[st[-1]] < t:\n            j = st.pop()\n            res[j] = i - j\n        st.append(i)\n    return res\n",
+      "java": "public int[] dailyTemperatures(int[] temperatures) {\n    int n = temperatures.length;\n    int[] res = new int[n];\n    Deque<Integer> st = new ArrayDeque<>();\n    for (int i=0;i<n;i++) {\n        while (!st.isEmpty() && temperatures[st.peek()] < temperatures[i]) {\n            int j = st.pop();\n            res[j] = i - j;\n        }\n        st.push(i);\n    }\n    return res;\n}\n",
+      "cpp": "vector<int> dailyTemperatures(vector<int>& temperatures) {\n    int n = temperatures.size();\n    vector<int> res(n,0);\n    vector<int> st;\n    for(int i=0;i<n;i++){\n        while(!st.empty() && temperatures[st.back()] < temperatures[i]){\n            int j=st.back(); st.pop_back();\n            res[j]=i-j;\n        }\n        st.push_back(i);\n    }\n    return res;\n}\n"
     },
     "leetcodeSlug": "daily-temperatures",
     "track": "extra"
@@ -2260,9 +2260,9 @@ module.exports = [
     },
     "description": "本题对应《逆波兰表达式求值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
-      "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
-      "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
+      "python": "def evalRPN(tokens):\n    st = []\n    for t in tokens:\n        if t in ['+','-','*','/']:\n            b = st.pop()\n            a = st.pop()\n            if t == '+': st.append(a+b)\n            elif t == '-': st.append(a-b)\n            elif t == '*': st.append(a*b)\n            else: st.append(int(a/b))\n        else:\n            st.append(int(t))\n    return st[-1]\n",
+      "java": "public int evalRPN(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop();\n            int a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else {\n            st.push(Integer.parseInt(t));\n        }\n    }\n    return st.peek();\n}\n",
+      "cpp": "int evalRPN(vector<string>& tokens) {\n    vector<long long> st;\n    for (auto &t: tokens) {\n        if (t==\"+\"||t==\"-\"||t==\"*\"||t==\"/\") {\n            long long b=st.back(); st.pop_back();\n            long long a=st.back(); st.pop_back();\n            if (t==\"+\") st.push_back(a+b);\n            else if (t==\"-\") st.push_back(a-b);\n            else if (t==\"*\") st.push_back(a*b);\n            else st.push_back(a/b);\n        } else st.push_back(stoll(t));\n    }\n    return (int)st.back();\n}\n"
     },
     "leetcodeSlug": "evaluate-reverse-polish-notation",
     "track": "extra"
@@ -2301,9 +2301,9 @@ module.exports = [
     },
     "description": "本题对应《字符串解码》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
-      "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
-      "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
+      "python": "def decodeString(s):\n    st = []\n    cur = ''\n    k = 0\n    for ch in s:\n        if ch.isdigit():\n            k = k*10 + int(ch)\n        elif ch == '[':\n            st.append((cur, k))\n            cur = ''\n            k = 0\n        elif ch == ']':\n            prev, num = st.pop()\n            cur = prev + cur * num\n        else:\n            cur += ch\n    return cur\n",
+      "java": "public String decodeString(String s) {\n    Deque<int[]> numSt = new ArrayDeque<>();\n    Deque<StringBuilder> strSt = new ArrayDeque<>();\n    StringBuilder cur = new StringBuilder();\n    int k = 0;\n    for (char ch : s.toCharArray()) {\n        if (Character.isDigit(ch)) {\n            k = k*10 + (ch - '0');\n        } else if (ch == '[') {\n            numSt.push(new int[]{k});\n            strSt.push(cur);\n            cur = new StringBuilder();\n            k = 0;\n        } else if (ch == ']') {\n            int num = numSt.pop()[0];\n            StringBuilder prev = strSt.pop();\n            for (int i=0;i<num;i++) prev.append(cur);\n            cur = prev;\n        } else {\n            cur.append(ch);\n        }\n    }\n    return cur.toString();\n}\n",
+      "cpp": "string decodeString(string s) {\n    vector<pair<string,int>> st;\n    string cur;\n    int k=0;\n    for(char ch: s){\n        if(isdigit(ch)) k = k*10 + (ch-'0');\n        else if(ch=='['){\n            st.push_back({cur,k});\n            cur.clear();\n            k=0;\n        } else if(ch==']'){\n            auto [prev,num]=st.back(); st.pop_back();\n            string tmp;\n            for(int i=0;i<num;i++) tmp += cur;\n            cur = prev + tmp;\n        } else cur.push_back(ch);\n    }\n    return cur;\n}\n"
     },
     "leetcodeSlug": "decode-string",
     "track": "extra"
@@ -2383,9 +2383,9 @@ module.exports = [
     },
     "description": "本题对应《实现队列用栈》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(tokens):\n    st = []\n    for t in tokens:\n        if t in [\"+\", \"-\", \"*\", \"/\"]:\n            b, a = st.pop(), st.pop()\n            if t == \"+\": st.append(a + b)\n            elif t == \"-\": st.append(a - b)\n            elif t == \"*\": st.append(a * b)\n            else: st.append(int(a / b))\n        else:\n            st.append(int(t))\n    return st[-1]",
-      "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
-      "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
+      "python": "class MyQueue:\n    def __init__(self):\n        self.s1 = []\n        self.s2 = []\n\n    def push(self, x):\n        self.s1.append(x)\n\n    def _shift(self):\n        if not self.s2:\n            while self.s1:\n                self.s2.append(self.s1.pop())\n\n    def pop(self):\n        self._shift()\n        return self.s2.pop()\n\n    def peek(self):\n        self._shift()\n        return self.s2[-1]\n\n    def empty(self):\n        return (not self.s1) and (not self.s2)\n",
+      "java": "class MyQueue {\n    Deque<Integer> s1 = new ArrayDeque<>();\n    Deque<Integer> s2 = new ArrayDeque<>();\n\n    public void push(int x) {\n        s1.push(x);\n    }\n\n    private void shift() {\n        if (s2.isEmpty()) {\n            while (!s1.isEmpty()) s2.push(s1.pop());\n        }\n    }\n\n    public int pop() {\n        shift();\n        return s2.pop();\n    }\n\n    public int peek() {\n        shift();\n        return s2.peek();\n    }\n\n    public boolean empty() {\n        return s1.isEmpty() && s2.isEmpty();\n    }\n}\n",
+      "cpp": "class MyQueue {\npublic:\n    stack<int> s1, s2;\n    void push(int x) { s1.push(x); }\n    void shift() {\n        if (s2.empty()) {\n            while(!s1.empty()) { s2.push(s1.top()); s1.pop(); }\n        }\n    }\n    int pop() { shift(); int v=s2.top(); s2.pop(); return v; }\n    int peek() { shift(); return s2.top(); }\n    bool empty() { return s1.empty() && s2.empty(); }\n};\n"
     },
     "leetcodeSlug": "implement-queue-using-stacks",
     "track": "extra"
@@ -2559,9 +2559,9 @@ module.exports = [
     },
     "description": "本题对应《在排序数组中查找元素首尾位置》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def solve(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        m = l + (r - l) // 2\n        if nums[m] == target: return m\n        if nums[m] < target: l = m + 1\n        else: r = m - 1\n    return -1",
-      "java": "int solve(int[] nums, int target) {\n    int l = 0, r = nums.length - 1;\n    while (l <= r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] == target) return m;\n        if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}",
-      "cpp": "int solve(vector<int>& nums, int target) {\n    int l = 0, r = (int)nums.size() - 1;\n    while (l <= r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] == target) return m;\n        if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}"
+      "python": "def searchRange(nums, target):\n    def lower(x):\n        l, r = 0, len(nums)\n        while l < r:\n            m = (l + r) // 2\n            if nums[m] < x:\n                l = m + 1\n            else:\n                r = m\n        return l\n    l = lower(target)\n    r = lower(target + 1) - 1\n    if l <= r and l < len(nums) and nums[l] == target:\n        return [l, r]\n    return [-1, -1]\n",
+      "java": "public int[] searchRange(int[] nums, int target) {\n    int l = lower(nums, target);\n    int r = lower(nums, target + 1) - 1;\n    if (l <= r && l < nums.length && nums[l] == target) return new int[]{l, r};\n    return new int[]{-1, -1};\n}\nprivate int lower(int[] nums, int x) {\n    int l = 0, r = nums.length;\n    while (l < r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] < x) l = m + 1;\n        else r = m;\n    }\n    return l;\n}\n",
+      "cpp": "vector<int> searchRange(vector<int>& nums, int target) {\n    auto lower = [&](int x){\n        int l=0,r=nums.size();\n        while(l<r){\n            int m=(l+r)/2;\n            if(nums[m] < x) l=m+1;\n            else r=m;\n        }\n        return l;\n    };\n    int l=lower(target);\n    int r=lower(target+1)-1;\n    if(l<=r && l<(int)nums.size() && nums[l]==target) return {l,r};\n    return {-1,-1};\n}\n"
     },
     "leetcodeSlug": "find-first-and-last-position-of-element-in-sorted-array",
     "track": "extra"
@@ -2752,9 +2752,9 @@ module.exports = [
     "explanation": "按层推进天然使用队列。",
     "xp": 14,
     "codeSnippet": {
-      "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
-      "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
-      "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
+      "python": "def levelOrder(root):\n    if not root:\n        return []\n    res = []\n    q = [root]\n    while q:\n        level = []\n        for _ in range(len(q)):\n            node = q.pop(0)\n            level.append(node.val)\n            if node.left: q.append(node.left)\n            if node.right: q.append(node.right)\n        res.append(level)\n    return res\n",
+      "java": "public List<List<Integer>> levelOrder(TreeNode root) {\n    List<List<Integer>> res = new ArrayList<>();\n    if (root == null) return res;\n    Deque<TreeNode> q = new ArrayDeque<>();\n    q.add(root);\n    while (!q.isEmpty()) {\n        int sz = q.size();\n        List<Integer> level = new ArrayList<>();\n        for (int i=0;i<sz;i++) {\n            TreeNode node = q.poll();\n            level.add(node.val);\n            if (node.left != null) q.add(node.left);\n            if (node.right != null) q.add(node.right);\n        }\n        res.add(level);\n    }\n    return res;\n}\n",
+      "cpp": "vector<vector<int>> levelOrder(TreeNode* root) {\n    vector<vector<int>> res;\n    if (!root) return res;\n    queue<TreeNode*> q;\n    q.push(root);\n    while(!q.empty()) {\n        int sz = q.size();\n        vector<int> level;\n        for(int i=0;i<sz;i++){\n            auto node=q.front(); q.pop();\n            level.push_back(node->val);\n            if(node->left) q.push(node->left);\n            if(node->right) q.push(node->right);\n        }\n        res.push_back(level);\n    }\n    return res;\n}\n"
     },
     "learning": {
       "pattern": "二叉树递归框架（遍历视角）",
@@ -2860,9 +2860,9 @@ module.exports = [
     },
     "description": "给定一个二叉树, 找到该树中两个指定节点的最近公共祖先 (LCA)。",
     "codeSnippet": {
-      "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
-      "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
-      "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
+      "python": "def lowestCommonAncestor(root, p, q):\n    if not root or root is p or root is q:\n        return root\n    left = lowestCommonAncestor(root.left, p, q)\n    right = lowestCommonAncestor(root.right, p, q)\n    if left and right:\n        return root\n    return left if left else right\n",
+      "java": "public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {\n    if (root == null || root == p || root == q) return root;\n    TreeNode left = lowestCommonAncestor(root.left, p, q);\n    TreeNode right = lowestCommonAncestor(root.right, p, q);\n    if (left != null && right != null) return root;\n    return (left != null) ? left : right;\n}\n",
+      "cpp": "TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {\n    if(!root || root==p || root==q) return root;\n    auto left = lowestCommonAncestor(root->left, p, q);\n    auto right = lowestCommonAncestor(root->right, p, q);\n    if(left && right) return root;\n    return left ? left : right;\n}\n"
     },
     "leetcodeSlug": "lowest-common-ancestor-of-a-binary-tree",
     "track": "extra"
@@ -2901,9 +2901,9 @@ module.exports = [
     },
     "description": "给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。",
     "codeSnippet": {
-      "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
-      "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
-      "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
+      "python": "def invertTree(root):\n    if not root:\n        return None\n    root.left, root.right = invertTree(root.right), invertTree(root.left)\n    return root\n",
+      "java": "public TreeNode invertTree(TreeNode root) {\n    if (root == null) return null;\n    TreeNode left = invertTree(root.left);\n    TreeNode right = invertTree(root.right);\n    root.left = right;\n    root.right = left;\n    return root;\n}\n",
+      "cpp": "TreeNode* invertTree(TreeNode* root) {\n    if(!root) return nullptr;\n    auto left = invertTree(root->left);\n    auto right = invertTree(root->right);\n    root->left = right;\n    root->right = left;\n    return root;\n}\n"
     },
     "leetcodeSlug": "invert-binary-tree",
     "track": "extra"
@@ -2942,9 +2942,9 @@ module.exports = [
     },
     "description": "本题对应《路径总和》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
-      "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
-      "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
+      "python": "def hasPathSum(root, targetSum):\n    if not root:\n        return False\n    if not root.left and not root.right:\n        return root.val == targetSum\n    return hasPathSum(root.left, targetSum - root.val) or hasPathSum(root.right, targetSum - root.val)\n",
+      "java": "public boolean hasPathSum(TreeNode root, int targetSum) {\n    if (root == null) return false;\n    if (root.left == null && root.right == null) return root.val == targetSum;\n    return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);\n}\n",
+      "cpp": "bool hasPathSum(TreeNode* root, int targetSum) {\n    if(!root) return false;\n    if(!root->left && !root->right) return root->val == targetSum;\n    return hasPathSum(root->left, targetSum-root->val) || hasPathSum(root->right, targetSum-root->val);\n}\n"
     },
     "leetcodeSlug": "path-sum",
     "track": "extra"
@@ -2983,9 +2983,9 @@ module.exports = [
     },
     "description": "本题对应《二叉树直径》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
-      "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
-      "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
+      "python": "def diameterOfBinaryTree(root):\n    ans = 0\n    def depth(node):\n        nonlocal ans\n        if not node:\n            return 0\n        l = depth(node.left)\n        r = depth(node.right)\n        ans = max(ans, l + r)\n        return 1 + max(l, r)\n    depth(root)\n    return ans\n",
+      "java": "public int diameterOfBinaryTree(TreeNode root) {\n    int[] ans = new int[1];\n    depth(root, ans);\n    return ans[0];\n}\nprivate int depth(TreeNode node, int[] ans) {\n    if (node == null) return 0;\n    int l = depth(node.left, ans);\n    int r = depth(node.right, ans);\n    ans[0] = Math.max(ans[0], l + r);\n    return 1 + Math.max(l, r);\n}\n",
+      "cpp": "int diameterOfBinaryTree(TreeNode* root) {\n    int ans=0;\n    function<int(TreeNode*)> d = [&](TreeNode* node){\n        if(!node) return 0;\n        int l=d(node->left), r=d(node->right);\n        ans=max(ans,l+r);\n        return 1+max(l,r);\n    };\n    d(root);\n    return ans;\n}\n"
     },
     "leetcodeSlug": "diameter-of-binary-tree",
     "track": "extra"
@@ -3024,9 +3024,9 @@ module.exports = [
     },
     "description": "本题对应《平衡二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
-      "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
-      "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
+      "python": "def isBalanced(root):\n    def height(node):\n        if not node:\n            return 0\n        lh = height(node.left)\n        if lh == -1:\n            return -1\n        rh = height(node.right)\n        if rh == -1:\n            return -1\n        if abs(lh - rh) > 1:\n            return -1\n        return 1 + max(lh, rh)\n    return height(root) != -1\n",
+      "java": "public boolean isBalanced(TreeNode root) {\n    return height(root) != -1;\n}\nprivate int height(TreeNode node) {\n    if (node == null) return 0;\n    int lh = height(node.left);\n    if (lh == -1) return -1;\n    int rh = height(node.right);\n    if (rh == -1) return -1;\n    if (Math.abs(lh - rh) > 1) return -1;\n    return 1 + Math.max(lh, rh);\n}\n",
+      "cpp": "bool isBalanced(TreeNode* root) {\n    function<int(TreeNode*)> h = [&](TreeNode* node){\n        if (!node) return 0;\n        int lh = h(node->left);\n        if (lh == -1) return -1;\n        int rh = h(node->right);\n        if (rh == -1) return -1;\n        if (abs(lh - rh) > 1) return -1;\n        return 1 + max(lh, rh);\n    };\n    return h(root) != -1;\n}\n"
     },
     "leetcodeSlug": "balanced-binary-tree",
     "track": "extra"
@@ -3229,9 +3229,9 @@ module.exports = [
     },
     "description": "本题对应《对称二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
     "codeSnippet": {
-      "python": "def dfs(root):\n    if not root: return 0\n    left = dfs(root.left)\n    right = dfs(root.right)\n    return 1 + max(left, right)",
-      "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
-      "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
+      "python": "def isSymmetric(root):\n    def same(a, b):\n        if not a and not b:\n            return True\n        if not a or not b:\n            return False\n        return a.val == b.val and same(a.left, b.right) and same(a.right, b.left)\n    return same(root.left, root.right) if root else True\n",
+      "java": "public boolean isSymmetric(TreeNode root) {\n    if (root == null) return true;\n    return same(root.left, root.right);\n}\nprivate boolean same(TreeNode a, TreeNode b) {\n    if (a == null && b == null) return true;\n    if (a == null || b == null) return false;\n    if (a.val != b.val) return false;\n    return same(a.left, b.right) && same(a.right, b.left);\n}\n",
+      "cpp": "bool isSymmetric(TreeNode* root) {\n    function<bool(TreeNode*,TreeNode*)> same = [&](TreeNode* a, TreeNode* b){\n        if(!a && !b) return true;\n        if(!a || !b) return false;\n        if(a->val != b->val) return false;\n        return same(a->left, b->right) && same(a->right, b->left);\n    };\n    if(!root) return true;\n    return same(root->left, root->right);\n}\n"
     },
     "leetcodeSlug": "symmetric-tree",
     "track": "extra"
@@ -4234,9 +4234,9 @@ module.exports = [
     "explanation": "heapq.nlargest 可直接取前 K。",
     "xp": 14,
     "codeSnippet": {
-      "python": "import heapq\ndef topK(nums, k):\n    from collections import Counter\n    cnt = Counter(nums)\n    return [x for x, _ in heapq.nlargest(k, cnt.items(), key=lambda p: p[1])]",
-      "java": "int[] topK(int[] nums, int k) {\n    Map<Integer,Integer> cnt = new HashMap<>();\n    for (int x : nums) cnt.put(x, cnt.getOrDefault(x, 0) + 1);\n    PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)->a[1]-b[1]);\n    for (var e : cnt.entrySet()) {\n        pq.offer(new int[]{e.getKey(), e.getValue()});\n        if (pq.size() > k) pq.poll();\n    }\n    int[] ans = new int[k];\n    for (int i = k - 1; i >= 0; i--) ans[i] = pq.poll()[0];\n    return ans;\n}",
-      "cpp": "vector<int> topK(vector<int>& nums, int k) {\n    unordered_map<int,int> cnt;\n    for (int x : nums) cnt[x]++;\n    using P = pair<int,int>;\n    priority_queue<P, vector<P>, greater<P>> pq;\n    for (auto &e : cnt) {\n        pq.push({e.second, e.first});\n        if ((int)pq.size() > k) pq.pop();\n    }\n    vector<int> ans;\n    while (!pq.empty()) { ans.push_back(pq.top().second); pq.pop(); }\n    return ans;\n}"
+      "python": "def topKFrequent(nums, k):\n    from collections import Counter\n    cnt = Counter(nums)\n    buckets = [[] for _ in range(len(nums)+1)]\n    for num, f in cnt.items():\n        buckets[f].append(num)\n    res = []\n    for f in range(len(buckets)-1, -1, -1):\n        for num in buckets[f]:\n            res.append(num)\n            if len(res) == k:\n                return res\n    return res\n",
+      "java": "public int[] topKFrequent(int[] nums, int k) {\n    Map<Integer, Integer> cnt = new HashMap<>();\n    for (int x : nums) cnt.put(x, cnt.getOrDefault(x, 0) + 1);\n    List<Integer>[] buckets = new List[nums.length + 1];\n    for (int i=0;i<buckets.length;i++) buckets[i] = new ArrayList<>();\n    for (Map.Entry<Integer,Integer> e : cnt.entrySet()) buckets[e.getValue()].add(e.getKey());\n    int[] res = new int[k];\n    int idx = 0;\n    for (int f=buckets.length-1; f>=0 && idx<k; f--) {\n        for (int num : buckets[f]) {\n            res[idx++] = num;\n            if (idx == k) break;\n        }\n    }\n    return res;\n}\n",
+      "cpp": "vector<int> topKFrequent(vector<int>& nums, int k) {\n    unordered_map<int,int> cnt;\n    for(int x: nums) cnt[x]++;\n    vector<vector<int>> buckets(nums.size()+1);\n    for(auto &p: cnt) buckets[p.second].push_back(p.first);\n    vector<int> res;\n    for(int f=buckets.size()-1; f>=0 && (int)res.size()<k; f--){\n        for(int num: buckets[f]){\n            res.push_back(num);\n            if((int)res.size()==k) break;\n        }\n    }\n    return res;\n}\n"
     },
     "learning": {
       "pattern": "堆/优先队列 TopK 框架",

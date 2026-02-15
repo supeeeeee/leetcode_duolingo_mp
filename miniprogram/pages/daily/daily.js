@@ -17,7 +17,8 @@ Page({
     selectedLang: 'python',
     availableLangs: [],
     highlightedCode: '',
-    showDetail: false
+    showDetail: false,
+    isEmpty: false
   },
 
   onLoad: function () {
@@ -33,7 +34,8 @@ Page({
       this.setData({
         challenge,
         completed: true,
-        results: data
+        results: data,
+        isEmpty: false
       });
       return;
     }
@@ -45,17 +47,10 @@ Page({
         currentQuestion: null,
         selectedOption: null,
         status: 'answering',
-        completed: true,
-        results: {
-          date: challenge.date,
-          completed: false,
-          correctCount: 0,
-          totalCount: 0,
-          accuracy: 0,
-          earnedXP: 0,
-          bonusXP: 0
-        },
-        correctCount: 0
+        completed: false,
+        results: null,
+        correctCount: 0,
+        isEmpty: true
       });
       return;
     }
@@ -74,7 +69,8 @@ Page({
       results: null,
       correctCount: 0,
       availableLangs,
-      highlightedCode
+      highlightedCode,
+      isEmpty: false
     });
   },
 
@@ -220,5 +216,9 @@ Page({
 
   goHome: function () {
     wx.switchTab({ url: '/pages/home/home' });
+  },
+
+  goPath: function() {
+    wx.switchTab({ url: '/pages/path/path' });
   }
 });

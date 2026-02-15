@@ -1,8 +1,18 @@
 <!--pages/lesson/lesson.wxml-->
 <view class="container" style="justify-content: flex-start;">
 
+  <!-- Empty View -->
+  <view wx:if="{{isEmpty}}" class="result-view animate-pop">
+    <view class="result-header">
+      <text class="result-emoji">🧭</text>
+      <text class="result-title">{{emptyTitle}}</text>
+      <text class="empty-desc">{{emptyHint}}</text>
+    </view>
+    <button class="btn" bindtap="goToPath">{{emptyCtaText}}</button>
+  </view>
+
   <!-- Result View -->
-  <view wx:if="{{finished}}" class="result-view animate-pop">
+  <view wx:elif="{{finished}}" class="result-view animate-pop">
     <view class="result-header">
       <text class="result-emoji">🎉</text>
       <text class="result-title">课程完成！</text>
@@ -36,7 +46,10 @@
     <!-- Question Area -->
     <view class="question-area">
       <view class="question-header-row">
-        <text class="question-text">{{currentQuestion.question}}</text>
+        <view class="question-main">
+          <text class="question-text">{{currentQuestion.question}}</text>
+          <text class="track-tag {{currentQuestion.track === 'core' ? 'core' : 'extra'}}">{{currentQuestion.track === 'core' ? '核心' : '扩展'}}</text>
+        </view>
         <view class="detail-toggle" bindtap="toggleDetail">
           <text class="toggle-icon">{{showDetail ? '📖' : '📘'}}</text>
           <text class="toggle-text">{{showDetail ? '隐藏详情' : '详细描述'}}</text>

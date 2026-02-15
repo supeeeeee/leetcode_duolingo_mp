@@ -28,6 +28,14 @@
   margin-bottom: 50rpx;
 }
 
+.empty-desc {
+  font-size: 28rpx;
+  color: var(--text-light);
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 36rpx;
+}
+
 .stats-card {
   width: 100%;
   background: white;

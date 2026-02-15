@@ -21,32 +21,60 @@ Page({
     finished: false,
     earnedXP: 0,
     correctCount: 0,
-    accuracy: 0
+    accuracy: 0,
+
+    isEmpty: false,
+    emptyTitle: '',
+    emptyHint: '',
+    emptyCtaText: ''
   },
 
   answerStartTime: 0,
   topicId: null,
+  mode: 'daily',
 
   onLoad: function (options) {
-    const mode = options.mode;
+    const mode = options.mode || 'daily';
+    this.mode = mode;
     this.topicId = options.id || null;
     
     const questions = srs.getReviewSession(this.topicId, 5);
-    const availableLangs = this.getAvailableLangs(questions[0]);
-    const highlightedCode = this.getHighlightedCode(questions[0], 'python');
+    const isEmpty = questions.length === 0;
+
+    const first = isEmpty ? null : questions[0];
+    const availableLangs = this.getAvailableLangs(first);
+    const highlightedCode = this.getHighlightedCode(first, 'python');
     
     this.setData({
       questions,
       totalQuestions: questions.length,
       currentQuestion: questions[0] || null,
       currentIndex: 0,
-      finished: questions.length === 0,
+      finished: false,
       accuracy: 0,
       availableLangs,
-      highlightedCode
+      highlightedCode,
+      isEmpty,
+      emptyTitle: this.getEmptyTitle(mode),
+      emptyHint: this.getEmptyHint(mode),
+      emptyCtaText: this.getEmptyCtaText(mode)
     });
-    
+
     this.answerStartTime = Date.now();
+  },
+
+  getEmptyTitle: function(mode) {
+    return mode === 'topic' ? '本章节暂无可练习题目' : '当前没有可复习题目';
+  },
+
+  getEmptyHint: function(mode) {
+    return mode === 'topic'
+      ? '先从其他章节完成核心题，稍后再回来解锁更多内容。'
+      : '先去学习路径完成核心题，系统会自动安排下一轮复习。';
+  },
+
+  getEmptyCtaText: function(mode) {
+    return mode === 'topic' ? '返回学习路径' : '前往学习路径';
   },
 
   selectOption: function(e) {
@@ -158,5 +186,9 @@ Page({
 
   goBack: function() {
     wx.navigateBack();
+  },
+
+  goToPath: function() {
+    wx.switchTab({ url: '/pages/path/path' });
   }
 })

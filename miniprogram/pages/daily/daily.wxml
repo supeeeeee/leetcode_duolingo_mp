@@ -1,7 +1,15 @@
 <!--pages/daily/daily.wxml-->
 <view class="container">
+  <!-- Empty -->
+  <view wx:if="{{isEmpty}}" class="result-view animate-pop">
+    <view class="result-emoji">📭</view>
+    <view class="result-title">今日挑战题库为空</view>
+    <view class="empty-desc">先去学习路径完成核心题，明天会自动安排新的挑战。</view>
+    <button class="btn" bindtap="goPath">前往学习路径</button>
+  </view>
+
   <!-- Completed -->
-  <view wx:if="{{completed}}" class="result-view animate-pop">
+  <view wx:elif="{{completed}}" class="result-view animate-pop">
     <view class="result-emoji">{{results.accuracy >= 80 ? '🎉' : '💪'}}</view>
     <view class="result-title">{{results.accuracy >= 80 ? '太棒了！' : '继续努力！'}}</view>
 

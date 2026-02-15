@@ -6,12 +6,9 @@
       <text class="path-subtitle">按主题逐一攻克 LeetCode</text>
     </view>
     
-    <view class="path-hint-banner" wx:if="{{showCoreFirstHint}}">
-      <view class="hint-icon">💡</view>
-      <view class="hint-content">
-        <text class="hint-title">学习小贴士</text>
-        <text class="hint-desc">先完成核心题，再拓展额外题，效率更高。</text>
-      </view>
+    <view class="path-hint-pill" wx:if="{{showCoreFirstHint}}">
+      <text class="hint-icon">💡</text>
+      <text class="hint-text">小贴士：先完成核心题，再拓展额外题，效率更高。</text>
     </view>
   </view>
 

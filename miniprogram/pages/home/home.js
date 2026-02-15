@@ -34,7 +34,8 @@ Page({
     recommendedTopicWrong: 0,
     recommendedTopicDesc: '',
     recommendedActionType: 'dailyChallenge',
-    recommendedActionText: '开始每日挑战'
+    recommendedActionText: '开始每日挑战',
+    wrongReviewSessionCount: 0
   },
 
   onShow: function () {
@@ -131,7 +132,8 @@ Page({
       recommendedTopicWrong: recommendedTopic ? recommendedTopic.wrong : 0,
       recommendedTopicDesc,
       recommendedActionType,
-      recommendedActionText
+      recommendedActionText,
+      wrongReviewSessionCount: Math.min(5, wrongSet.size)
     });
   },
 

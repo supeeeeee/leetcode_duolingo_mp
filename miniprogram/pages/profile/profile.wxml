@@ -1,97 +1,101 @@
 <!--pages/profile/profile.wxml-->
-<view class="container">
-  <!-- Profile Header -->
-  <view class="profile-card">
-    <view class="profile-main">
-      <view class="avatar-box">
-        <view class="avatar-ring">
-          <text class="avatar-emoji">👨‍💻</text>
+<view class="container animate-fade">
+  
+  <!-- Profile Header Card -->
+  <view class="header-section">
+    <view class="profile-header-card">
+      <view class="profile-content">
+        <view class="avatar-container">
+          <view class="avatar-ring">
+            <text class="avatar-emoji">👨‍💻</text>
+          </view>
+          <view class="level-pill">Lv.{{userLevel}}</view>
         </view>
-        <view class="level-badge">Lv.{{userLevel}}</view>
-      </view>
-      
-      <view class="user-info">
-        <view class="name-row">
-          <text class="username">力扣探索者</text>
-          <button class="share-btn" open-type="share">
-            <text class="share-icon">📤</text>
-          </button>
+        
+        <view class="user-details">
+          <view class="name-row">
+            <text class="username">力扣探索者</text>
+            <button class="share-btn" open-type="share">
+              <text class="share-icon">📤</text>
+            </button>
+          </view>
+          <text class="join-date">2026年2月加入</text>
         </view>
-        <text class="join-date">2026年2月加入</text>
       </view>
-    </view>
 
-    <!-- XP Progress integrated into header card -->
-    <view class="xp-section">
-      <view class="xp-header">
-        <text class="xp-title">等级 {{userLevel}}</text>
-        <text class="xp-detail">{{xpProgress}}/100 XP</text>
+      <!-- XP Progress -->
+      <view class="xp-container">
+        <view class="xp-info">
+          <text class="xp-label">等级 {{userLevel}}</text>
+          <text class="xp-value">{{xpProgress}}/100 XP</text>
+        </view>
+        <view class="progress-track">
+          <view class="progress-fill" style="width: {{xpProgress}}%"></view>
+        </view>
+        <text class="xp-next-tip" wx:if="{{xpToNext > 0}}">再获得 {{xpToNext}} XP 升级</text>
       </view>
-      <view class="progress-track">
-        <view class="progress-fill" style="width: {{xpProgress}}%"></view>
-      </view>
-      <text class="xp-tip" wx:if="{{xpToNext > 0}}">还差 {{xpToNext}} XP 升至等级 {{userLevel + 1}}</text>
     </view>
   </view>
 
   <!-- Stats Grid -->
   <view class="section-container">
-    <view class="section-header">
-      <text class="section-title">统计数据</text>
-    </view>
-    
+    <text class="section-title">统计数据</text>
     <view class="stats-grid">
-      <view class="stat-item streak-card">
-        <view class="stat-icon">🔥</view>
-        <view class="stat-info">
-          <text class="stat-value">{{streak}}</text>
-          <text class="stat-label">连续天数</text>
+      <view class="stat-card streak-card">
+        <text class="stat-icon">🔥</text>
+        <view class="stat-text">
+          <text class="stat-num">{{streak}}</text>
+          <text class="stat-lbl">连续天数</text>
         </view>
       </view>
-      <view class="stat-item questions-card">
-        <view class="stat-icon">📚</view>
-        <view class="stat-info">
-          <text class="stat-value">{{totalAnswered}}</text>
-          <text class="stat-label">已解题数</text>
+      <view class="stat-card xp-card">
+        <text class="stat-icon">💎</text>
+        <view class="stat-text">
+          <text class="stat-num">{{xp}}</text>
+          <text class="stat-lbl">总经验值</text>
         </view>
       </view>
-      <view class="stat-item accuracy-card">
-        <view class="stat-icon">🎯</view>
-        <view class="stat-info">
-          <text class="stat-value">{{accuracy}}%</text>
-          <text class="stat-label">正确率</text>
+      <view class="stat-card total-card">
+        <text class="stat-icon">📚</text>
+        <view class="stat-text">
+          <text class="stat-num">{{totalAnswered}}</text>
+          <text class="stat-lbl">已解题数</text>
         </view>
       </view>
-      <view class="stat-item xp-total-card">
-        <view class="stat-icon">💎</view>
-        <view class="stat-info">
-          <text class="stat-value">{{xp}}</text>
-          <text class="stat-label">总经验值</text>
+      <view class="stat-card accuracy-card">
+        <text class="stat-icon">🎯</text>
+        <view class="stat-text">
+          <text class="stat-num">{{accuracy}}%</text>
+          <text class="stat-lbl">正确率</text>
         </view>
       </view>
     </view>
   </view>
 
+  <!-- Review Section -->
   <view class="section-container">
-    <view class="section-header">
-      <text class="section-title">复习入口</text>
-      <view class="review-entry-meta">
-        <text class="section-subtitle">待复习 {{wrongCount}} 题</text>
-        <text class="review-entry-remain">错题本剩余 {{wrongCount}}</text>
+    <text class="section-title">复习任务</text>
+    <view class="review-card {{wrongCount > 0 ? 'active-review' : 'empty-review'}}" bindtap="startWrongReview" hover-class="card-hover">
+      <view class="review-icon-box">
+        <text class="review-emoji">🩹</text>
       </view>
+      <view class="review-info">
+        <text class="review-title">错题本复习</text>
+        <view class="review-meta">
+          <text class="review-badge" wx:if="{{wrongCount > 0}}">{{wrongCount}} 待复习</text>
+          <text class="review-desc" wx:else>暂无错题，继续保持！</text>
+        </view>
+      </view>
+      <view class="review-arrow" wx:if="{{wrongCount > 0}}">GO</view>
     </view>
-    <button class="review-btn" bindtap="startWrongReview">错题复习</button>
   </view>
 
   <!-- Weekly Activity -->
   <view class="section-container">
     <view class="section-header">
       <text class="section-title">本周活跃</text>
-      <text class="section-subtitle">最高: {{bestCount}} 题</text>
     </view>
-
-    
-    <view class="activity-box">
+    <view class="card chart-card">
       <view class="chart-area">
         <view class="chart-column" wx:for="{{weekDays}}" wx:key="day">
           <view class="bar-wrapper">
@@ -100,44 +104,53 @@
           <text class="day-text">{{item.day}}</text>
         </view>
       </view>
+      <view class="chart-footer">
+        <text class="chart-stat">单日最高: {{bestCount}} 题</text>
+      </view>
     </view>
   </view>
 
   <!-- Achievements -->
-  <view class="section-container">
+  <view class="section-container last-section">
     <view class="section-header">
       <text class="section-title">成就奖励</text>
-      <view class="view-all">查看全部</view>
+      <!-- <view class="view-all">全部</view> -->
     </view>
 
-    
     <scroll-view class="achievements-scroll" scroll-x enable-flex>
       <view 
-        class="badge-item {{item.unlocked ? 'unlocked' : 'locked'}}" 
+        class="achievement-item {{item.unlocked ? 'unlocked' : 'locked'}}" 
         wx:for="{{achievements}}" 
         wx:key="id"
         bindtap="showAchievement"
         data-id="{{item.id}}"
+        hover-class="achievement-hover"
       >
-        <view class="badge-icon">{{item.icon}}</view>
-        <text class="badge-name">{{item.name}}</text>
-        <view class="lock-overlay" wx:if="{{!item.unlocked}}">
-          <text class="lock-icon">🔒</text>
+        <view class="achievement-icon-box">
+          <text class="achievement-emoji">{{item.icon}}</text>
+          <view class="lock-overlay" wx:if="{{!item.unlocked}}">
+            <text class="lock-icon">🔒</text>
+          </view>
         </view>
+        <text class="achievement-name">{{item.name}}</text>
       </view>
+      <!-- Padding item for scroll -->
+      <view class="scroll-padding"></view>
     </scroll-view>
   </view>
 
   <!-- Achievement Detail Modal -->
-  <view class="modal-mask" wx:if="{{showAchievementDetail}}" bindtap="hideAchievement">
-    <view class="modal-content" catchtap="stopBubbling">
-      <view class="modal-icon">{{selectedAchievement.icon}}</view>
+  <view class="modal-mask animate-fade" wx:if="{{showAchievementDetail}}" bindtap="hideAchievement">
+    <view class="modal-content animate-pop" catchtap="stopBubbling">
+      <view class="modal-header">
+        <text class="modal-icon">{{selectedAchievement.icon}}</text>
+      </view>
       <text class="modal-title">{{selectedAchievement.name}}</text>
       <text class="modal-desc">{{selectedAchievement.description}}</text>
       <view class="modal-status {{selectedAchievement.unlocked ? 'status-unlocked' : 'status-locked'}}">
-        {{selectedAchievement.unlocked ? '已解锁！' : '继续练习以解锁'}}
+        {{selectedAchievement.unlocked ? '✨ 已解锁' : '🔒 未解锁'}}
       </view>
-      <button class="modal-close" bindtap="hideAchievement">知道了！</button>
+      <button class="modal-btn" bindtap="hideAchievement">太棒了</button>
     </view>
   </view>
 </view>

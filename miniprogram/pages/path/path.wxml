@@ -2,7 +2,10 @@
 <view class="container">
   <view class="path-header">
     <view class="header-text-group">
-      <text class="path-title">学习路径</text>
+      <view class="title-row">
+        <text class="path-title">学习路径</text>
+        <text class="header-mascot">🧭</text>
+      </view>
       <text class="path-subtitle">按主题逐一攻克 LeetCode</text>
     </view>
     

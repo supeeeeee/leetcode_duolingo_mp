@@ -5,53 +5,68 @@
 }
 
 .path-header {
-  padding: 24rpx 40rpx 40rpx;
-  background: white;
+  padding: 32rpx 40rpx 48rpx;
+  background: linear-gradient(180deg, #e3f2fd 0%, #ffffff 100%);
+  border-bottom: 4rpx solid #e1f5fe;
 }
 
 .header-text-group {
-  margin-bottom: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
 }
 
 .path-title {
-  font-size: 48rpx;
-  font-weight: 700;
-  color: var(--text-main);
-  display: block;
-  line-height: 1.2;
-  letter-spacing: -1rpx;
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #37474f;
+  margin-right: 16rpx;
+  letter-spacing: -2rpx;
+  text-shadow: 2rpx 2rpx 0 #fff;
+}
+
+.header-mascot {
+  font-size: 56rpx;
+  animation: float 3s ease-in-out infinite;
 }
 
 .path-subtitle {
   font-size: 28rpx;
-  color: var(--text-light);
-  margin-top: 8rpx;
-  font-weight: 400;
+  color: #78909c;
+  font-weight: 600;
   display: block;
+  letter-spacing: 1rpx;
 }
 
-/* Pill style hint */
+/* Sticker style hint */
 .path-hint-pill {
   display: inline-flex;
   align-items: center;
-  background: #f0f7ff;
-  border-radius: 100rpx;
-  padding: 12rpx 24rpx;
-  margin-top: 16rpx;
+  background: #ffffff;
+  border: 4rpx dashed #90caf9;
+  border-radius: 24rpx;
+  padding: 16rpx 24rpx;
+  margin-top: 24rpx;
+  box-shadow: 4rpx 4rpx 0 #bbdefb;
+  transform: rotate(-1deg);
   animation: fadeIn 0.5s ease-out;
 }
 
 .hint-icon {
-  font-size: 28rpx;
+  font-size: 32rpx;
   margin-right: 12rpx;
   display: flex;
   align-items: center;
 }
 
 .hint-text {
-  font-size: 24rpx;
-  color: #1b6ef3;
-  font-weight: 500;
+  font-size: 26rpx;
+  color: #1976d2;
+  font-weight: 700;
   line-height: 1.4;
 }
 

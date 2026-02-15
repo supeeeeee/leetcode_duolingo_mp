@@ -29,7 +29,10 @@ Page({
     emptyHint: '',
     emptyCtaText: '',
     isWrongMode: false,
-    wrongRemainingCount: 0
+    wrongRemainingCount: 0,
+    wrongSessionTarget: 0,
+    wrongAnsweredCount: 0,
+    completionTitle: '课程完成！'
   },
 
   answerStartTime: 0,
@@ -49,6 +52,7 @@ Page({
     const wrongRemainingCount = isWrongMode
       ? (history.getHistory().wrongQuestions || []).length
       : 0;
+    const wrongSessionTarget = isWrongMode ? questions.length : 0;
 
     const first = isEmpty ? null : questions[0];
     const availableLangs = this.getAvailableLangs(first);
@@ -70,7 +74,10 @@ Page({
       emptyHint: this.getEmptyHint(mode),
       emptyCtaText: this.getEmptyCtaText(mode),
       isWrongMode,
-      wrongRemainingCount
+      wrongRemainingCount,
+      wrongSessionTarget,
+      wrongAnsweredCount: 0,
+      completionTitle: isWrongMode ? '错题复习完成' : '课程完成！'
     });
 
     this.answerStartTime = Date.now();
@@ -125,7 +132,10 @@ Page({
     history.saveQuestionRecord(q.id, q.topicId, isCorrect, this.data.selectedOption, answerTime);
     if (this.mode === 'wrong') {
       const wrongRemainingCount = (history.getHistory().wrongQuestions || []).length;
-      this.setData({ wrongRemainingCount });
+      this.setData({
+        wrongRemainingCount,
+        wrongAnsweredCount: this.data.wrongAnsweredCount + 1
+      });
     }
     
     if (isCorrect) {
@@ -200,7 +210,7 @@ Page({
     const accuracy = total > 0 ? Math.round((this.data.correctCount / total) * 100) : 0;
     
     if (total > 0) {
-      progress.completeLesson(this.data.earnedXP, this.topicId);
+      progress.completeLesson(this.data.earnedXP, this.mode === 'wrong' ? null : this.topicId);
     }
 
     this.setData({

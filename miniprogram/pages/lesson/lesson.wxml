@@ -15,7 +15,7 @@
   <view wx:elif="{{finished}}" class="result-view animate-pop">
     <view class="result-header">
       <text class="result-emoji">🎉</text>
-      <text class="result-title">课程完成！</text>
+      <text class="result-title">{{completionTitle}}</text>
     </view>
 
     <view class="stat-row">
@@ -38,9 +38,9 @@
     <view class="quiz-header">
       <view class="close-btn" bindtap="goBack">✕</view>
       <view class="quiz-progress-bar">
-        <view class="quiz-progress-fill" style="width: {{ totalQuestions ? ((currentIndex + 1) / totalQuestions) * 100 : 0 }}%"></view>
+        <view class="quiz-progress-fill" style="width: {{isWrongMode ? (wrongSessionTarget ? (wrongAnsweredCount / wrongSessionTarget) * 100 : 0) : (totalQuestions ? ((currentIndex + 1) / totalQuestions) * 100 : 0)}}%"></view>
       </view>
-      <text class="quiz-progress-text">{{currentIndex + 1}}/{{totalQuestions}}</text>
+      <text class="quiz-progress-text">{{isWrongMode ? wrongAnsweredCount : (currentIndex + 1)}}/{{isWrongMode ? wrongSessionTarget : totalQuestions}}</text>
     </view>
 
     <view wx:if="{{isWrongMode}}" class="wrong-review-banner">

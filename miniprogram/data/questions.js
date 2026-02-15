@@ -2381,7 +2381,7 @@ module.exports = [
       "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "使用栈实现队列的 push、pop、peek、empty 操作。",
+    "description": "用两个栈实现队列，支持 push、pop、peek、empty 操作。",
     "codeSnippet": {
       "python": "class MyQueue:\n    def __init__(self):\n        self.s1 = []\n        self.s2 = []\n\n    def push(self, x):\n        self.s1.append(x)\n\n    def _shift(self):\n        if not self.s2:\n            while self.s1:\n                self.s2.append(self.s1.pop())\n\n    def pop(self):\n        self._shift()\n        return self.s2.pop()\n\n    def peek(self):\n        self._shift()\n        return self.s2[-1]\n\n    def empty(self):\n        return (not self.s1) and (not self.s2)\n",
       "java": "class MyQueue {\n    Deque<Integer> s1 = new ArrayDeque<>();\n    Deque<Integer> s2 = new ArrayDeque<>();\n\n    public void push(int x) {\n        s1.push(x);\n    }\n\n    private void shift() {\n        if (s2.isEmpty()) {\n            while (!s1.isEmpty()) s2.push(s1.pop());\n        }\n    }\n\n    public int pop() {\n        shift();\n        return s2.pop();\n    }\n\n    public int peek() {\n        shift();\n        return s2.peek();\n    }\n\n    public boolean empty() {\n        return s1.isEmpty() && s2.isEmpty();\n    }\n}\n",

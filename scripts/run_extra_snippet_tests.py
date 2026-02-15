@@ -46,6 +46,21 @@ class ListNode:
         self.next = next
 
 
+# LeetCode 133 graph node
+class Node:
+    def __init__(self, val=0, neighbors=None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+
+
+# LeetCode 138 random pointer list node
+class RandomNode:
+    def __init__(self, val=0, next=None, random=None):
+        self.val = val
+        self.next = next
+        self.random = random
+
+
 def list_to_nodes(a):
     head = None
     for v in reversed(a):
@@ -103,6 +118,8 @@ def exec_snippet(snippet: str) -> dict[str, Any]:
     ns: dict[str, Any] = {
         "TreeNode": TreeNode,
         "ListNode": ListNode,
+        "Node": Node,
+        "RandomNode": RandomNode,
     }
     exec(snippet, ns, ns)
     return ns
@@ -426,31 +443,258 @@ def build_cases() -> dict[str, list[Case]]:
         )
     ]
 
+    # --- Uncovered → now covered cases ---
+
+    c["first-missing-positive"] = [
+        Case("basic", lambda ns: assert_eq(ns["firstMissingPositive"]([3, 4, -1, 1]), 2)),
+        Case("all_present", lambda ns: assert_eq(ns["firstMissingPositive"]([1, 2, 0]), 3)),
+    ]
+
+    c["binary-tree-maximum-path-sum"] = [
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["maxPathSum"](tree_from_level([-10, 9, 20, None, None, 15, 7])), 42),
+        )
+    ]
+
+    def _clone_graph(ns):
+        cloneGraph = ns["cloneGraph"]
+        # Build 1-2-3-4 cycle
+        n1 = Node(1)
+        n2 = Node(2)
+        n3 = Node(3)
+        n4 = Node(4)
+        n1.neighbors = [n2, n4]
+        n2.neighbors = [n1, n3]
+        n3.neighbors = [n2, n4]
+        n4.neighbors = [n1, n3]
+        c1 = cloneGraph(n1)
+        if c1 is n1:
+            raise AssertionError("clone should be a different object")
+        if c1.val != 1:
+            raise AssertionError("clone root val mismatch")
+        # Check neighbor vals set
+        got = sorted([x.val for x in c1.neighbors])
+        assert_eq(got, [2, 4])
+        # Ensure deep copy: none of the cloned nodes are original nodes
+        seen = set()
+        stack = [c1]
+        while stack:
+            x = stack.pop()
+            if id(x) in seen:
+                continue
+            seen.add(id(x))
+            if x in [n1, n2, n3, n4]:
+                raise AssertionError("clone shares node with original")
+            for y in x.neighbors:
+                stack.append(y)
+
+    c["clone-graph"] = [Case("cycle", _clone_graph)]
+
+    c["combination-sum"] = [
+        Case(
+            "basic",
+            lambda ns: assert_set_eq(
+                [tuple(x) for x in ns["combinationSum"]([2, 3, 6, 7], 7)],
+                [tuple(x) for x in [[2, 2, 3], [7]]],
+            ),
+        )
+    ]
+
+    c["construct-binary-tree-from-preorder-and-inorder-traversal"] = [
+        Case(
+            "basic",
+            lambda ns: assert_eq(
+                tree_to_level(ns["buildTree"]([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])),
+                [3, 9, 20, None, None, 15, 7],
+            ),
+        )
+    ]
+
+    def _copy_random(ns):
+        copyRandomList = ns["copyRandomList"]
+        a = RandomNode(7)
+        b = RandomNode(13)
+        c1 = RandomNode(11)
+        d = RandomNode(10)
+        e = RandomNode(1)
+        a.next = b; b.next = c1; c1.next = d; d.next = e
+        b.random = a
+        c1.random = e
+        d.random = c1
+        e.random = a
+        head2 = copyRandomList(a)
+        # Verify sequence values
+        vals = []
+        cur = head2
+        while cur:
+            vals.append(cur.val)
+            cur = cur.next
+        assert_eq(vals, [7, 13, 11, 10, 1])
+        # Verify random pointers by index mapping
+        # Build index for original and clone
+        orig = [a, b, c1, d, e]
+        clone = []
+        cur = head2
+        while cur:
+            clone.append(cur)
+            cur = cur.next
+        if any(clone[i] is orig[i] for i in range(5)):
+            raise AssertionError("clone shares node objects")
+        pos_orig = {id(node): i for i, node in enumerate(orig)}
+        pos_clone = {id(node): i for i, node in enumerate(clone)}
+        for i in range(5):
+            ro = orig[i].random
+            rc = clone[i].random
+            if ro is None:
+                if rc is not None:
+                    raise AssertionError("random should be None")
+            else:
+                assert_eq(pos_clone[id(rc)], pos_orig[id(ro)])
+
+    c["copy-list-with-random-pointer"] = [Case("classic", _copy_random)]
+
+    c["kth-smallest-element-in-a-bst"] = [
+        Case(
+            "basic",
+            lambda ns: assert_eq(ns["kthSmallest"](tree_from_level([3, 1, 4, None, 2]), 1), 1),
+        ),
+        Case(
+            "k3",
+            lambda ns: assert_eq(ns["kthSmallest"](tree_from_level([5, 3, 6, 2, 4, None, None, 1]), 3), 3),
+        ),
+    ]
+
+    c["longest-palindromic-substring"] = [
+        Case(
+            "babad",
+            lambda ns: (
+                (lambda ans: (
+                    (ans in ["bab", "aba"]) or (_ for _ in ()).throw(AssertionError(f"got={ans}"))
+                ))(ns["longestPalindrome"]("babad"))
+            ),
+        ),
+        Case("cbbd", lambda ns: assert_eq(ns["longestPalindrome"]("cbbd"), "bb")),
+    ]
+
+    c["lru-cache"] = [
+        Case(
+            "api",
+            lambda ns: (
+                (lambda LRUCache: (
+                    (lambda cache: (
+                        cache.put(1, 1),
+                        cache.put(2, 2),
+                        assert_eq(cache.get(1), 1),
+                        cache.put(3, 3),
+                        assert_eq(cache.get(2), -1),
+                        cache.put(4, 4),
+                        assert_eq(cache.get(1), -1),
+                        assert_eq(cache.get(3), 3),
+                        assert_eq(cache.get(4), 4),
+                    ))(LRUCache(2))
+                ))(ns["LRUCache"])
+            ),
+        )
+    ]
+
+    c["network-delay-time"] = [
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["networkDelayTime"]([[2, 1, 1], [2, 3, 1], [3, 4, 1]], 4, 2), 2),
+        ),
+        Case("impossible", lambda ns: assert_eq(ns["networkDelayTime"]([[1, 2, 1]], 2, 1), 1)),
+    ]
+
+    c["redundant-connection"] = [
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["findRedundantConnection"]([[1, 2], [1, 3], [2, 3]]), [2, 3]),
+        )
+    ]
+
+    c["reverse-nodes-in-k-group"] = [
+        Case(
+            "k2",
+            lambda ns: assert_eq(
+                nodes_to_list(ns["reverseKGroup"](list_to_nodes([1, 2, 3, 4, 5]), 2)),
+                [2, 1, 4, 3, 5],
+            ),
+        )
+    ]
+
+    c["rotting-oranges"] = [
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["orangesRotting"]([[2, 1, 1], [1, 1, 0], [0, 1, 1]]), 4),
+        ),
+        Case(
+            "impossible",
+            lambda ns: assert_eq(ns["orangesRotting"]([[2, 1, 1], [0, 1, 1], [1, 0, 1]]), -1),
+        ),
+    ]
+
+    c["serialize-and-deserialize-binary-tree"] = [
+        Case(
+            "roundtrip",
+            lambda ns: (
+                (lambda codec: (
+                    (lambda root: assert_eq(tree_to_level(codec.deserialize(codec.serialize(root))), tree_to_level(root)))(
+                        tree_from_level([1, 2, 3, None, None, 4, 5])
+                    )
+                ))(ns["Codec"]())
+            ),
+        )
+    ]
+
+    c["sliding-window-maximum"] = [
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["maxSlidingWindow"]([1, 3, -1, -3, 5, 3, 6, 7], 3), [3, 3, 5, 5, 6, 7]),
+        )
+    ]
+
+    c["sort-list"] = [
+        Case(
+            "basic",
+            lambda ns: assert_eq(nodes_to_list(ns["sortList"](list_to_nodes([4, 2, 1, 3]))), [1, 2, 3, 4]),
+        )
+    ]
+
+    c["substring-with-concatenation-of-all-words"] = [
+        Case(
+            "classic",
+            lambda ns: assert_eq(sorted(ns["findSubstring"]("barfoothefoobarman", ["foo", "bar"])), [0, 9]),
+        )
+    ]
+
+    c["surrounded-regions"] = [
+        Case(
+            "classic",
+            lambda ns: (
+                (lambda b: (ns["solve"](b), assert_eq(b, [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]])))(
+                    [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+                )
+            ),
+        )
+    ]
+
+    c["word-ladder"] = [
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["ladderLength"]("hit", "cog", ["hot","dot","dog","lot","log","cog"]), 5),
+        ),
+        Case(
+            "none",
+            lambda ns: assert_eq(ns["ladderLength"]("hit", "cog", ["hot","dot","dog","lot","log"]), 0),
+        ),
+    ]
+
     return c
 
 
 UNCOVERED_REASONS: dict[str, str] = {
-    # Graph / advanced structures / custom serialization
-    "clone-graph": "needs Graph Node class + identity checks",
-    "copy-list-with-random-pointer": "needs RandomPointer Node class + pointer equality",
-    "lru-cache": "requires LRUCache class API; snippet often mismatches",
-    "serialize-and-deserialize-binary-tree": "requires Codec class + agreed serialization format",
-    # remaining (todo)
-    "binary-tree-maximum-path-sum": "not covered yet",
-    "construct-binary-tree-from-preorder-and-inorder-traversal": "not covered yet",
-    "kth-smallest-element-in-a-bst": "not covered yet",
-    "reverse-nodes-in-k-group": "not covered yet",
-    "sort-list": "not covered yet",
-    "rotting-oranges": "not covered yet",
-    "sliding-window-maximum": "not covered yet",
-    "substring-with-concatenation-of-all-words": "not covered yet",
-    "surrounded-regions": "not covered yet",
-    "word-ladder": "not covered yet",
-    "network-delay-time": "not covered yet",
-    "redundant-connection": "not covered yet",
-    "first-missing-positive": "not covered yet",
-    "combination-sum": "not covered yet",
-    "longest-palindromic-substring": "not covered yet",
+    # Keep this for future extra additions
 }
 
 

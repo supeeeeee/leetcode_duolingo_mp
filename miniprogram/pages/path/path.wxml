@@ -1,17 +1,27 @@
 <!--pages/path/path.wxml-->
 <view class="container">
   <view class="path-header">
+    <view class="header-decoration-circle circle-1"></view>
+    <view class="header-decoration-circle circle-2"></view>
+    
     <view class="header-text-group">
       <view class="title-row">
-        <text class="path-title">学习路径</text>
+        <view class="path-title-badge">
+          <text class="path-title">学习路径</text>
+        </view>
         <text class="header-mascot">🧭</text>
       </view>
       <text class="path-subtitle">按主题逐一攻克 LeetCode</text>
     </view>
     
-    <view class="path-hint-pill" wx:if="{{showCoreFirstHint}}">
-      <text class="hint-icon">💡</text>
-      <text class="hint-text">小贴士：先完成核心题，再拓展额外题，效率更高。</text>
+    <view class="path-hint-container" wx:if="{{showCoreFirstHint}}">
+      <view class="path-hint-bubble">
+        <view class="hint-content">
+          <text class="hint-icon">💡</text>
+          <text class="hint-text">小贴士：先完成核心题，再拓展额外题，效率更高。</text>
+        </view>
+        <view class="bubble-tail"></view>
+      </view>
     </view>
   </view>
 

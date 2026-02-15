@@ -136,6 +136,11 @@
   box-sizing: border-box;
 }
 
+.action-row {
+  display: flex;
+  gap: 16rpx;
+}
+
 .today-suggestions {
   width: 100%;
   padding: 0 40rpx;
@@ -248,6 +253,15 @@
   justify-content: center;
   text-transform: uppercase;
   letter-spacing: 2rpx;
+}
+
+.action-row .btn {
+  flex: 1;
+}
+
+.btn.secondary {
+  color: #2b3a55;
+  background: #eef2f8;
 }
 
 .daily-goals {

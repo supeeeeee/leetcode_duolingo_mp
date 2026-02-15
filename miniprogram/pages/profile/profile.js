@@ -23,6 +23,7 @@ Page({
     weekDays: [],
     bestDay: '-',
     bestCount: 0,
+    wrongCount: 0,
     achievements: [],
     showAchievementDetail: false,
     selectedAchievement: null
@@ -43,6 +44,7 @@ Page({
     const totalAnswered = historyData.stats.totalAnswered || 0;
     const correctCount = historyData.stats.correctCount || 0;
     const accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+    const wrongCount = (historyData.wrongQuestions || []).length;
     
     // Level logic: Level 1 (0-99), Level 2 (100-199)...
     const userLevel = Math.floor(xp / 100) + 1;
@@ -81,7 +83,14 @@ Page({
       weekDays,
       bestDay,
       bestCount,
+      wrongCount,
       achievements
+    });
+  },
+
+  startWrongReview: function() {
+    wx.navigateTo({
+      url: '/pages/lesson/lesson?mode=wrong'
     });
   },
 

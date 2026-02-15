@@ -146,6 +146,12 @@ Page({
     });
   },
 
+  startWrongReview: function () {
+    wx.navigateTo({
+      url: '/pages/lesson/lesson?mode=wrong'
+    });
+  },
+
   startDailyChallenge: function () {
     wx.navigateTo({
       url: '/pages/daily/daily',

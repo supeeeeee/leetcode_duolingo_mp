@@ -3,6 +3,7 @@ const srs = require('../../services/srs');
 const progress = require('../../services/progress');
 const history = require('../../services/history');
 const highlighter = require('../../services/highlighter');
+const userSettings = require('../../services/userSettings');
 
 Page({
   data: {
@@ -37,13 +38,16 @@ Page({
     const mode = options.mode || 'daily';
     this.mode = mode;
     this.topicId = options.id || null;
-    
-    const questions = srs.getReviewSession(this.topicId, 5);
+
+    const questions = mode === 'wrong'
+      ? srs.getWrongSession(5)
+      : srs.getReviewSession(this.topicId, 5);
     const isEmpty = questions.length === 0;
 
     const first = isEmpty ? null : questions[0];
     const availableLangs = this.getAvailableLangs(first);
-    const highlightedCode = this.getHighlightedCode(first, 'python');
+    const lang = userSettings.pickQuestionLang(availableLangs);
+    const highlightedCode = this.getHighlightedCode(first, lang);
     
     this.setData({
       questions,
@@ -52,6 +56,7 @@ Page({
       currentIndex: 0,
       finished: false,
       accuracy: 0,
+      selectedLang: lang,
       availableLangs,
       highlightedCode,
       isEmpty,
@@ -64,17 +69,25 @@ Page({
   },
 
   getEmptyTitle: function(mode) {
-    return mode === 'topic' ? '本章节暂无可练习题目' : '当前没有可复习题目';
+    if (mode === 'topic') return '本章节暂无可练习题目';
+    if (mode === 'wrong') return '暂无错题可复习';
+    return '当前没有可复习题目';
   },
 
   getEmptyHint: function(mode) {
-    return mode === 'topic'
-      ? '先从其他章节完成核心题，稍后再回来解锁更多内容。'
-      : '先去学习路径完成核心题，系统会自动安排下一轮复习。';
+    if (mode === 'topic') {
+      return '先从其他章节完成核心题，稍后再回来解锁更多内容。';
+    }
+    if (mode === 'wrong') {
+      return '太棒了，你的错题本已经清空，继续保持！';
+    }
+    return '先去学习路径完成核心题，系统会自动安排下一轮复习。';
   },
 
   getEmptyCtaText: function(mode) {
-    return mode === 'topic' ? '返回学习路径' : '前往学习路径';
+    if (mode === 'topic') return '返回学习路径';
+    if (mode === 'wrong') return '去做每日挑战';
+    return '前往学习路径';
   },
 
   selectOption: function(e) {
@@ -130,8 +143,7 @@ Page({
     } else {
       const nextQ = this.data.questions[nextIdx];
       const availableLangs = this.getAvailableLangs(nextQ);
-      // Reset to python if available, else first available
-      const lang = availableLangs.includes('python') ? 'python' : (availableLangs[0] || 'python');
+      const lang = userSettings.pickQuestionLang(availableLangs);
       
       this.setData({
         currentIndex: nextIdx,
@@ -160,6 +172,7 @@ Page({
 
   switchLang: function(e) {
     const lang = e.currentTarget.dataset.lang;
+    userSettings.setPreferredLang(lang);
     this.setData({ 
       selectedLang: lang,
       highlightedCode: this.getHighlightedCode(this.data.currentQuestion, lang)
@@ -189,6 +202,10 @@ Page({
   },
 
   goToPath: function() {
+    if (this.mode === 'wrong') {
+      wx.navigateTo({ url: '/pages/daily/daily' });
+      return;
+    }
     wx.switchTab({ url: '/pages/path/path' });
   }
 })

@@ -72,6 +72,14 @@
     </view>
   </view>
 
+  <view class="section-container">
+    <view class="section-header">
+      <text class="section-title">复习入口</text>
+      <text class="section-subtitle">待复习 {{wrongCount}} 题</text>
+    </view>
+    <button class="review-btn" bindtap="startWrongReview">错题复习</button>
+  </view>
+
   <!-- Weekly Activity -->
   <view class="section-container">
     <view class="section-header">

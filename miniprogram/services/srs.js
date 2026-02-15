@@ -24,6 +24,11 @@ function getWrongIdSet() {
   return set;
 }
 
+function getWrongIdList() {
+  const h = history.getHistory();
+  return Array.isArray(h.wrongQuestions) ? h.wrongQuestions.slice() : [];
+}
+
 function getQuestionOrderMap() {
   const order = new Map();
   questions.forEach((q, idx) => {
@@ -122,6 +127,30 @@ function getReviewSession(topicId = null, count = 5) {
   return selected.slice(0, count);
 }
 
+function getWrongSession(count = 5) {
+  const orderMap = getQuestionOrderMap();
+  const daySeed = getTodaySeed();
+  const wrongIds = getWrongIdList();
+  if (wrongIds.length === 0) return [];
+
+  const questionMap = new Map();
+  questions.forEach(question => {
+    questionMap.set(question.id, question);
+  });
+
+  const wrongPool = [];
+  const seen = new Set();
+  wrongIds.forEach(id => {
+    if (seen.has(id)) return;
+    seen.add(id);
+    const question = questionMap.get(id);
+    if (question) wrongPool.push(question);
+  });
+
+  return dailySeededSort(wrongPool, orderMap, `${daySeed}|wrong|pool`).slice(0, count);
+}
+
 module.exports = {
-  getReviewSession
+  getReviewSession,
+  getWrongSession
 };

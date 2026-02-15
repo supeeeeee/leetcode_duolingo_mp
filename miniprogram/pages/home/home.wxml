@@ -67,7 +67,10 @@
   </view>
 
   <view class="action-area animate-fade" wx:if="{{!loading}}">
-    <button class="btn" hover-class="none" bindtap="startDailyReview">开始复习</button>
+    <view class="action-row">
+      <button class="btn" hover-class="none" bindtap="startDailyReview">开始复习</button>
+      <button class="btn secondary" hover-class="none" bindtap="startWrongReview">错题复习</button>
+    </view>
   </view>
 
   <view class="daily-goals animate-fade" wx:if="{{!loading}}">

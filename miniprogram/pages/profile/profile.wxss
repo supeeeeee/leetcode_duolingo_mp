@@ -247,6 +247,22 @@
 .accuracy-card { border-color: #ff4b4b; box-shadow: 0 8rpx 0 #ff4b4b; }
 .xp-total-card { border-color: #ce82ff; box-shadow: 0 8rpx 0 #ce82ff; }
 
+.review-btn {
+  width: 100%;
+  height: 92rpx;
+  border-radius: 28rpx;
+  background: #1cb0f6;
+  color: white;
+  font-size: 32rpx;
+  font-weight: 800;
+  border-bottom: 8rpx solid #1899d6;
+}
+
+.review-btn:active {
+  transform: translateY(4rpx);
+  border-bottom-width: 4rpx;
+}
+
 /* Activity Chart */
 .activity-box {
   background: white;

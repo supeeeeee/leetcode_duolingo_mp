@@ -1,8 +1,6 @@
 <!--pages/path/path.wxml-->
 <view class="container">
   <view class="path-header">
-    <view class="header-decoration-circle circle-1"></view>
-    <view class="header-decoration-circle circle-2"></view>
     
     <view class="header-text-group">
       <view class="title-row">

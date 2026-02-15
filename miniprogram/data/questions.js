@@ -1,7 +1,7 @@
 module.exports = [
   {
     "id": "q001",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【两数之和】 最优解法的核心数据结构是什么？",
     "options": [
@@ -40,7 +40,7 @@ module.exports = [
   },
   {
     "id": "q002",
-    "topicId": "arrays",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【买卖股票的最佳时机】 单次交易最优策略是？",
     "options": [
@@ -76,11 +76,18 @@ module.exports = [
       "cpp": "// TODO: 买卖股票的最佳时机 (best-time-to-buy-and-sell-stock)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement best-time-to-buy-and-sell-stock\");\n    }\n};"
     },
     "description": "给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你只能选择某一天买入这只股票，并选择在未来的某一个不同的日子卖出该股票。",
-    "leetcodeSlug": "best-time-to-buy-and-sell-stock"
+    "leetcodeSlug": "best-time-to-buy-and-sell-stock",
+    "handbookRef": {
+      "leetcodeId": 121,
+      "chapter": "第七章：动态规划",
+      "section": "7.3 股票买卖系列",
+      "orderInSection": 1,
+      "mdLine": 974
+    }
   },
   {
     "id": "q003",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【除自身以外数组的乘积】 不使用除法时，应组合哪两类信息？",
     "options": [
@@ -120,7 +127,7 @@ module.exports = [
   },
   {
     "id": "q004",
-    "topicId": "arrays",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【最大子数组和】 Kadane 算法的状态转移是？",
     "options": [
@@ -156,11 +163,18 @@ module.exports = [
       "cpp": "// TODO: 最大子数组和 (maximum-subarray)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement maximum-subarray\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。",
-    "leetcodeSlug": "maximum-subarray"
+    "leetcodeSlug": "maximum-subarray",
+    "handbookRef": {
+      "leetcodeId": 53,
+      "chapter": "第七章：动态规划",
+      "section": "7.1 动态规划核心框架",
+      "orderInSection": 2,
+      "mdLine": 885
+    }
   },
   {
     "id": "q005",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【合并区间】 为什么先按左端点排序？",
     "options": [
@@ -200,7 +214,7 @@ module.exports = [
   },
   {
     "id": "q006",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【轮转数组】 O(1) 额外空间常用做法是？",
     "options": [
@@ -240,7 +254,7 @@ module.exports = [
   },
   {
     "id": "q007",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【移动零】 保持相对顺序的线性做法是？",
     "options": [
@@ -280,7 +294,7 @@ module.exports = [
   },
   {
     "id": "q008",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【多数元素】 Boyer-Moore 的关键思想是？",
     "options": [
@@ -320,7 +334,7 @@ module.exports = [
   },
   {
     "id": "q009",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【下一个排列】 从后往前找到第一个下降位后，下一步是？",
     "options": [
@@ -360,7 +374,7 @@ module.exports = [
   },
   {
     "id": "q010",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【颜色分类】 荷兰国旗问题需要几个指针？",
     "options": [
@@ -400,7 +414,7 @@ module.exports = [
   },
   {
     "id": "q011",
-    "topicId": "arrays",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【缺失的第一个正数】 O(n)+O(1) 的核心是？",
     "options": [
@@ -440,7 +454,7 @@ module.exports = [
   },
   {
     "id": "q012",
-    "topicId": "arrays",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【接雨水】 双指针做法每步更新哪一个边界？",
     "options": [
@@ -476,11 +490,18 @@ module.exports = [
       "cpp": "// TODO: 接雨水 (trapping-rain-water)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement trapping-rain-water\");\n    }\n};"
     },
     "description": "给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。",
-    "leetcodeSlug": "trapping-rain-water"
+    "leetcodeSlug": "trapping-rain-water",
+    "handbookRef": {
+      "leetcodeId": 42,
+      "chapter": "第十章：单调栈与单调队列",
+      "section": "10.1 单调栈",
+      "orderInSection": 1,
+      "mdLine": 1244
+    }
   },
   {
     "id": "q013",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【字母异位词分组】 作为 key 的常用设计是？",
     "options": [
@@ -520,7 +541,7 @@ module.exports = [
   },
   {
     "id": "q014",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【有效的字母异位词】 最稳妥解法是？",
     "options": [
@@ -560,7 +581,7 @@ module.exports = [
   },
   {
     "id": "q015",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【和为 K 的子数组】 前缀和+哈希的查找条件是？",
     "options": [
@@ -596,11 +617,18 @@ module.exports = [
       "cpp": "// TODO: 和为 K 的子数组 (subarray-sum-equals-k)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement subarray-sum-equals-k\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums 和一个整数 k ，请你统计并返回该数组中和为 k 的连续子数组的个数。",
-    "leetcodeSlug": "subarray-sum-equals-k"
+    "leetcodeSlug": "subarray-sum-equals-k",
+    "handbookRef": {
+      "leetcodeId": 560,
+      "chapter": "第四章：前缀和与差分数组",
+      "section": "4.1 前缀和数组",
+      "orderInSection": 1,
+      "mdLine": 547
+    }
   },
   {
     "id": "q016",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【最长连续序列】 O(n) 做法的关键是？",
     "options": [
@@ -640,7 +668,7 @@ module.exports = [
   },
   {
     "id": "q017",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【LRU 缓存】 满足 O(1) get/put 的组合是？",
     "options": [
@@ -680,7 +708,7 @@ module.exports = [
   },
   {
     "id": "q018",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【前 K 个高频元素】 典型做法是？",
     "options": [
@@ -720,7 +748,7 @@ module.exports = [
   },
   {
     "id": "q019",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【四数相加 II】 降维思路是？",
     "options": [
@@ -760,7 +788,7 @@ module.exports = [
   },
   {
     "id": "q020",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【字符串解码计数场景】 为什么常用 Map 而不是数组？",
     "options": [
@@ -800,7 +828,7 @@ module.exports = [
   },
   {
     "id": "q021",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【快乐数】 判环常用哪个结构？",
     "options": [
@@ -840,7 +868,7 @@ module.exports = [
   },
   {
     "id": "q022",
-    "topicId": "hashmaps",
+    "topicId": "ch04_prefix_diff",
     "type": "multiple_choice",
     "question": "【同构字符串】 需要保证什么？",
     "options": [
@@ -880,7 +908,7 @@ module.exports = [
   },
   {
     "id": "q023",
-    "topicId": "two_pointers",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【三数之和】 去重通常在何处做？",
     "options": [
@@ -916,11 +944,18 @@ module.exports = [
       "insight": "双指针能降复杂度的前提，是“移动某一侧不会丢失最优解”的单调性结论。"
     },
     "description": "给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。",
-    "leetcodeSlug": "3sum"
+    "leetcodeSlug": "3sum",
+    "handbookRef": {
+      "leetcodeId": 15,
+      "chapter": "第一章：双指针技巧",
+      "section": "1.2 数组双指针技巧",
+      "orderInSection": 3,
+      "mdLine": 231
+    }
   },
   {
     "id": "q024",
-    "topicId": "two_pointers",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【盛最多水的容器】 每次移动哪边指针？",
     "options": [
@@ -960,7 +995,7 @@ module.exports = [
   },
   {
     "id": "q025",
-    "topicId": "two_pointers",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【删除有序数组重复项】 slow 指针含义是？",
     "options": [
@@ -996,11 +1031,18 @@ module.exports = [
       "cpp": "// TODO: 删除有序数组重复项 (remove-duplicates-from-sorted-array)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement remove-duplicates-from-sorted-array\");\n    }\n};"
     },
     "description": "给你一个升序排列的数组 nums ，请你原地删除重复出现的元素，使每个元素只出现一次 ，返回删除后数组的新长度。",
-    "leetcodeSlug": "remove-duplicates-from-sorted-array"
+    "leetcodeSlug": "remove-duplicates-from-sorted-array",
+    "handbookRef": {
+      "leetcodeId": 26,
+      "chapter": "第一章：双指针技巧",
+      "section": "1.2 数组双指针技巧",
+      "orderInSection": 1,
+      "mdLine": 176
+    }
   },
   {
     "id": "q026",
-    "topicId": "two_pointers",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【回文链表】 O(1) 空间常见流程是？",
     "options": [
@@ -1040,7 +1082,7 @@ module.exports = [
   },
   {
     "id": "q027",
-    "topicId": "two_pointers",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【有序数组两数之和 II】 为何可用双指针？",
     "options": [
@@ -1080,7 +1122,7 @@ module.exports = [
   },
   {
     "id": "q028",
-    "topicId": "two_pointers",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【删除链表倒数第 N 个节点】 经典做法是？",
     "options": [
@@ -1116,11 +1158,18 @@ module.exports = [
       "cpp": "ListNode* removeNthFromEnd(ListNode* head, int n) {\n    ListNode dummy(0, head);\n    ListNode *fast = &dummy, *slow = &dummy;\n    for (int i = 0; i < n; i++) fast = fast->next;\n    while (fast->next) {\n        fast = fast->next;\n        slow = slow->next;\n    }\n    slow->next = slow->next->next;\n    return dummy.next;\n}"
     },
     "description": "给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。",
-    "leetcodeSlug": "remove-nth-node-from-end-of-list"
+    "leetcodeSlug": "remove-nth-node-from-end-of-list",
+    "handbookRef": {
+      "leetcodeId": 19,
+      "chapter": "第一章：双指针技巧",
+      "section": "1.1 链表双指针技巧",
+      "orderInSection": 5,
+      "mdLine": 148
+    }
   },
   {
     "id": "q029",
-    "topicId": "two_pointers",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【相交链表】 O(1) 空间解法核心是？",
     "options": [
@@ -1160,7 +1209,7 @@ module.exports = [
   },
   {
     "id": "q030",
-    "topicId": "two_pointers",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【接雨水双指针】 leftMax < rightMax 时计算哪侧？",
     "options": [
@@ -1200,7 +1249,7 @@ module.exports = [
   },
   {
     "id": "q031",
-    "topicId": "sliding_window",
+    "topicId": "ch02_sliding_window",
     "type": "multiple_choice",
     "question": "【无重复字符的最长子串】 窗口左边界何时移动？",
     "options": [
@@ -1234,11 +1283,18 @@ module.exports = [
       "insight": "滑动窗口的精髓在于：不断增加 right 扩大窗口，直到满足约束；然后不断增加 left 缩小窗口，直到不再满足约束。过程中更新答案。"
     },
     "description": "给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。",
-    "leetcodeSlug": "longest-substring-without-repeating-characters"
+    "leetcodeSlug": "longest-substring-without-repeating-characters",
+    "handbookRef": {
+      "leetcodeId": 3,
+      "chapter": "第二章：滑动窗口算法",
+      "section": "2.1 滑动窗口核心模板",
+      "orderInSection": 4,
+      "mdLine": 394
+    }
   },
   {
     "id": "q032",
-    "topicId": "sliding_window",
+    "topicId": "ch02_sliding_window",
     "type": "multiple_choice",
     "question": "【最小覆盖子串】 valid 的含义通常是？",
     "options": [
@@ -1274,11 +1330,18 @@ module.exports = [
       "insight": "滑动窗口的精髓在于：不断增加 right 扩大窗口，直到满足约束；然后不断增加 left 缩小窗口，直到不再满足约束。过程中更新答案。"
     },
     "description": "给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串。",
-    "leetcodeSlug": "minimum-window-substring"
+    "leetcodeSlug": "minimum-window-substring",
+    "handbookRef": {
+      "leetcodeId": 76,
+      "chapter": "第二章：滑动窗口算法",
+      "section": "2.1 滑动窗口核心模板",
+      "orderInSection": 1,
+      "mdLine": 278
+    }
   },
   {
     "id": "q033",
-    "topicId": "sliding_window",
+    "topicId": "ch02_sliding_window",
     "type": "multiple_choice",
     "question": "【找到字符串中所有字母异位词】 常用策略是？",
     "options": [
@@ -1314,11 +1377,18 @@ module.exports = [
       "cpp": "// TODO: 找到字符串中所有字母异位词 (find-all-anagrams-in-a-string)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement find-all-anagrams-in-a-string\");\n    }\n};"
     },
     "description": "给定两个字符串 s 和 p，找到 s 中所有 p 的异位词的子串，返回这些子串的起始索引。",
-    "leetcodeSlug": "find-all-anagrams-in-a-string"
+    "leetcodeSlug": "find-all-anagrams-in-a-string",
+    "handbookRef": {
+      "leetcodeId": 438,
+      "chapter": "第二章：滑动窗口算法",
+      "section": "2.1 滑动窗口核心模板",
+      "orderInSection": 3,
+      "mdLine": 355
+    }
   },
   {
     "id": "q034",
-    "topicId": "sliding_window",
+    "topicId": "ch02_sliding_window",
     "type": "multiple_choice",
     "question": "【长度最小的子数组】 正数数组时可用滑窗的原因是？",
     "options": [
@@ -1358,7 +1428,7 @@ module.exports = [
   },
   {
     "id": "q035",
-    "topicId": "sliding_window",
+    "topicId": "ch02_sliding_window",
     "type": "multiple_choice",
     "question": "【最大连续 1（可翻转 k 次）】 关键计数是？",
     "options": [
@@ -1398,7 +1468,7 @@ module.exports = [
   },
   {
     "id": "q036",
-    "topicId": "sliding_window",
+    "topicId": "ch02_sliding_window",
     "type": "multiple_choice",
     "question": "【串联所有单词的子串】 常见优化是？",
     "options": [
@@ -1438,7 +1508,7 @@ module.exports = [
   },
   {
     "id": "q037",
-    "topicId": "sliding_window",
+    "topicId": "ch02_sliding_window",
     "type": "multiple_choice",
     "question": "【水果成篮】 对应的数据结构是？",
     "options": [
@@ -1478,7 +1548,7 @@ module.exports = [
   },
   {
     "id": "q038",
-    "topicId": "sliding_window",
+    "topicId": "ch02_sliding_window",
     "type": "multiple_choice",
     "question": "【替换后的最长重复字符】 窗口是否必须实时维护精确 maxFreq？",
     "options": [
@@ -1518,7 +1588,7 @@ module.exports = [
   },
   {
     "id": "q039",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【反转链表】 迭代解法每轮需要保存什么？",
     "options": [
@@ -1558,7 +1628,7 @@ module.exports = [
   },
   {
     "id": "q040",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【合并两个有序链表】 常用技巧是？",
     "options": [
@@ -1594,11 +1664,18 @@ module.exports = [
       "cpp": "// 合并两个有序链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "将两个升序链表合并为一个新的升序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。",
-    "leetcodeSlug": "merge-two-sorted-lists"
+    "leetcodeSlug": "merge-two-sorted-lists",
+    "handbookRef": {
+      "leetcodeId": 21,
+      "chapter": "第一章：双指针技巧",
+      "section": "1.1 链表双指针技巧",
+      "orderInSection": 3,
+      "mdLine": 84
+    }
   },
   {
     "id": "q041",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【链表有环】 为什么快慢指针可判环？",
     "options": [
@@ -1634,11 +1711,18 @@ module.exports = [
       "cpp": "// 链表有环\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "本题对应《链表有环》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "linked-list-cycle"
+    "leetcodeSlug": "linked-list-cycle",
+    "handbookRef": {
+      "leetcodeId": 141,
+      "chapter": "第一章：双指针技巧",
+      "section": "1.1 链表双指针技巧",
+      "orderInSection": 1,
+      "mdLine": 32
+    }
   },
   {
     "id": "q042",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【重排链表】 典型流程是？",
     "options": [
@@ -1678,7 +1762,7 @@ module.exports = [
   },
   {
     "id": "q043",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【K 个一组翻转链表】 一般需要先确认什么？",
     "options": [
@@ -1718,7 +1802,7 @@ module.exports = [
   },
   {
     "id": "q044",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【复制带随机指针的链表】 O(1) 额外空间做法是？",
     "options": [
@@ -1758,7 +1842,7 @@ module.exports = [
   },
   {
     "id": "q045",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【排序链表】 最常用达到 O(n log n) 的方法是？",
     "options": [
@@ -1798,7 +1882,7 @@ module.exports = [
   },
   {
     "id": "q046",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【回文链表】 结束后是否建议恢复链表？",
     "options": [
@@ -1838,7 +1922,7 @@ module.exports = [
   },
   {
     "id": "q047",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【环形链表 II】 找入环点时的关键是？",
     "options": [
@@ -1874,11 +1958,18 @@ module.exports = [
       "cpp": "// 环形链表 II\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "本题对应《环形链表 II》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "linked-list-cycle-ii"
+    "leetcodeSlug": "linked-list-cycle-ii",
+    "handbookRef": {
+      "leetcodeId": 142,
+      "chapter": "第一章：双指针技巧",
+      "section": "1.1 链表双指针技巧",
+      "orderInSection": 2,
+      "mdLine": 57
+    }
   },
   {
     "id": "q048",
-    "topicId": "linked_list",
+    "topicId": "ch01_two_pointers",
     "type": "multiple_choice",
     "question": "【删除排序链表重复元素 II】 需要删除哪些节点？",
     "options": [
@@ -1918,7 +2009,7 @@ module.exports = [
   },
   {
     "id": "q049",
-    "topicId": "stack_queue",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【有效括号】 核心数据结构是？",
     "options": [
@@ -1958,7 +2049,7 @@ module.exports = [
   },
   {
     "id": "q050",
-    "topicId": "stack_queue",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【最小栈】 常见做法是？",
     "options": [
@@ -1998,7 +2089,7 @@ module.exports = [
   },
   {
     "id": "q051",
-    "topicId": "stack_queue",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【每日温度】 为什么用单调递减栈？",
     "options": [
@@ -2038,7 +2129,7 @@ module.exports = [
   },
   {
     "id": "q052",
-    "topicId": "stack_queue",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【柱状图最大矩形】 经典解法是？",
     "options": [
@@ -2074,11 +2165,18 @@ module.exports = [
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
       "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
     },
-    "leetcodeSlug": "largest-rectangle-in-histogram"
+    "leetcodeSlug": "largest-rectangle-in-histogram",
+    "handbookRef": {
+      "leetcodeId": 84,
+      "chapter": "第十章：单调栈与单调队列",
+      "section": "10.1 单调栈",
+      "orderInSection": 2,
+      "mdLine": 1273
+    }
   },
   {
     "id": "q053",
-    "topicId": "stack_queue",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【逆波兰表达式求值】 遇到运算符时应？",
     "options": [
@@ -2118,7 +2216,7 @@ module.exports = [
   },
   {
     "id": "q054",
-    "topicId": "stack_queue",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【字符串解码】 `3【a2【c】】` 推荐用什么实现？",
     "options": [
@@ -2158,7 +2256,7 @@ module.exports = [
   },
   {
     "id": "q055",
-    "topicId": "stack_queue",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【滑动窗口最大值】 O(n) 解法常用？",
     "options": [
@@ -2198,7 +2296,7 @@ module.exports = [
   },
   {
     "id": "q056",
-    "topicId": "stack_queue",
+    "topicId": "ch10_monotonic",
     "type": "multiple_choice",
     "question": "【实现队列用栈】 摊还 O(1) 的关键是？",
     "options": [
@@ -2238,7 +2336,7 @@ module.exports = [
   },
   {
     "id": "q057",
-    "topicId": "binary_search",
+    "topicId": "ch03_binary_search",
     "type": "multiple_choice",
     "question": "【二分查找】 mid 的安全写法是？",
     "options": [
@@ -2276,7 +2374,7 @@ module.exports = [
   },
   {
     "id": "q058",
-    "topicId": "binary_search",
+    "topicId": "ch03_binary_search",
     "type": "multiple_choice",
     "question": "【搜索旋转排序数组】 如何判断有序半边？",
     "options": [
@@ -2312,11 +2410,18 @@ module.exports = [
       "java": "public int search(int[] nums, int target) {\n    int left = 0, right = nums.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] == target) return mid;\n        if (nums[left] <= nums[mid]) {\n            if (nums[left] <= target && target < nums[mid]) right = mid - 1;\n            else left = mid + 1;\n        } else {\n            if (nums[mid] < target && target <= nums[right]) left = mid + 1;\n            else right = mid - 1;\n        }\n    }\n    return -1;\n}",
       "cpp": "int search(vector<int>& nums, int target) {\n    int left = 0, right = (int)nums.size() - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] == target) return mid;\n        if (nums[left] <= nums[mid]) {\n            if (nums[left] <= target && target < nums[mid]) right = mid - 1;\n            else left = mid + 1;\n        } else {\n            if (nums[mid] < target && target <= nums[right]) left = mid + 1;\n            else right = mid - 1;\n        }\n    }\n    return -1;\n}"
     },
-    "leetcodeSlug": "search-in-rotated-sorted-array"
+    "leetcodeSlug": "search-in-rotated-sorted-array",
+    "handbookRef": {
+      "leetcodeId": 33,
+      "chapter": "第三章：二分搜索",
+      "section": "3.1 二分搜索核心模板",
+      "orderInSection": 3,
+      "mdLine": 481
+    }
   },
   {
     "id": "q059",
-    "topicId": "binary_search",
+    "topicId": "ch03_binary_search",
     "type": "multiple_choice",
     "question": "【寻找峰值】 为什么可用二分？",
     "options": [
@@ -2356,7 +2461,7 @@ module.exports = [
   },
   {
     "id": "q060",
-    "topicId": "binary_search",
+    "topicId": "ch03_binary_search",
     "type": "multiple_choice",
     "question": "【在排序数组中查找元素首尾位置】 常见做法是？",
     "options": [
@@ -2396,7 +2501,7 @@ module.exports = [
   },
   {
     "id": "q061",
-    "topicId": "binary_search",
+    "topicId": "ch03_binary_search",
     "type": "multiple_choice",
     "question": "【x 的平方根】 二分答案空间时判定条件是？",
     "options": [
@@ -2436,7 +2541,7 @@ module.exports = [
   },
   {
     "id": "q062",
-    "topicId": "binary_search",
+    "topicId": "ch03_binary_search",
     "type": "multiple_choice",
     "question": "【寻找旋转数组最小值】 判断依据是？",
     "options": [
@@ -2472,11 +2577,18 @@ module.exports = [
       "java": "int solve(int[] nums, int target) {\n    int l = 0, r = nums.length - 1;\n    while (l <= r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] == target) return m;\n        if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}",
       "cpp": "int solve(vector<int>& nums, int target) {\n    int l = 0, r = (int)nums.size() - 1;\n    while (l <= r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] == target) return m;\n        if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}"
     },
-    "leetcodeSlug": "find-minimum-in-rotated-sorted-array"
+    "leetcodeSlug": "find-minimum-in-rotated-sorted-array",
+    "handbookRef": {
+      "leetcodeId": 153,
+      "chapter": "第三章：二分搜索",
+      "section": "3.1 二分搜索核心模板",
+      "orderInSection": 4,
+      "mdLine": 516
+    }
   },
   {
     "id": "q063",
-    "topicId": "binary_search",
+    "topicId": "ch03_binary_search",
     "type": "multiple_choice",
     "question": "【Koko 吃香蕉】 本质是什么？",
     "options": [
@@ -2516,7 +2628,7 @@ module.exports = [
   },
   {
     "id": "q064",
-    "topicId": "binary_search",
+    "topicId": "ch03_binary_search",
     "type": "multiple_choice",
     "question": "【搜索二维矩阵】 若矩阵行首递增可视作？",
     "options": [
@@ -2556,7 +2668,7 @@ module.exports = [
   },
   {
     "id": "q065",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【二叉树层序遍历】 典型结构是？",
     "options": [
@@ -2596,7 +2708,7 @@ module.exports = [
   },
   {
     "id": "q066",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【验证二叉搜索树】 递归法常用约束是？",
     "options": [
@@ -2632,11 +2744,18 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "validate-binary-search-tree"
+    "leetcodeSlug": "validate-binary-search-tree",
+    "handbookRef": {
+      "leetcodeId": 98,
+      "chapter": "第八章：二叉树算法",
+      "section": "8.2 二叉搜索树",
+      "orderInSection": 1,
+      "mdLine": 1094
+    }
   },
   {
     "id": "q067",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【最近公共祖先】 递归返回逻辑是？",
     "options": [
@@ -2676,7 +2795,7 @@ module.exports = [
   },
   {
     "id": "q068",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【翻转二叉树】 本质操作是？",
     "options": [
@@ -2716,7 +2835,7 @@ module.exports = [
   },
   {
     "id": "q069",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【路径总和】 DFS 参数常用什么？",
     "options": [
@@ -2756,7 +2875,7 @@ module.exports = [
   },
   {
     "id": "q070",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【二叉树直径】 需要在 DFS 中维护什么？",
     "options": [
@@ -2796,7 +2915,7 @@ module.exports = [
   },
   {
     "id": "q071",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【平衡二叉树】 高效做法是？",
     "options": [
@@ -2836,7 +2955,7 @@ module.exports = [
   },
   {
     "id": "q072",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【二叉树最大路径和】 路径贡献如何定义？",
     "options": [
@@ -2876,7 +2995,7 @@ module.exports = [
   },
   {
     "id": "q073",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【从前序与中序构造二叉树】 核心映射是？",
     "options": [
@@ -2916,7 +3035,7 @@ module.exports = [
   },
   {
     "id": "q074",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【二叉搜索树第 K 小】 中序遍历性质是？",
     "options": [
@@ -2956,7 +3075,7 @@ module.exports = [
   },
   {
     "id": "q075",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【序列化二叉树】 需要记录空节点的原因是？",
     "options": [
@@ -2996,7 +3115,7 @@ module.exports = [
   },
   {
     "id": "q076",
-    "topicId": "trees",
+    "topicId": "ch08_trees",
     "type": "multiple_choice",
     "question": "【对称二叉树】 递归比较哪两棵子树？",
     "options": [
@@ -3036,7 +3155,7 @@ module.exports = [
   },
   {
     "id": "q077",
-    "topicId": "graphs",
+    "topicId": "ch09_graphs",
     "type": "multiple_choice",
     "question": "【岛屿数量】 访问陆地后为什么要立刻标记？",
     "options": [
@@ -3072,11 +3191,18 @@ module.exports = [
       "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
     "description": "给你一个由 '1'（陆地）和 '0'（水）组成的二维网格，请你计算网格中岛屿的数量。岛屿总是被水包围。",
-    "leetcodeSlug": "number-of-islands"
+    "leetcodeSlug": "number-of-islands",
+    "handbookRef": {
+      "leetcodeId": 200,
+      "chapter": "第九章：图算法",
+      "section": "9.2 并查集",
+      "orderInSection": 1,
+      "mdLine": 1202
+    }
   },
   {
     "id": "q078",
-    "topicId": "graphs",
+    "topicId": "ch09_graphs",
     "type": "multiple_choice",
     "question": "【课程表】 判环通常用什么？",
     "options": [
@@ -3112,11 +3238,18 @@ module.exports = [
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
       "cpp": "void bfs(int start, vector<vector<int>>& g) {\n    queue<int> q; vector<int> vis(g.size());\n    q.push(start); vis[start] = 1;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = 1; q.push(y); }\n    }\n}"
     },
-    "leetcodeSlug": "course-schedule"
+    "leetcodeSlug": "course-schedule",
+    "handbookRef": {
+      "leetcodeId": 207,
+      "chapter": "第九章：图算法",
+      "section": "9.1 拓扑排序",
+      "orderInSection": 1,
+      "mdLine": 1163
+    }
   },
   {
     "id": "q079",
-    "topicId": "graphs",
+    "topicId": "ch09_graphs",
     "type": "multiple_choice",
     "question": "【克隆图】 为什么要哈希 old->new？",
     "options": [
@@ -3156,7 +3289,7 @@ module.exports = [
   },
   {
     "id": "q080",
-    "topicId": "graphs",
+    "topicId": "ch09_graphs",
     "type": "multiple_choice",
     "question": "【腐烂的橘子】 为什么是多源 BFS？",
     "options": [
@@ -3196,7 +3329,7 @@ module.exports = [
   },
   {
     "id": "q081",
-    "topicId": "graphs",
+    "topicId": "ch09_graphs",
     "type": "multiple_choice",
     "question": "【单词接龙】 适合哪种搜索？",
     "options": [
@@ -3236,7 +3369,7 @@ module.exports = [
   },
   {
     "id": "q082",
-    "topicId": "graphs",
+    "topicId": "ch09_graphs",
     "type": "multiple_choice",
     "question": "【被围绕的区域】 边界 O 处理思路是？",
     "options": [
@@ -3276,7 +3409,7 @@ module.exports = [
   },
   {
     "id": "q083",
-    "topicId": "graphs",
+    "topicId": "ch09_graphs",
     "type": "multiple_choice",
     "question": "【冗余连接】 无向图找成环边常用？",
     "options": [
@@ -3316,7 +3449,7 @@ module.exports = [
   },
   {
     "id": "q084",
-    "topicId": "graphs",
+    "topicId": "ch09_graphs",
     "type": "multiple_choice",
     "question": "【网络延迟时间】 边权非负时常用算法？",
     "options": [
@@ -3356,7 +3489,7 @@ module.exports = [
   },
   {
     "id": "q085",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【爬楼梯】 状态转移是？",
     "options": [
@@ -3394,7 +3527,7 @@ module.exports = [
   },
   {
     "id": "q086",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【打家劫舍】 线性 DP 转移是？",
     "options": [
@@ -3434,7 +3567,7 @@ module.exports = [
   },
   {
     "id": "q087",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【零钱兑换】 完全背包转移方向是？",
     "options": [
@@ -3474,7 +3607,7 @@ module.exports = [
   },
   {
     "id": "q088",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【最长递增子序列】 O(n log n) 优化依赖？",
     "options": [
@@ -3510,11 +3643,18 @@ module.exports = [
       "java": "// TODO: 最长递增子序列 (longest-increasing-subsequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement longest-increasing-subsequence\");\n    }\n}",
       "cpp": "// TODO: 最长递增子序列 (longest-increasing-subsequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement longest-increasing-subsequence\");\n    }\n};"
     },
-    "leetcodeSlug": "longest-increasing-subsequence"
+    "leetcodeSlug": "longest-increasing-subsequence",
+    "handbookRef": {
+      "leetcodeId": 300,
+      "chapter": "第七章：动态规划",
+      "section": "7.1 动态规划核心框架",
+      "orderInSection": 1,
+      "mdLine": 844
+    }
   },
   {
     "id": "q089",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【最长公共子序列】 当字符相等时？",
     "options": [
@@ -3554,7 +3694,7 @@ module.exports = [
   },
   {
     "id": "q090",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【分割等和子集】 目标可转化为？",
     "options": [
@@ -3590,11 +3730,18 @@ module.exports = [
       "java": "// TODO: 分割等和子集 (partition-equal-subset-sum)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement partition-equal-subset-sum\");\n    }\n}",
       "cpp": "// TODO: 分割等和子集 (partition-equal-subset-sum)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement partition-equal-subset-sum\");\n    }\n};"
     },
-    "leetcodeSlug": "partition-equal-subset-sum"
+    "leetcodeSlug": "partition-equal-subset-sum",
+    "handbookRef": {
+      "leetcodeId": 416,
+      "chapter": "第七章：动态规划",
+      "section": "7.2 背包问题",
+      "orderInSection": 1,
+      "mdLine": 921
+    }
   },
   {
     "id": "q091",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【编辑距离】 三种操作对应？",
     "options": [
@@ -3634,7 +3781,7 @@ module.exports = [
   },
   {
     "id": "q092",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【不同路径】 机器人只能右/下时转移是？",
     "options": [
@@ -3674,7 +3821,7 @@ module.exports = [
   },
   {
     "id": "q093",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【最长回文子串】 中心扩展法复杂度通常是？",
     "options": [
@@ -3714,7 +3861,7 @@ module.exports = [
   },
   {
     "id": "q094",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【单词拆分】 常见状态定义是？",
     "options": [
@@ -3754,7 +3901,7 @@ module.exports = [
   },
   {
     "id": "q095",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【最大正方形】 状态与哪个方向有关？",
     "options": [
@@ -3794,7 +3941,7 @@ module.exports = [
   },
   {
     "id": "q096",
-    "topicId": "dynamic_programming",
+    "topicId": "ch07_dynamic_programming",
     "type": "multiple_choice",
     "question": "【买卖股票含冷冻期】 需要几个状态？",
     "options": [
@@ -3834,7 +3981,7 @@ module.exports = [
   },
   {
     "id": "q097",
-    "topicId": "backtracking",
+    "topicId": "ch05_backtracking",
     "type": "multiple_choice",
     "question": "【全排列】 回溯模板关键是？",
     "options": [
@@ -3870,11 +4017,18 @@ module.exports = [
       "insight": "回溯算法本质上就是一棵‘决策树’的遍历。你只需要思考三个问题：路径、选择列表、结束条件。"
     },
     "description": "给定一个不含重复数字的数组 nums ，返回其所有可能的全排列。你可以按任意顺序返回答案。",
-    "leetcodeSlug": "permutations"
+    "leetcodeSlug": "permutations",
+    "handbookRef": {
+      "leetcodeId": 46,
+      "chapter": "第五章：回溯算法",
+      "section": "5.1 回溯算法核心框架",
+      "orderInSection": 1,
+      "mdLine": 634
+    }
   },
   {
     "id": "q098",
-    "topicId": "backtracking",
+    "topicId": "ch05_backtracking",
     "type": "multiple_choice",
     "question": "【组合总和】 为避免重复组合，递归应？",
     "options": [
@@ -3914,7 +4068,7 @@ module.exports = [
   },
   {
     "id": "q099",
-    "topicId": "backtracking",
+    "topicId": "ch05_backtracking",
     "type": "multiple_choice",
     "question": "【N 皇后】 剪枝时常维护哪些集合？",
     "options": [
@@ -3950,11 +4104,18 @@ module.exports = [
       "java": "void backtrack(List<Integer> path, boolean[] used, int[] nums, List<List<Integer>> ans) {\n    if (path.size() == nums.length) { ans.add(new ArrayList<>(path)); return; }\n    for (int i = 0; i < nums.length; i++) {\n        if (used[i]) continue;\n        used[i] = true;\n        path.add(nums[i]);\n        backtrack(path, used, nums, ans);\n        path.remove(path.size() - 1);\n        used[i] = false;\n    }\n}",
       "cpp": "void backtrack(vector<int>& path, vector<int>& used, vector<int>& nums, vector<vector<int>>& ans) {\n    if (path.size() == nums.size()) { ans.push_back(path); return; }\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (used[i]) continue;\n        used[i] = 1;\n        path.push_back(nums[i]);\n        backtrack(path, used, nums, ans);\n        path.pop_back();\n        used[i] = 0;\n    }\n}"
     },
-    "leetcodeSlug": "n-queens"
+    "leetcodeSlug": "n-queens",
+    "handbookRef": {
+      "leetcodeId": 51,
+      "chapter": "第五章：回溯算法",
+      "section": "5.1 回溯算法核心框架",
+      "orderInSection": 4,
+      "mdLine": 718
+    }
   },
   {
     "id": "q100",
-    "topicId": "heap",
+    "topicId": "ch12_interview",
     "type": "multiple_choice",
     "question": "【前 K 个高频元素】 Python 中常见库是？",
     "options": [
@@ -3992,4 +4153,4 @@ module.exports = [
     "description": "给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按任意顺序返回答案。",
     "leetcodeSlug": "top-k-frequent-elements-review"
   }
-]
+];;

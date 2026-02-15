@@ -3,19 +3,18 @@ const topics = require('../../data/topics');
 const storage = require('../../services/storage');
 
 const topicEmojis = {
-  arrays: '📦',
-  hashmaps: '🗂️',
-  two_pointers: '👆👇',
-  linked_list: '🔗',
-  sliding_window: '🪟',
-  recursion: '🔄',
-  dynamic_programming: '📊',
-  binary_search: '🔍',
-  trees: '🌳',
-  graphs: '🕸️',
-  stack_queue: '🥞',
-  backtracking: '🧩',
-  heap: '🗻'
+  ch01_two_pointers: '👆👇',
+  ch02_sliding_window: '🪟',
+  ch03_binary_search: '🔍',
+  ch04_prefix_diff: '🧮',
+  ch05_backtracking: '🧩',
+  ch06_bfs: '🧭',
+  ch07_dynamic_programming: '📊',
+  ch08_trees: '🌳',
+  ch09_graphs: '🕸️',
+  ch10_monotonic: '🥞',
+  ch11_bit: '⚙️',
+  ch12_interview: '🎯'
 };
 
 Page({

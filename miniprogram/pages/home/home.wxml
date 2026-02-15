@@ -59,7 +59,7 @@
       </view>
 
       <view class="today-cta-row">
-        <button class="today-btn primary" hover-class="none" bindtap="continueRecommendedTopic">{{recommendedTopicId ? '继续推荐章节' : '前往学习路径'}}</button>
+        <button class="today-btn primary" hover-class="none" bindtap="startRecommendedAction">{{recommendedActionText}}</button>
         <button class="today-btn" hover-class="none" bindtap="goPath">路径</button>
         <button class="today-btn" hover-class="none" bindtap="startDailyChallenge">每日</button>
       </view>

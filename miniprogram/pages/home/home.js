@@ -32,7 +32,9 @@ Page({
     recommendedTopicTitle: '',
     recommendedTopicDueCore: 0,
     recommendedTopicWrong: 0,
-    recommendedTopicDesc: ''
+    recommendedTopicDesc: '',
+    recommendedActionType: 'dailyChallenge',
+    recommendedActionText: '开始每日挑战'
   },
 
   onShow: function () {
@@ -85,10 +87,7 @@ Page({
     const dueCoreTotal = chapterProgress.reduce((sum, topic) => sum + topic.dueCore, 0);
     const dueCoreChapterCount = chapterProgress.filter(topic => topic.dueCore > 0).length;
 
-    const recommendedTopic =
-      chapterProgress.find(topic => topic.dueCore > 0) ||
-      chapterProgress.find(topic => topic.wrong > 0) ||
-      null;
+    const recommendedTopic = chapterProgress.find(topic => topic.dueCore > 0) || null;
 
     const chapterSuggestions = chapterProgress
       .filter(topic => topic.dueCore > 0 || topic.wrong > 0)
@@ -97,6 +96,16 @@ Page({
     const recommendedTopicDesc = recommendedTopic
       ? `核心优先：剩余 ${recommendedTopic.dueCore} 题${recommendedTopic.wrong > 0 ? `，错题 ${recommendedTopic.wrong} 题` : ''}`
       : '';
+
+    let recommendedActionType = 'dailyChallenge';
+    let recommendedActionText = '开始每日挑战';
+    if (wrongSet.size > 0) {
+      recommendedActionType = 'wrongReview';
+      recommendedActionText = `优先复习错题（${wrongSet.size}）`;
+    } else if (dueCoreTotal > 0) {
+      recommendedActionType = 'continueChapter';
+      recommendedActionText = recommendedTopic ? `继续推荐章节：${recommendedTopic.title}` : '继续推荐章节';
+    }
 
     let todayXP = todayStats.correct * 10;
     if (dailyStatus.isCompleted && dailyData && dailyData.date === getTodayStr()) {
@@ -120,8 +129,22 @@ Page({
       recommendedTopicTitle: recommendedTopic ? recommendedTopic.title : '',
       recommendedTopicDueCore: recommendedTopic ? recommendedTopic.dueCore : 0,
       recommendedTopicWrong: recommendedTopic ? recommendedTopic.wrong : 0,
-      recommendedTopicDesc
+      recommendedTopicDesc,
+      recommendedActionType,
+      recommendedActionText
     });
+  },
+
+  startRecommendedAction: function() {
+    if (this.data.recommendedActionType === 'wrongReview') {
+      this.startWrongReview();
+      return;
+    }
+    if (this.data.recommendedActionType === 'continueChapter') {
+      this.continueRecommendedTopic();
+      return;
+    }
+    this.startDailyChallenge();
   },
 
   continueRecommendedTopic: function() {

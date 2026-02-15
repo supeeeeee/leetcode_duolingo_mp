@@ -1,10 +1,17 @@
 <!--pages/path/path.wxml-->
 <view class="container">
   <view class="path-header">
-    <text class="path-title">学习路径</text>
-    <text class="path-subtitle">按主题逐一攻克 LeetCode</text>
-    <view class="path-hint" wx:if="{{showCoreFirstHint}}">
-      <text>提示：先完成核心题，再拓展额外题，效率更高。</text>
+    <view class="header-text-group">
+      <text class="path-title">学习路径</text>
+      <text class="path-subtitle">按主题逐一攻克 LeetCode</text>
+    </view>
+    
+    <view class="path-hint-banner" wx:if="{{showCoreFirstHint}}">
+      <view class="hint-icon">💡</view>
+      <view class="hint-content">
+        <text class="hint-title">学习小贴士</text>
+        <text class="hint-desc">先完成核心题，再拓展额外题，效率更高。</text>
+      </view>
     </view>
   </view>
 

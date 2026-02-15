@@ -27,7 +27,9 @@ Page({
     isEmpty: false,
     emptyTitle: '',
     emptyHint: '',
-    emptyCtaText: ''
+    emptyCtaText: '',
+    isWrongMode: false,
+    wrongRemainingCount: 0
   },
 
   answerStartTime: 0,
@@ -38,11 +40,15 @@ Page({
     const mode = options.mode || 'daily';
     this.mode = mode;
     this.topicId = options.id || null;
+    const isWrongMode = mode === 'wrong';
 
-    const questions = mode === 'wrong'
+    const questions = isWrongMode
       ? srs.getWrongSession(5)
       : srs.getReviewSession(this.topicId, 5);
     const isEmpty = questions.length === 0;
+    const wrongRemainingCount = isWrongMode
+      ? (history.getHistory().wrongQuestions || []).length
+      : 0;
 
     const first = isEmpty ? null : questions[0];
     const availableLangs = this.getAvailableLangs(first);
@@ -62,7 +68,9 @@ Page({
       isEmpty,
       emptyTitle: this.getEmptyTitle(mode),
       emptyHint: this.getEmptyHint(mode),
-      emptyCtaText: this.getEmptyCtaText(mode)
+      emptyCtaText: this.getEmptyCtaText(mode),
+      isWrongMode,
+      wrongRemainingCount
     });
 
     this.answerStartTime = Date.now();
@@ -115,6 +123,10 @@ Page({
     
     // 保存答题记录
     history.saveQuestionRecord(q.id, q.topicId, isCorrect, this.data.selectedOption, answerTime);
+    if (this.mode === 'wrong') {
+      const wrongRemainingCount = (history.getHistory().wrongQuestions || []).length;
+      this.setData({ wrongRemainingCount });
+    }
     
     if (isCorrect) {
       wx.vibrateShort({ type: 'light' });

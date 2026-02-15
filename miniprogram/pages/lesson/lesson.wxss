@@ -116,6 +116,29 @@
   text-align: right;
 }
 
+.wrong-review-banner {
+  width: 100%;
+  padding: 0 40rpx 8rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrong-review-title {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #b54708;
+}
+
+.wrong-review-count {
+  font-size: 24rpx;
+  color: #b54708;
+  background: #fff4de;
+  border-radius: 999rpx;
+  padding: 8rpx 16rpx;
+}
+
 .question-area {
   padding: 24rpx 40rpx 10rpx;
   width: 100%;

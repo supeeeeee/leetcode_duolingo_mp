@@ -47,18 +47,20 @@ miniprogram/
 
 ## 📝 Content Management
 
-Edit `miniprogram/data/questions.json` to add new questions.
+Edit `miniprogram/data/questions.js` to add new questions.
 Format:
-```json
-{
-  "id": "q1",
-  "topicId": "arrays",
-  "type": "multiple_choice",
-  "question": "...",
-  "options": ["A", "B", "C"],
-  "correctIndex": 0,
-  "explanation": "..."
-}
+```javascript
+module.exports = [
+  {
+    id: 'q1',
+    topicId: 'ch01_two_pointers',
+    type: 'multiple_choice',
+    question: '...',
+    options: ['A', 'B', 'C'],
+    correctIndex: 0,
+    explanation: '...'
+  }
+];
 ```
 
 ## License

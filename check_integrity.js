@@ -9,7 +9,7 @@ const requiredFiles = [
   'miniprogram/app.wxss',
   'miniprogram/pages/home/home.js',
   'miniprogram/pages/lesson/lesson.js',
-  'miniprogram/data/questions.json'
+  'miniprogram/data/questions.js'
 ];
 
 console.log('Checking project integrity...');

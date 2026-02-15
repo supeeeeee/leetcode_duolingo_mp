@@ -32,12 +32,14 @@ Page({
     const displayTopics = topics.map(topic => {
       const lessonsDone = progress[topic.id] || 0;
       const percent = topic.totalLessons > 0 ? Math.round((lessonsDone / topic.totalLessons) * 100) : 0;
+      const hasLessons = Number(topic.totalLessons) > 0;
       return {
         ...topic,
         lessonsDone,
         percent,
         isCompleted: lessonsDone > 0,
-        isMastered: lessonsDone >= topic.totalLessons
+        // Avoid marking empty chapters as mastered
+        isMastered: hasLessons && lessonsDone >= topic.totalLessons
       };
     });
 

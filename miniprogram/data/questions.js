@@ -36,7 +36,8 @@ module.exports = [
       "insight": "这是一类经典的‘求和’转‘查找’问题。哈希表的作用就是：把对‘未来’或‘过去’的查找动作，从 O(n) 降到 O(1)。"
     },
     "description": "给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。",
-    "leetcodeSlug": "two-sum"
+    "leetcodeSlug": "two-sum",
+    "track": "extra"
   },
   {
     "id": "q002",
@@ -83,7 +84,8 @@ module.exports = [
       "section": "7.3 股票买卖系列",
       "orderInSection": 1,
       "mdLine": 974
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q003",
@@ -123,7 +125,8 @@ module.exports = [
       "cpp": "// TODO: 除自身以外数组的乘积 (product-of-array-except-self)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement product-of-array-except-self\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums，返回一个数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。请不要使用除法，且在 O(n) 时间复杂度内完成。",
-    "leetcodeSlug": "product-of-array-except-self"
+    "leetcodeSlug": "product-of-array-except-self",
+    "track": "extra"
   },
   {
     "id": "q004",
@@ -170,7 +173,8 @@ module.exports = [
       "section": "7.1 动态规划核心框架",
       "orderInSection": 2,
       "mdLine": 885
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q005",
@@ -210,7 +214,8 @@ module.exports = [
       "insight": "数组题本质是把“重复计算”改成“状态复用”，关键在于每一步维护的不变量是否正确。"
     },
     "description": "以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi]。请你合并所有重叠的区间，并返回一个不重叠的区间数组。",
-    "leetcodeSlug": "merge-intervals"
+    "leetcodeSlug": "merge-intervals",
+    "track": "extra"
   },
   {
     "id": "q006",
@@ -250,7 +255,8 @@ module.exports = [
       "cpp": "// TODO: 轮转数组 (rotate-array)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement rotate-array\");\n    }\n};"
     },
     "description": "给你一个数组，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。尝试使用 O(1) 额外空间完成。",
-    "leetcodeSlug": "rotate-array"
+    "leetcodeSlug": "rotate-array",
+    "track": "extra"
   },
   {
     "id": "q007",
@@ -290,7 +296,8 @@ module.exports = [
       "cpp": "// TODO: 移动零 (move-zeroes)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement move-zeroes\");\n    }\n};"
     },
     "description": "给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。必须在原数组上操作。",
-    "leetcodeSlug": "move-zeroes"
+    "leetcodeSlug": "move-zeroes",
+    "track": "extra"
   },
   {
     "id": "q008",
@@ -330,7 +337,8 @@ module.exports = [
       "cpp": "// TODO: 多数元素 (majority-element)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement majority-element\");\n    }\n};"
     },
     "description": "给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。",
-    "leetcodeSlug": "majority-element"
+    "leetcodeSlug": "majority-element",
+    "track": "extra"
   },
   {
     "id": "q009",
@@ -370,7 +378,8 @@ module.exports = [
       "cpp": "// TODO: 下一个排列 (next-permutation)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement next-permutation\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums ，找出 nums 的下一个字典序更大的排列。如果不存在下一个更大的排列，则将数组重新按升序排列。",
-    "leetcodeSlug": "next-permutation"
+    "leetcodeSlug": "next-permutation",
+    "track": "extra"
   },
   {
     "id": "q010",
@@ -410,7 +419,8 @@ module.exports = [
       "cpp": "// TODO: 颜色分类 (sort-colors)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement sort-colors\");\n    }\n};"
     },
     "description": "给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。",
-    "leetcodeSlug": "sort-colors"
+    "leetcodeSlug": "sort-colors",
+    "track": "extra"
   },
   {
     "id": "q011",
@@ -450,7 +460,8 @@ module.exports = [
       "cpp": "// TODO: 缺失的第一个正数 (first-missing-positive)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement first-missing-positive\");\n    }\n};"
     },
     "description": "给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。请你设计并实现时间复杂度为 O(n) 且仅使用常数级别额外空间的算法。",
-    "leetcodeSlug": "first-missing-positive"
+    "leetcodeSlug": "first-missing-positive",
+    "track": "extra"
   },
   {
     "id": "q012",
@@ -497,7 +508,8 @@ module.exports = [
       "section": "10.1 单调栈",
       "orderInSection": 1,
       "mdLine": 1244
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q013",
@@ -537,7 +549,8 @@ module.exports = [
       "cpp": "vector<vector<string>> groupAnagrams(vector<string>& strs) {\n    unordered_map<string, vector<string>> groups;\n    for (string s : strs) {\n        string key = s;\n        sort(key.begin(), key.end());\n        groups[key].push_back(s);\n    }\n    vector<vector<string>> ans;\n    for (auto &p : groups) ans.push_back(p.second);\n    return ans;\n}"
     },
     "description": "给你一个字符串数组，请你将字母异位词组合在一起。可以按任意顺序返回结果列表。字母异位词是由重新排列源字符串的字母得到的一个新字符串。",
-    "leetcodeSlug": "group-anagrams"
+    "leetcodeSlug": "group-anagrams",
+    "track": "extra"
   },
   {
     "id": "q014",
@@ -577,7 +590,8 @@ module.exports = [
       "cpp": "// TODO: 有效的字母异位词 (valid-anagram)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement valid-anagram\");\n    }\n};"
     },
     "description": "给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。",
-    "leetcodeSlug": "valid-anagram"
+    "leetcodeSlug": "valid-anagram",
+    "track": "extra"
   },
   {
     "id": "q015",
@@ -624,7 +638,8 @@ module.exports = [
       "section": "4.1 前缀和数组",
       "orderInSection": 1,
       "mdLine": 547
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q016",
@@ -664,7 +679,8 @@ module.exports = [
       "cpp": "// TODO: 最长连续序列 (longest-consecutive-sequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement longest-consecutive-sequence\");\n    }\n};"
     },
     "description": "给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。请设计并实现时间复杂度为 O(n) 的算法。",
-    "leetcodeSlug": "longest-consecutive-sequence"
+    "leetcodeSlug": "longest-consecutive-sequence",
+    "track": "extra"
   },
   {
     "id": "q017",
@@ -704,7 +720,8 @@ module.exports = [
       "insight": "哈希的核心不是 API，而是键设计：把原问题映射为 O(1) 查询的可判定条件。"
     },
     "description": "设计并实现一个满足 LRU (最近最少使用) 缓存约束的数据结构。支持 get(key) 和 put(key, value) 操作，且复杂度均为 O(1)。",
-    "leetcodeSlug": "lru-cache"
+    "leetcodeSlug": "lru-cache",
+    "track": "extra"
   },
   {
     "id": "q018",
@@ -744,7 +761,8 @@ module.exports = [
       "cpp": "// TODO: 前 K 个高频元素 (top-k-frequent-elements)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement top-k-frequent-elements\");\n    }\n};"
     },
     "description": "给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按任意顺序返回答案。",
-    "leetcodeSlug": "top-k-frequent-elements"
+    "leetcodeSlug": "top-k-frequent-elements",
+    "track": "extra"
   },
   {
     "id": "q019",
@@ -784,7 +802,8 @@ module.exports = [
       "cpp": "// TODO: 四数相加 II (4sum-ii)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement 4sum-ii\");\n    }\n};"
     },
     "description": "给你四个整数数组 nums1、nums2、nums3 和 nums4 ，数组长度都是 n ，请你计算有多少个元组 (i, j, k, l) 能满足四个数组对应元素之和为 0。",
-    "leetcodeSlug": "4sum-ii"
+    "leetcodeSlug": "4sum-ii",
+    "track": "extra"
   },
   {
     "id": "q020",
@@ -824,7 +843,8 @@ module.exports = [
       "cpp": "// TODO: 字符串解码计数场景 (decode-ways)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement decode-ways\");\n    }\n};"
     },
     "description": "本题对应《字符串解码计数场景》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 hashmaps 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "decode-ways"
+    "leetcodeSlug": "decode-ways",
+    "track": "extra"
   },
   {
     "id": "q021",
@@ -864,7 +884,8 @@ module.exports = [
       "cpp": "// TODO: 快乐数 (happy-number)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement happy-number\");\n    }\n};"
     },
     "description": "编写一个算法来判断一个数 n 是不是快乐数。快乐数定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，最终变更为 1。",
-    "leetcodeSlug": "happy-number"
+    "leetcodeSlug": "happy-number",
+    "track": "extra"
   },
   {
     "id": "q022",
@@ -904,7 +925,8 @@ module.exports = [
       "cpp": "// TODO: 同构字符串 (isomorphic-strings)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement isomorphic-strings\");\n    }\n};"
     },
     "description": "给定两个字符串 s 和 t ，判断它们是否是同构的。如果 s 中的字符可以按某种替换规则得到 t ，则两个字符串同构。",
-    "leetcodeSlug": "isomorphic-strings"
+    "leetcodeSlug": "isomorphic-strings",
+    "track": "extra"
   },
   {
     "id": "q023",
@@ -951,7 +973,8 @@ module.exports = [
       "section": "1.2 数组双指针技巧",
       "orderInSection": 3,
       "mdLine": 231
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q024",
@@ -991,7 +1014,8 @@ module.exports = [
       "cpp": "// TODO: 盛最多水的容器 (container-with-most-water)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement container-with-most-water\");\n    }\n};"
     },
     "description": "给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。",
-    "leetcodeSlug": "container-with-most-water"
+    "leetcodeSlug": "container-with-most-water",
+    "track": "extra"
   },
   {
     "id": "q025",
@@ -1038,7 +1062,8 @@ module.exports = [
       "section": "1.2 数组双指针技巧",
       "orderInSection": 1,
       "mdLine": 176
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q026",
@@ -1078,7 +1103,8 @@ module.exports = [
       "cpp": "bool isPalindrome(ListNode* head) {\n    ListNode *slow = head, *fast = head;\n    while (fast && fast->next) { slow = slow->next; fast = fast->next->next; }\n    ListNode* prev = nullptr;\n    while (slow) {\n        ListNode* nxt = slow->next;\n        slow->next = prev; prev = slow; slow = nxt;\n    }\n    while (prev) {\n        if (head->val != prev->val) return false;\n        head = head->next; prev = prev->next;\n    }\n    return true;\n}"
     },
     "description": "给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。",
-    "leetcodeSlug": "palindrome-linked-list"
+    "leetcodeSlug": "palindrome-linked-list",
+    "track": "extra"
   },
   {
     "id": "q027",
@@ -1118,7 +1144,8 @@ module.exports = [
       "cpp": "vector<int> twoSum(vector<int>& numbers, int target) {\n    int left = 0, right = (int)numbers.size() - 1;\n    while (left < right) {\n        int s = numbers[left] + numbers[right];\n        if (s == target) return {left + 1, right + 1};\n        if (s < target) left++; else right--;\n    }\n    return {};\n}"
     },
     "description": "给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。",
-    "leetcodeSlug": "two-sum-ii-input-array-is-sorted"
+    "leetcodeSlug": "two-sum-ii-input-array-is-sorted",
+    "track": "extra"
   },
   {
     "id": "q028",
@@ -1165,7 +1192,8 @@ module.exports = [
       "section": "1.1 链表双指针技巧",
       "orderInSection": 5,
       "mdLine": 148
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q029",
@@ -1205,7 +1233,8 @@ module.exports = [
       "cpp": "ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {\n    ListNode *p = headA, *q = headB;\n    while (p != q) {\n        p = p ? p->next : headB;\n        q = q ? q->next : headA;\n    }\n    return p;\n}"
     },
     "description": "给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。",
-    "leetcodeSlug": "intersection-of-two-linked-lists"
+    "leetcodeSlug": "intersection-of-two-linked-lists",
+    "track": "extra"
   },
   {
     "id": "q030",
@@ -1245,7 +1274,8 @@ module.exports = [
       "cpp": "// TODO: 接雨水双指针 (trapping-rain-water-two-pointers)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement trapping-rain-water-two-pointers\");\n    }\n};"
     },
     "description": "给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。",
-    "leetcodeSlug": "trapping-rain-water-two-pointers"
+    "leetcodeSlug": "trapping-rain-water-two-pointers",
+    "track": "extra"
   },
   {
     "id": "q031",
@@ -1290,7 +1320,8 @@ module.exports = [
       "section": "2.1 滑动窗口核心模板",
       "orderInSection": 4,
       "mdLine": 394
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q032",
@@ -1337,7 +1368,8 @@ module.exports = [
       "section": "2.1 滑动窗口核心模板",
       "orderInSection": 1,
       "mdLine": 278
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q033",
@@ -1384,7 +1416,8 @@ module.exports = [
       "section": "2.1 滑动窗口核心模板",
       "orderInSection": 3,
       "mdLine": 355
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q034",
@@ -1424,7 +1457,8 @@ module.exports = [
       "cpp": "// TODO: 长度最小的子数组 (minimum-size-subarray-sum)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement minimum-size-subarray-sum\");\n    }\n};"
     },
     "description": "给定一个含有 n 个正整数的数组和一个正整数 target 。找出该数组中满足其和 ≥ target 的长度最小的连续子数组，并返回其长度。",
-    "leetcodeSlug": "minimum-size-subarray-sum"
+    "leetcodeSlug": "minimum-size-subarray-sum",
+    "track": "extra"
   },
   {
     "id": "q035",
@@ -1464,7 +1498,8 @@ module.exports = [
       "cpp": "// TODO: 最大连续 1（可翻转 k 次） (max-consecutive-ones-iii)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement max-consecutive-ones-iii\");\n    }\n};"
     },
     "description": "给定一个二进制数组 nums 和一个整数 k，如果可以翻转最多 k 个 0 ，则返回数组中连续 1 的最大个数。",
-    "leetcodeSlug": "max-consecutive-ones-iii"
+    "leetcodeSlug": "max-consecutive-ones-iii",
+    "track": "extra"
   },
   {
     "id": "q036",
@@ -1504,7 +1539,8 @@ module.exports = [
       "cpp": "// TODO: 串联所有单词的子串 (substring-with-concatenation-of-all-words)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement substring-with-concatenation-of-all-words\");\n    }\n};"
     },
     "description": "本题对应《串联所有单词的子串》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "substring-with-concatenation-of-all-words"
+    "leetcodeSlug": "substring-with-concatenation-of-all-words",
+    "track": "extra"
   },
   {
     "id": "q037",
@@ -1544,7 +1580,8 @@ module.exports = [
       "cpp": "// TODO: 水果成篮 (fruit-into-baskets)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement fruit-into-baskets\");\n    }\n};"
     },
     "description": "本题对应《水果成篮》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "fruit-into-baskets"
+    "leetcodeSlug": "fruit-into-baskets",
+    "track": "extra"
   },
   {
     "id": "q038",
@@ -1584,7 +1621,8 @@ module.exports = [
       "cpp": "// TODO: 替换后的最长重复字符 (longest-repeating-character-replacement)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement longest-repeating-character-replacement\");\n    }\n};"
     },
     "description": "本题对应《替换后的最长重复字符》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "longest-repeating-character-replacement"
+    "leetcodeSlug": "longest-repeating-character-replacement",
+    "track": "extra"
   },
   {
     "id": "q039",
@@ -1624,7 +1662,8 @@ module.exports = [
       "insight": "链表题最常见错误是丢失 next。每次改指针前先保存后继，才能避免链断裂。"
     },
     "description": "给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。",
-    "leetcodeSlug": "reverse-linked-list"
+    "leetcodeSlug": "reverse-linked-list",
+    "track": "extra"
   },
   {
     "id": "q040",
@@ -1671,7 +1710,8 @@ module.exports = [
       "section": "1.1 链表双指针技巧",
       "orderInSection": 3,
       "mdLine": 84
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q041",
@@ -1718,7 +1758,8 @@ module.exports = [
       "section": "1.1 链表双指针技巧",
       "orderInSection": 1,
       "mdLine": 32
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q042",
@@ -1758,7 +1799,8 @@ module.exports = [
       "cpp": "// 重排链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "本题对应《重排链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "reorder-list"
+    "leetcodeSlug": "reorder-list",
+    "track": "extra"
   },
   {
     "id": "q043",
@@ -1798,7 +1840,8 @@ module.exports = [
       "cpp": "// K 个一组翻转链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "本题对应《K 个一组翻转链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "reverse-nodes-in-k-group"
+    "leetcodeSlug": "reverse-nodes-in-k-group",
+    "track": "extra"
   },
   {
     "id": "q044",
@@ -1838,7 +1881,8 @@ module.exports = [
       "cpp": "// 复制带随机指针的链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "本题对应《复制带随机指针的链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "copy-list-with-random-pointer"
+    "leetcodeSlug": "copy-list-with-random-pointer",
+    "track": "extra"
   },
   {
     "id": "q045",
@@ -1878,7 +1922,8 @@ module.exports = [
       "cpp": "// 排序链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "本题对应《排序链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "sort-list"
+    "leetcodeSlug": "sort-list",
+    "track": "extra"
   },
   {
     "id": "q046",
@@ -1918,7 +1963,8 @@ module.exports = [
       "cpp": "// 回文链表\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。",
-    "leetcodeSlug": "palindrome-linked-list-review"
+    "leetcodeSlug": "palindrome-linked-list-review",
+    "track": "extra"
   },
   {
     "id": "q047",
@@ -1965,7 +2011,8 @@ module.exports = [
       "section": "1.1 链表双指针技巧",
       "orderInSection": 2,
       "mdLine": 57
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q048",
@@ -2005,7 +2052,8 @@ module.exports = [
       "cpp": "// 删除排序链表重复元素 II\nListNode* solve(ListNode* head) {\n    ListNode* prev = nullptr;\n    while (head) {\n        ListNode* nxt = head->next;\n        head->next = prev;\n        prev = head;\n        head = nxt;\n    }\n    return prev;\n}"
     },
     "description": "本题对应《删除排序链表重复元素 II》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
-    "leetcodeSlug": "remove-duplicates-from-sorted-list-ii"
+    "leetcodeSlug": "remove-duplicates-from-sorted-list-ii",
+    "track": "extra"
   },
   {
     "id": "q049",
@@ -2045,7 +2093,8 @@ module.exports = [
       "cpp": "// 有效括号\nbool solve(string s) {\n    stack<char> st; unordered_map<char,char> mp{{')','('},{']','['},{'}','{'}};\n    for (char c : s) {\n        if (mp.count(c)) {\n            if (st.empty() || st.top() != mp[c]) return false;\n            st.pop();\n        } else st.push(c);\n    }\n    return st.empty();\n}"
     },
     "description": "给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。",
-    "leetcodeSlug": "valid-parentheses"
+    "leetcodeSlug": "valid-parentheses",
+    "track": "extra"
   },
   {
     "id": "q050",
@@ -2085,7 +2134,8 @@ module.exports = [
       "cpp": "// 最小栈\nbool solve(string s) {\n    stack<char> st; unordered_map<char,char> mp{{')','('},{']','['},{'}','{'}};\n    for (char c : s) {\n        if (mp.count(c)) {\n            if (st.empty() || st.top() != mp[c]) return false;\n            st.pop();\n        } else st.push(c);\n    }\n    return st.empty();\n}"
     },
     "description": "设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。",
-    "leetcodeSlug": "min-stack"
+    "leetcodeSlug": "min-stack",
+    "track": "extra"
   },
   {
     "id": "q051",
@@ -2125,7 +2175,8 @@ module.exports = [
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
       "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
     },
-    "leetcodeSlug": "daily-temperatures"
+    "leetcodeSlug": "daily-temperatures",
+    "track": "extra"
   },
   {
     "id": "q052",
@@ -2172,7 +2223,8 @@ module.exports = [
       "section": "10.1 单调栈",
       "orderInSection": 2,
       "mdLine": 1273
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q053",
@@ -2212,7 +2264,8 @@ module.exports = [
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
       "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
     },
-    "leetcodeSlug": "evaluate-reverse-polish-notation"
+    "leetcodeSlug": "evaluate-reverse-polish-notation",
+    "track": "extra"
   },
   {
     "id": "q054",
@@ -2252,7 +2305,8 @@ module.exports = [
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
       "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
     },
-    "leetcodeSlug": "decode-string"
+    "leetcodeSlug": "decode-string",
+    "track": "extra"
   },
   {
     "id": "q055",
@@ -2292,7 +2346,8 @@ module.exports = [
       "java": "public int[] maxSlidingWindow(int[] nums, int k) {\n    Deque<Integer> dq = new ArrayDeque<>();\n    int[] ans = new int[nums.length - k + 1];\n    for (int i = 0; i < nums.length; i++) {\n        while (!dq.isEmpty() && dq.peekFirst() <= i - k) dq.pollFirst();\n        while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) dq.pollLast();\n        dq.offerLast(i);\n        if (i >= k - 1) ans[i - k + 1] = nums[dq.peekFirst()];\n    }\n    return ans;\n}",
       "cpp": "vector<int> maxSlidingWindow(vector<int>& nums, int k) {\n    deque<int> dq;\n    vector<int> ans;\n    for (int i = 0; i < (int)nums.size(); i++) {\n        while (!dq.empty() && dq.front() <= i - k) dq.pop_front();\n        while (!dq.empty() && nums[dq.back()] <= nums[i]) dq.pop_back();\n        dq.push_back(i);\n        if (i >= k - 1) ans.push_back(nums[dq.front()]);\n    }\n    return ans;\n}"
     },
-    "leetcodeSlug": "sliding-window-maximum"
+    "leetcodeSlug": "sliding-window-maximum",
+    "track": "extra"
   },
   {
     "id": "q056",
@@ -2332,7 +2387,8 @@ module.exports = [
       "java": "int solve(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop(), a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else st.push(Integer.parseInt(t));\n    }\n    return st.peek();\n}",
       "cpp": "int solve(vector<string>& tokens) {\n    stack<int> st;\n    for (auto &t : tokens) {\n        if (t == \"+\" || t == \"-\" || t == \"*\" || t == \"/\") {\n            int b = st.top(); st.pop();\n            int a = st.top(); st.pop();\n            if (t == \"+\") st.push(a + b);\n            else if (t == \"-\") st.push(a - b);\n            else if (t == \"*\") st.push(a * b);\n            else st.push(a / b);\n        } else st.push(stoi(t));\n    }\n    return st.top();\n}"
     },
-    "leetcodeSlug": "implement-queue-using-stacks"
+    "leetcodeSlug": "implement-queue-using-stacks",
+    "track": "extra"
   },
   {
     "id": "q057",
@@ -2370,7 +2426,8 @@ module.exports = [
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
     "description": "给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。",
-    "leetcodeSlug": "binary-search"
+    "leetcodeSlug": "binary-search",
+    "track": "extra"
   },
   {
     "id": "q058",
@@ -2417,7 +2474,8 @@ module.exports = [
       "section": "3.1 二分搜索核心模板",
       "orderInSection": 3,
       "mdLine": 481
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q059",
@@ -2457,7 +2515,8 @@ module.exports = [
       "java": "public int findPeakElement(int[] nums) {\n    int left = 0, right = nums.length - 1;\n    while (left < right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] > nums[mid + 1]) right = mid;\n        else left = mid + 1;\n    }\n    return left;\n}",
       "cpp": "int findPeakElement(vector<int>& nums) {\n    int left = 0, right = (int)nums.size() - 1;\n    while (left < right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] > nums[mid + 1]) right = mid;\n        else left = mid + 1;\n    }\n    return left;\n}"
     },
-    "leetcodeSlug": "find-peak-element"
+    "leetcodeSlug": "find-peak-element",
+    "track": "extra"
   },
   {
     "id": "q060",
@@ -2497,7 +2556,8 @@ module.exports = [
       "java": "int solve(int[] nums, int target) {\n    int l = 0, r = nums.length - 1;\n    while (l <= r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] == target) return m;\n        if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}",
       "cpp": "int solve(vector<int>& nums, int target) {\n    int l = 0, r = (int)nums.size() - 1;\n    while (l <= r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] == target) return m;\n        if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}"
     },
-    "leetcodeSlug": "find-first-and-last-position-of-element-in-sorted-array"
+    "leetcodeSlug": "find-first-and-last-position-of-element-in-sorted-array",
+    "track": "extra"
   },
   {
     "id": "q061",
@@ -2537,7 +2597,8 @@ module.exports = [
       "java": "public int mySqrt(int x) {\n    long left = 0, right = x;\n    while (left <= right) {\n        long mid = left + (right - left) / 2;\n        if (mid * mid <= x) left = mid + 1;\n        else right = mid - 1;\n    }\n    return (int) right;\n}",
       "cpp": "int mySqrt(int x) {\n    long long left = 0, right = x;\n    while (left <= right) {\n        long long mid = left + (right - left) / 2;\n        if (mid * mid <= x) left = mid + 1;\n        else right = mid - 1;\n    }\n    return (int) right;\n}"
     },
-    "leetcodeSlug": "sqrtx"
+    "leetcodeSlug": "sqrtx",
+    "track": "extra"
   },
   {
     "id": "q062",
@@ -2584,7 +2645,8 @@ module.exports = [
       "section": "3.1 二分搜索核心模板",
       "orderInSection": 4,
       "mdLine": 516
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q063",
@@ -2624,7 +2686,8 @@ module.exports = [
       "java": "public int minEatingSpeed(int[] piles, int h) {\n    int left = 1, right = Arrays.stream(piles).max().getAsInt();\n    while (left < right) {\n        int mid = left + (right - left) / 2;\n        long hours = 0;\n        for (int p : piles) hours += (p + mid - 1) / mid;\n        if (hours <= h) right = mid;\n        else left = mid + 1;\n    }\n    return left;\n}",
       "cpp": "int minEatingSpeed(vector<int>& piles, int h) {\n    int left = 1, right = *max_element(piles.begin(), piles.end());\n    while (left < right) {\n        int mid = left + (right - left) / 2;\n        long long hours = 0;\n        for (int p : piles) hours += (p + mid - 1) / mid;\n        if (hours <= h) right = mid;\n        else left = mid + 1;\n    }\n    return left;\n}"
     },
-    "leetcodeSlug": "koko-eating-bananas"
+    "leetcodeSlug": "koko-eating-bananas",
+    "track": "extra"
   },
   {
     "id": "q064",
@@ -2664,7 +2727,8 @@ module.exports = [
       "java": "public boolean searchMatrix(int[][] matrix, int target) {\n    int m = matrix.length, n = matrix[0].length;\n    int left = 0, right = m * n - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        int v = matrix[mid / n][mid % n];\n        if (v == target) return true;\n        if (v < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return false;\n}",
       "cpp": "bool searchMatrix(vector<vector<int>>& matrix, int target) {\n    int m = matrix.size(), n = matrix[0].size();\n    int left = 0, right = m * n - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        int v = matrix[mid / n][mid % n];\n        if (v == target) return true;\n        if (v < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return false;\n}"
     },
-    "leetcodeSlug": "search-a-2d-matrix"
+    "leetcodeSlug": "search-a-2d-matrix",
+    "track": "extra"
   },
   {
     "id": "q065",
@@ -2704,7 +2768,8 @@ module.exports = [
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
     "description": "给你二叉树的根节点 root ，返回其节点值的层序遍历。（即逐层地，从左到右访问所有节点）。",
-    "leetcodeSlug": "binary-tree-level-order-traversal"
+    "leetcodeSlug": "binary-tree-level-order-traversal",
+    "track": "extra"
   },
   {
     "id": "q066",
@@ -2751,7 +2816,8 @@ module.exports = [
       "section": "8.2 二叉搜索树",
       "orderInSection": 1,
       "mdLine": 1094
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q067",
@@ -2791,7 +2857,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "lowest-common-ancestor-of-a-binary-tree"
+    "leetcodeSlug": "lowest-common-ancestor-of-a-binary-tree",
+    "track": "extra"
   },
   {
     "id": "q068",
@@ -2831,7 +2898,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "invert-binary-tree"
+    "leetcodeSlug": "invert-binary-tree",
+    "track": "extra"
   },
   {
     "id": "q069",
@@ -2871,7 +2939,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "path-sum"
+    "leetcodeSlug": "path-sum",
+    "track": "extra"
   },
   {
     "id": "q070",
@@ -2911,7 +2980,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "diameter-of-binary-tree"
+    "leetcodeSlug": "diameter-of-binary-tree",
+    "track": "extra"
   },
   {
     "id": "q071",
@@ -2951,7 +3021,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "balanced-binary-tree"
+    "leetcodeSlug": "balanced-binary-tree",
+    "track": "extra"
   },
   {
     "id": "q072",
@@ -2991,7 +3062,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "binary-tree-maximum-path-sum"
+    "leetcodeSlug": "binary-tree-maximum-path-sum",
+    "track": "extra"
   },
   {
     "id": "q073",
@@ -3031,7 +3103,8 @@ module.exports = [
       "java": "public TreeNode buildTree(int[] preorder, int[] inorder) {\n    Map<Integer, Integer> pos = new HashMap<>();\n    for (int i = 0; i < inorder.length; i++) pos.put(inorder[i], i);\n    return dfs(preorder, 0, preorder.length - 1, 0, inorder.length - 1, pos);\n}\nprivate TreeNode dfs(int[] pre, int pl, int pr, int il, int ir, Map<Integer, Integer> pos) {\n    if (pl > pr) return null;\n    TreeNode root = new TreeNode(pre[pl]);\n    int k = pos.get(pre[pl]);\n    int leftSize = k - il;\n    root.left = dfs(pre, pl + 1, pl + leftSize, il, k - 1, pos);\n    root.right = dfs(pre, pl + leftSize + 1, pr, k + 1, ir, pos);\n    return root;\n}",
       "cpp": "TreeNode* dfs(vector<int>& pre, int pl, int pr, int il, int ir, unordered_map<int,int>& pos) {\n    if (pl > pr) return nullptr;\n    TreeNode* root = new TreeNode(pre[pl]);\n    int k = pos[pre[pl]];\n    int leftSize = k - il;\n    root->left = dfs(pre, pl + 1, pl + leftSize, il, k - 1, pos);\n    root->right = dfs(pre, pl + leftSize + 1, pr, k + 1, ir, pos);\n    return root;\n}"
     },
-    "leetcodeSlug": "construct-binary-tree-from-preorder-and-inorder-traversal"
+    "leetcodeSlug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+    "track": "extra"
   },
   {
     "id": "q074",
@@ -3071,7 +3144,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "kth-smallest-element-in-a-bst"
+    "leetcodeSlug": "kth-smallest-element-in-a-bst",
+    "track": "extra"
   },
   {
     "id": "q075",
@@ -3111,7 +3185,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "serialize-and-deserialize-binary-tree"
+    "leetcodeSlug": "serialize-and-deserialize-binary-tree",
+    "track": "extra"
   },
   {
     "id": "q076",
@@ -3151,7 +3226,8 @@ module.exports = [
       "java": "int dfs(TreeNode root) {\n    if (root == null) return 0;\n    int left = dfs(root.left);\n    int right = dfs(root.right);\n    return 1 + Math.max(left, right);\n}",
       "cpp": "int dfs(TreeNode* root) {\n    if (!root) return 0;\n    int left = dfs(root->left);\n    int right = dfs(root->right);\n    return 1 + max(left, right);\n}"
     },
-    "leetcodeSlug": "symmetric-tree"
+    "leetcodeSlug": "symmetric-tree",
+    "track": "extra"
   },
   {
     "id": "q077",
@@ -3198,7 +3274,8 @@ module.exports = [
       "section": "9.2 并查集",
       "orderInSection": 1,
       "mdLine": 1202
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q078",
@@ -3245,7 +3322,8 @@ module.exports = [
       "section": "9.1 拓扑排序",
       "orderInSection": 1,
       "mdLine": 1163
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q079",
@@ -3285,7 +3363,8 @@ module.exports = [
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
       "cpp": "void bfs(int start, vector<vector<int>>& g) {\n    queue<int> q; vector<int> vis(g.size());\n    q.push(start); vis[start] = 1;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = 1; q.push(y); }\n    }\n}"
     },
-    "leetcodeSlug": "clone-graph"
+    "leetcodeSlug": "clone-graph",
+    "track": "extra"
   },
   {
     "id": "q080",
@@ -3325,7 +3404,8 @@ module.exports = [
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
       "cpp": "void bfs(int start, vector<vector<int>>& g) {\n    queue<int> q; vector<int> vis(g.size());\n    q.push(start); vis[start] = 1;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = 1; q.push(y); }\n    }\n}"
     },
-    "leetcodeSlug": "rotting-oranges"
+    "leetcodeSlug": "rotting-oranges",
+    "track": "extra"
   },
   {
     "id": "q081",
@@ -3365,7 +3445,8 @@ module.exports = [
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
       "cpp": "void bfs(int start, vector<vector<int>>& g) {\n    queue<int> q; vector<int> vis(g.size());\n    q.push(start); vis[start] = 1;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = 1; q.push(y); }\n    }\n}"
     },
-    "leetcodeSlug": "word-ladder"
+    "leetcodeSlug": "word-ladder",
+    "track": "extra"
   },
   {
     "id": "q082",
@@ -3405,7 +3486,8 @@ module.exports = [
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
       "cpp": "void bfs(int start, vector<vector<int>>& g) {\n    queue<int> q; vector<int> vis(g.size());\n    q.push(start); vis[start] = 1;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = 1; q.push(y); }\n    }\n}"
     },
-    "leetcodeSlug": "surrounded-regions"
+    "leetcodeSlug": "surrounded-regions",
+    "track": "extra"
   },
   {
     "id": "q083",
@@ -3445,7 +3527,8 @@ module.exports = [
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
       "cpp": "void bfs(int start, vector<vector<int>>& g) {\n    queue<int> q; vector<int> vis(g.size());\n    q.push(start); vis[start] = 1;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = 1; q.push(y); }\n    }\n}"
     },
-    "leetcodeSlug": "redundant-connection"
+    "leetcodeSlug": "redundant-connection",
+    "track": "extra"
   },
   {
     "id": "q084",
@@ -3485,7 +3568,8 @@ module.exports = [
       "java": "void bfs(int start, List<Integer>[] g) {\n    Queue<Integer> q = new LinkedList<>();\n    boolean[] vis = new boolean[g.length];\n    q.offer(start); vis[start] = true;\n    while (!q.isEmpty()) {\n        int x = q.poll();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = true; q.offer(y); }\n    }\n}",
       "cpp": "void bfs(int start, vector<vector<int>>& g) {\n    queue<int> q; vector<int> vis(g.size());\n    q.push(start); vis[start] = 1;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) if (!vis[y]) { vis[y] = 1; q.push(y); }\n    }\n}"
     },
-    "leetcodeSlug": "network-delay-time"
+    "leetcodeSlug": "network-delay-time",
+    "track": "extra"
   },
   {
     "id": "q085",
@@ -3523,7 +3607,8 @@ module.exports = [
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
     "description": "假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？",
-    "leetcodeSlug": "climbing-stairs"
+    "leetcodeSlug": "climbing-stairs",
+    "track": "extra"
   },
   {
     "id": "q086",
@@ -3563,7 +3648,8 @@ module.exports = [
       "java": "// TODO: 打家劫舍 (house-robber)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement house-robber\");\n    }\n}",
       "cpp": "// TODO: 打家劫舍 (house-robber)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement house-robber\");\n    }\n};"
     },
-    "leetcodeSlug": "house-robber"
+    "leetcodeSlug": "house-robber",
+    "track": "extra"
   },
   {
     "id": "q087",
@@ -3603,7 +3689,8 @@ module.exports = [
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
     "description": "给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。计算并返回可以凑成总金额所需的最少的硬币个数。",
-    "leetcodeSlug": "coin-change"
+    "leetcodeSlug": "coin-change",
+    "track": "extra"
   },
   {
     "id": "q088",
@@ -3650,7 +3737,8 @@ module.exports = [
       "section": "7.1 动态规划核心框架",
       "orderInSection": 1,
       "mdLine": 844
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q089",
@@ -3690,7 +3778,8 @@ module.exports = [
       "java": "// TODO: 最长公共子序列 (longest-common-subsequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement longest-common-subsequence\");\n    }\n}",
       "cpp": "// TODO: 最长公共子序列 (longest-common-subsequence)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement longest-common-subsequence\");\n    }\n};"
     },
-    "leetcodeSlug": "longest-common-subsequence"
+    "leetcodeSlug": "longest-common-subsequence",
+    "track": "extra"
   },
   {
     "id": "q090",
@@ -3737,7 +3826,8 @@ module.exports = [
       "section": "7.2 背包问题",
       "orderInSection": 1,
       "mdLine": 921
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q091",
@@ -3777,7 +3867,8 @@ module.exports = [
       "java": "// TODO: 编辑距离 (edit-distance)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement edit-distance\");\n    }\n}",
       "cpp": "// TODO: 编辑距离 (edit-distance)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement edit-distance\");\n    }\n};"
     },
-    "leetcodeSlug": "edit-distance"
+    "leetcodeSlug": "edit-distance",
+    "track": "extra"
   },
   {
     "id": "q092",
@@ -3817,7 +3908,8 @@ module.exports = [
       "java": "// TODO: 不同路径 (unique-paths)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement unique-paths\");\n    }\n}",
       "cpp": "// TODO: 不同路径 (unique-paths)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement unique-paths\");\n    }\n};"
     },
-    "leetcodeSlug": "unique-paths"
+    "leetcodeSlug": "unique-paths",
+    "track": "extra"
   },
   {
     "id": "q093",
@@ -3857,7 +3949,8 @@ module.exports = [
       "java": "public String longestPalindrome(String s) {\n    String ans = \"\";\n    for (int i = 0; i < s.length(); i++) {\n        String p1 = expand(s, i, i);\n        String p2 = expand(s, i, i + 1);\n        ans = p1.length() > ans.length() ? p1 : ans;\n        ans = p2.length() > ans.length() ? p2 : ans;\n    }\n    return ans;\n}\nprivate String expand(String s, int l, int r) {\n    while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) { l--; r++; }\n    return s.substring(l + 1, r);\n}",
       "cpp": "string expand(const string& s, int l, int r) {\n    while (l >= 0 && r < (int)s.size() && s[l] == s[r]) { l--; r++; }\n    return s.substr(l + 1, r - l - 1);\n}\nstring longestPalindrome(string s) {\n    string ans;\n    for (int i = 0; i < (int)s.size(); i++) {\n        string p1 = expand(s, i, i);\n        string p2 = expand(s, i, i + 1);\n        if (p1.size() > ans.size()) ans = p1;\n        if (p2.size() > ans.size()) ans = p2;\n    }\n    return ans;\n}"
     },
-    "leetcodeSlug": "longest-palindromic-substring"
+    "leetcodeSlug": "longest-palindromic-substring",
+    "track": "extra"
   },
   {
     "id": "q094",
@@ -3897,7 +3990,8 @@ module.exports = [
       "java": "// TODO: 单词拆分 (word-break)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement word-break\");\n    }\n}",
       "cpp": "// TODO: 单词拆分 (word-break)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement word-break\");\n    }\n};"
     },
-    "leetcodeSlug": "word-break"
+    "leetcodeSlug": "word-break",
+    "track": "extra"
   },
   {
     "id": "q095",
@@ -3937,7 +4031,8 @@ module.exports = [
       "java": "// TODO: 最大正方形 (maximal-square)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement maximal-square\");\n    }\n}",
       "cpp": "// TODO: 最大正方形 (maximal-square)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement maximal-square\");\n    }\n};"
     },
-    "leetcodeSlug": "maximal-square"
+    "leetcodeSlug": "maximal-square",
+    "track": "extra"
   },
   {
     "id": "q096",
@@ -3977,7 +4072,8 @@ module.exports = [
       "java": "// TODO: 买卖股票含冷冻期 (best-time-to-buy-and-sell-stock-with-cooldown)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\n    public Object solve() {\n        throw new UnsupportedOperationException(\"TODO: implement best-time-to-buy-and-sell-stock-with-cooldown\");\n    }\n}",
       "cpp": "// TODO: 买卖股票含冷冻期 (best-time-to-buy-and-sell-stock-with-cooldown)\n// INTENTIONAL_MISMATCH_PLACEHOLDER: 原代码与题意不一致，待按题目补全。\nclass Solution {\npublic:\n    void solve() {\n        throw std::logic_error(\"TODO: implement best-time-to-buy-and-sell-stock-with-cooldown\");\n    }\n};"
     },
-    "leetcodeSlug": "best-time-to-buy-and-sell-stock-with-cooldown"
+    "leetcodeSlug": "best-time-to-buy-and-sell-stock-with-cooldown",
+    "track": "extra"
   },
   {
     "id": "q097",
@@ -4024,7 +4120,8 @@ module.exports = [
       "section": "5.1 回溯算法核心框架",
       "orderInSection": 1,
       "mdLine": 634
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q098",
@@ -4064,7 +4161,8 @@ module.exports = [
       "java": "void backtrack(List<Integer> path, boolean[] used, int[] nums, List<List<Integer>> ans) {\n    if (path.size() == nums.length) { ans.add(new ArrayList<>(path)); return; }\n    for (int i = 0; i < nums.length; i++) {\n        if (used[i]) continue;\n        used[i] = true;\n        path.add(nums[i]);\n        backtrack(path, used, nums, ans);\n        path.remove(path.size() - 1);\n        used[i] = false;\n    }\n}",
       "cpp": "void backtrack(vector<int>& path, vector<int>& used, vector<int>& nums, vector<vector<int>>& ans) {\n    if (path.size() == nums.size()) { ans.push_back(path); return; }\n    for (int i = 0; i < (int)nums.size(); i++) {\n        if (used[i]) continue;\n        used[i] = 1;\n        path.push_back(nums[i]);\n        backtrack(path, used, nums, ans);\n        path.pop_back();\n        used[i] = 0;\n    }\n}"
     },
-    "leetcodeSlug": "combination-sum"
+    "leetcodeSlug": "combination-sum",
+    "track": "extra"
   },
   {
     "id": "q099",
@@ -4111,7 +4209,8 @@ module.exports = [
       "section": "5.1 回溯算法核心框架",
       "orderInSection": 4,
       "mdLine": 718
-    }
+    },
+    "track": "core"
   },
   {
     "id": "q100",
@@ -4151,6 +4250,7 @@ module.exports = [
       "insight": "堆适合维护“动态前 K 名”，将全量排序降为局部有序维护。"
     },
     "description": "给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按任意顺序返回答案。",
-    "leetcodeSlug": "top-k-frequent-elements-review"
+    "leetcodeSlug": "top-k-frequent-elements-review",
+    "track": "extra"
   }
-];;
+];

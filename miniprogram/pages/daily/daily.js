@@ -2,6 +2,7 @@ const dailyChallenge = require('../../services/dailyChallenge');
 const history = require('../../services/history');
 const achievement = require('../../services/achievement');
 const highlighter = require('../../services/highlighter');
+const userSettings = require('../../services/userSettings');
 
 Page({
   data: {
@@ -57,7 +58,8 @@ Page({
 
     const firstQ = challenge.questions[0];
     const availableLangs = this.getAvailableLangs(firstQ);
-    const highlightedCode = this.getHighlightedCode(firstQ, 'python');
+    const lang = userSettings.pickQuestionLang(availableLangs);
+    const highlightedCode = this.getHighlightedCode(firstQ, lang);
 
     this.setData({
       challenge,
@@ -68,6 +70,7 @@ Page({
       completed: false,
       results: null,
       correctCount: 0,
+      selectedLang: lang,
       availableLangs,
       highlightedCode,
       isEmpty: false
@@ -122,7 +125,7 @@ Page({
 
     const nextQ = this.data.challenge.questions[nextIdx];
     const availableLangs = this.getAvailableLangs(nextQ);
-    const lang = availableLangs.includes('python') ? 'python' : (availableLangs[0] || 'python');
+    const lang = userSettings.pickQuestionLang(availableLangs);
 
     this.setData({
       currentIndex: nextIdx,
@@ -149,6 +152,7 @@ Page({
 
   switchLang: function(e) {
     const lang = e.currentTarget.dataset.lang;
+    userSettings.setPreferredLang(lang);
     this.setData({ 
       selectedLang: lang,
       highlightedCode: this.getHighlightedCode(this.data.currentQuestion, lang)

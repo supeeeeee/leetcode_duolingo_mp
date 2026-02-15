@@ -6,7 +6,10 @@ const defaultUserData = {
   lastLoginDate: null,
   completedLessons: [], // list of lesson IDs or Topic IDs
   topicProgress: {}, // { "arrays": 1 } (level)
-  badges: []
+  badges: [],
+  userSettings: {
+    preferredLang: ''
+  }
 };
 
 function getUserData() {
@@ -28,12 +31,13 @@ function saveUserData(data) {
 }
 
 function initUserData() {
-  saveUserData(defaultUserData);
-  return defaultUserData;
+  const initial = JSON.parse(JSON.stringify(defaultUserData));
+  saveUserData(initial);
+  return initial;
 }
 
 function updateUserData(updates) {
-  const current = getUserData() || defaultUserData;
+  const current = getUserData() || JSON.parse(JSON.stringify(defaultUserData));
   const match = Object.assign({}, current, updates);
   saveUserData(match);
   return match;

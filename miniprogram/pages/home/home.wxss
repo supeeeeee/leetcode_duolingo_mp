@@ -136,6 +136,108 @@
   box-sizing: border-box;
 }
 
+.today-suggestions {
+  width: 100%;
+  padding: 0 40rpx;
+  margin-bottom: 40rpx;
+  box-sizing: border-box;
+}
+
+.suggestion-stats-row {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.suggestion-stat-item {
+  flex: 1;
+  background: #f6f9ff;
+  border-radius: 20rpx;
+  padding: 16rpx;
+  text-align: center;
+}
+
+.suggestion-stat-value {
+  display: block;
+  font-size: 34rpx;
+  color: #1b6ef3;
+  font-weight: 800;
+}
+
+.suggestion-stat-label {
+  display: block;
+  margin-top: 4rpx;
+  color: var(--text-light);
+  font-size: 22rpx;
+}
+
+.recommended-topic {
+  margin-bottom: 20rpx;
+}
+
+.recommended-topic-title {
+  display: block;
+  font-size: 30rpx;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.recommended-topic-desc {
+  display: block;
+  margin-top: 8rpx;
+  color: var(--text-light);
+  font-size: 24rpx;
+}
+
+.chapter-list {
+  margin-bottom: 20rpx;
+}
+
+.chapter-item {
+  padding: 14rpx 0;
+  border-top: 1rpx solid #ececec;
+}
+
+.chapter-item:first-child {
+  border-top: none;
+}
+
+.chapter-item-title {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-main);
+}
+
+.chapter-item-meta {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.today-cta-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.today-btn {
+  flex: 1;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  height: 72rpx;
+  line-height: 72rpx;
+  color: #2b3a55;
+  background: #eef2f8;
+  padding: 0;
+}
+
+.today-btn.primary {
+  flex: 2;
+  color: #ffffff;
+  background: #1b6ef3;
+}
+
 .btn {
   width: 100%;
   font-size: 36rpx;
@@ -226,4 +328,3 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-

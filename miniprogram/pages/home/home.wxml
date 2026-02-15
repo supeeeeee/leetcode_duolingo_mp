@@ -28,6 +28,44 @@
     <view class="challenge-arrow">〉</view>
   </view>
 
+  <view class="today-suggestions animate-fade" wx:if="{{!loading}}">
+    <view class="card">
+      <text class="card-title">今日建议</text>
+      <view class="suggestion-stats-row">
+        <view class="suggestion-stat-item">
+          <text class="suggestion-stat-value">{{dueCoreTotal}}</text>
+          <text class="suggestion-stat-label">待做核心题</text>
+        </view>
+        <view class="suggestion-stat-item">
+          <text class="suggestion-stat-value">{{dueCoreChapterCount}}</text>
+          <text class="suggestion-stat-label">涉及章节</text>
+        </view>
+        <view class="suggestion-stat-item">
+          <text class="suggestion-stat-value">{{wrongCount}}</text>
+          <text class="suggestion-stat-label">错题待复习</text>
+        </view>
+      </view>
+
+      <view wx:if="{{recommendedTopicId}}" class="recommended-topic">
+        <text class="recommended-topic-title">推荐继续：{{recommendedTopicTitle}}</text>
+        <text class="recommended-topic-desc">{{recommendedTopicDesc}}</text>
+      </view>
+
+      <view class="chapter-list" wx:if="{{chapterSuggestions.length > 0}}">
+        <view class="chapter-item" wx:for="{{chapterSuggestions}}" wx:key="id">
+          <text class="chapter-item-title">{{item.title}}</text>
+          <text class="chapter-item-meta">核心待做 {{item.dueCore}} · 错题 {{item.wrong}}</text>
+        </view>
+      </view>
+
+      <view class="today-cta-row">
+        <button class="today-btn primary" hover-class="none" bindtap="continueRecommendedTopic">{{recommendedTopicId ? '继续推荐章节' : '前往学习路径'}}</button>
+        <button class="today-btn" hover-class="none" bindtap="goPath">路径</button>
+        <button class="today-btn" hover-class="none" bindtap="startDailyChallenge">每日</button>
+      </view>
+    </view>
+  </view>
+
   <view class="action-area animate-fade" wx:if="{{!loading}}">
     <button class="btn" hover-class="none" bindtap="startDailyReview">开始复习</button>
   </view>

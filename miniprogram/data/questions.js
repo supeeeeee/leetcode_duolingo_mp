@@ -5,12 +5,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【两数之和】 最优解法的核心数据结构是什么？",
     "options": [
+      "前缀树",
       "哈希表",
       "单调栈",
-      "前缀树",
       "并查集"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "使用哈希表记录值到索引，可在一次遍历内完成查找。",
     "xp": 14,
     "codeSnippet": {
@@ -45,12 +45,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【买卖股票的最佳时机】 单次交易最优策略是？",
     "options": [
-      "维护历史最小值并更新最大利润",
+      "双端队列维护窗口",
       "每次上涨就卖出",
       "动态规划三维状态",
-      "双端队列维护窗口"
+      "维护历史最小值并更新最大利润"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "一次遍历：minPrice 与 maxProfit。",
     "xp": 12,
     "learning": {
@@ -93,12 +93,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【除自身以外数组的乘积】 不使用除法时，应组合哪两类信息？",
     "options": [
-      "前缀积+后缀积",
       "排序+二分",
-      "哈希计数+滑窗",
-      "并查集+路径压缩"
+      "并查集+路径压缩",
+      "前缀积+后缀积",
+      "哈希计数+滑窗"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "每个位置答案=左侧乘积*右侧乘积。",
     "xp": 12,
     "learning": {
@@ -134,12 +134,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最大子数组和】 Kadane 算法的状态转移是？",
     "options": [
-      "cur=max(nums[i],cur+nums[i])",
-      "cur=max(cur,nums[i-1])",
+      "cur=cur*nums[i]",
       "cur=min(nums[i],cur+nums[i])",
-      "cur=cur*nums[i]"
+      "cur=max(cur,nums[i-1])",
+      "cur=max(nums[i],cur+nums[i])"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "以 i 结尾的最优子数组要么重开要么延续。",
     "xp": 12,
     "learning": {
@@ -182,12 +182,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【合并区间】 为什么先按左端点排序？",
     "options": [
-      "让可合并区间变为连续处理",
-      "保证区间长度最短",
       "减少空间到 O(1)",
-      "便于并行计算"
+      "保证区间长度最短",
+      "便于并行计算",
+      "让可合并区间变为连续处理"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "排序后只需和结果最后一个区间比较。",
     "xp": 13,
     "codeSnippet": {
@@ -223,12 +223,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【轮转数组】 O(1) 额外空间常用做法是？",
     "options": [
-      "整体反转+分段反转",
       "每次右移一位共 k 次",
       "建立新数组拷贝",
-      "快速选择"
+      "快速选择",
+      "整体反转+分段反转"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "三次反转实现旋转。",
     "xp": 12,
     "learning": {
@@ -264,12 +264,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【移动零】 保持相对顺序的线性做法是？",
     "options": [
-      "快慢指针交换非零元素",
-      "冒泡把零沉底",
       "排序",
-      "哈希计数"
+      "冒泡把零沉底",
+      "哈希计数",
+      "快慢指针交换非零元素"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "slow 指向下一个放非零的位置。",
     "xp": 12,
     "learning": {
@@ -305,12 +305,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【多数元素】 Boyer-Moore 的关键思想是？",
     "options": [
-      "不同元素相互抵消",
-      "统计全部频次",
       "维护最小堆",
-      "滑窗计数"
+      "统计全部频次",
+      "滑窗计数",
+      "不同元素相互抵消"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "多数元素数量超过一半，抵消后仍会留下。",
     "xp": 12,
     "learning": {
@@ -346,12 +346,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【下一个排列】 从后往前找到第一个下降位后，下一步是？",
     "options": [
-      "在后缀中找刚好大于它的数交换",
-      "把后缀排序升序再交换",
       "直接整体反转",
+      "把后缀排序升序再交换",
+      "在后缀中找刚好大于它的数交换",
       "删除该位"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "交换后再反转后缀得到最小增量。",
     "xp": 12,
     "learning": {
@@ -387,12 +387,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【颜色分类】 荷兰国旗问题需要几个指针？",
     "options": [
-      "3 个",
+      "1 个",
       "2 个",
-      "4 个",
-      "1 个"
+      "3 个",
+      "4 个"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "low、mid、high 三指针划分 0/1/2。",
     "xp": 12,
     "learning": {
@@ -428,12 +428,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【缺失的第一个正数】 O(n)+O(1) 的核心是？",
     "options": [
-      "原地哈希（下标映射）",
-      "二分查找",
       "堆排序",
+      "二分查找",
+      "原地哈希（下标映射）",
       "位运算"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "把值 x 放到下标 x-1 上。",
     "xp": 12,
     "learning": {
@@ -469,12 +469,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【接雨水】 双指针做法每步更新哪一个边界？",
     "options": [
+      "两侧同时",
       "较低的一侧",
       "较高的一侧",
-      "两侧同时",
       "随机一侧"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "较低侧决定当前可接水上界。",
     "xp": 12,
     "learning": {
@@ -517,12 +517,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【字母异位词分组】 作为 key 的常用设计是？",
     "options": [
-      "排序后的字符串",
       "字符串长度",
       "首字母",
-      "hashCode 取模"
+      "hashCode 取模",
+      "排序后的字符串"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "异位词排序后相同。",
     "xp": 12,
     "learning": {
@@ -558,12 +558,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【有效的字母异位词】 最稳妥解法是？",
     "options": [
-      "计数字符频次并比较",
-      "比较 ASCII 和",
       "比较长度",
-      "双指针"
+      "双指针",
+      "比较 ASCII 和",
+      "计数字符频次并比较"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "频次一致才是异位词。",
     "xp": 12,
     "learning": {
@@ -599,12 +599,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【和为 K 的子数组】 前缀和+哈希的查找条件是？",
     "options": [
-      "pre[j]-k 是否出现过",
-      "pre[j]+k 是否出现过",
       "nums[j]-k",
-      "nums[j]+k"
+      "nums[j]+k",
+      "pre[j]-k 是否出现过",
+      "pre[j]+k 是否出现过"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "若 pre[i]=pre[j]-k，则(i,j]和为k。",
     "xp": 12,
     "learning": {
@@ -647,12 +647,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最长连续序列】 O(n) 做法的关键是？",
     "options": [
-      "只从序列起点开始扩展",
-      "先排序",
+      "并查集全连",
       "双重循环枚举",
-      "并查集全连"
+      "先排序",
+      "只从序列起点开始扩展"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "若 x-1 不在集合里，x 才是起点。",
     "xp": 12,
     "learning": {
@@ -688,12 +688,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【LRU 缓存】 满足 O(1) get/put 的组合是？",
     "options": [
+      "树+数组",
       "哈希表+双向链表",
       "数组+栈",
-      "堆+队列",
-      "树+数组"
+      "堆+队列"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "哈希定位节点，链表维护最近使用顺序。",
     "xp": 16,
     "codeSnippet": {
@@ -729,12 +729,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【前 K 个高频元素】 典型做法是？",
     "options": [
-      "哈希计数+堆",
+      "前缀和",
       "双指针",
       "并查集",
-      "前缀和"
+      "哈希计数+堆"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "先统计频次，再用堆选 TopK。",
     "xp": 12,
     "learning": {
@@ -770,12 +770,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【四数相加 II】 降维思路是？",
     "options": [
-      "两两求和并计数",
-      "排序后四指针",
+      "动态规划",
       "DFS 枚举",
-      "动态规划"
+      "排序后四指针",
+      "两两求和并计数"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "A+B 的和频次与 -(C+D) 匹配。",
     "xp": 12,
     "learning": {
@@ -811,12 +811,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【字符串解码计数场景】 为什么常用 Map 而不是数组？",
     "options": [
-      "键空间不固定或为字符串",
-      "数组更慢",
       "Map 不能扩容",
-      "数组不支持加法"
+      "数组不支持加法",
+      "数组更慢",
+      "键空间不固定或为字符串"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "当键不是小范围整数时 Map 更通用。",
     "xp": 12,
     "learning": {
@@ -852,12 +852,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【快乐数】 判环常用哪个结构？",
     "options": [
-      "哈希集合记录出现值",
-      "最小堆",
       "单调队列",
-      "并查集"
+      "并查集",
+      "最小堆",
+      "哈希集合记录出现值"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "出现重复即进入循环。",
     "xp": 12,
     "learning": {
@@ -893,12 +893,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【同构字符串】 需要保证什么？",
     "options": [
-      "双向映射都一致",
-      "只看长度相同",
       "首尾字符相同",
+      "只看长度相同",
+      "双向映射都一致",
       "排序相同"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "字符映射必须一一对应。",
     "xp": 12,
     "learning": {
@@ -934,12 +934,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【三数之和】 去重通常在何处做？",
     "options": [
-      "固定 i 时与移动 l/r 时都去重",
-      "只在最后去重",
       "不需要去重",
-      "只对 i 去重"
+      "只在最后去重",
+      "只对 i 去重",
+      "固定 i 时与移动 l/r 时都去重"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "双层去重才能避免重复三元组。",
     "xp": 14,
     "codeSnippet": {
@@ -982,12 +982,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【盛最多水的容器】 每次移动哪边指针？",
     "options": [
-      "较短边",
       "较长边",
       "两边同时",
-      "随机"
+      "随机",
+      "较短边"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "面积受短边限制，移动长边无收益。",
     "xp": 12,
     "learning": {
@@ -1023,12 +1023,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【删除有序数组重复项】 slow 指针含义是？",
     "options": [
-      "下一个可写入位置",
       "当前遍历位置",
+      "下一个可写入位置",
       "最后一个元素位置",
       "数组长度"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "slow 保持结果区间 [0,slow)。",
     "xp": 12,
     "learning": {
@@ -1071,12 +1071,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【回文链表】 O(1) 空间常见流程是？",
     "options": [
-      "找中点+反转后半+比较",
       "全部拷贝到数组",
       "递归回溯",
-      "哈希统计"
+      "哈希统计",
+      "找中点+反转后半+比较"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "快慢指针找中点后原地比较。",
     "xp": 12,
     "learning": {
@@ -1112,12 +1112,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【有序数组两数之和 II】 为何可用双指针？",
     "options": [
-      "数组有序可根据和大小单调移动",
+      "长度固定",
       "元素唯一",
       "可随机访问",
-      "长度固定"
+      "数组有序可根据和大小单调移动"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "和过小左移左指针，过大右移右指针。",
     "xp": 12,
     "learning": {
@@ -1153,12 +1153,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【删除链表倒数第 N 个节点】 经典做法是？",
     "options": [
-      "快慢指针先走 n 步",
-      "递归层数计数",
+      "双端队列",
       "哈希节点",
-      "双端队列"
+      "快慢指针先走 n 步",
+      "递归层数计数"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "保持快慢间距 n。",
     "xp": 12,
     "learning": {
@@ -1201,12 +1201,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【相交链表】 O(1) 空间解法核心是？",
     "options": [
-      "两个指针走完各自链后切换到对方头",
+      "二分",
       "哈希存节点",
-      "排序链表",
-      "二分"
+      "两个指针走完各自链后切换到对方头",
+      "排序链表"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "总路程相等后在交点相遇。",
     "xp": 12,
     "learning": {
@@ -1242,12 +1242,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【接雨水双指针】 leftMax < rightMax 时计算哪侧？",
     "options": [
-      "左侧",
       "右侧",
       "都可",
-      "都不算"
+      "都不算",
+      "左侧"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "较小边确定当前有效水位。",
     "xp": 12,
     "learning": {
@@ -1283,12 +1283,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【无重复字符的最长子串】 窗口左边界何时移动？",
     "options": [
-      "右指针字符重复时",
-      "每次都移动",
       "窗口长度>k",
-      "遇到元音"
+      "遇到元音",
+      "右指针字符重复时",
+      "每次都移动"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "遇到重复才收缩到不重复状态。",
     "xp": 14,
     "codeSnippet": {
@@ -1329,12 +1329,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最小覆盖子串】 valid 的含义通常是？",
     "options": [
-      "满足 t 所有字符需求",
-      "窗口长度最小",
       "窗口无重复",
-      "窗口有序"
+      "窗口有序",
+      "满足 t 所有字符需求",
+      "窗口长度最小"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "只有覆盖需求后才尝试收缩。",
     "xp": 16,
     "codeSnippet": {
@@ -1377,12 +1377,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【找到字符串中所有字母异位词】 常用策略是？",
     "options": [
-      "固定窗口长度 + 频次数组",
-      "双端队列最大值",
       "二分长度",
+      "双端队列最大值",
+      "固定窗口长度 + 频次数组",
       "堆"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "窗口长度固定为 p.length。",
     "xp": 12,
     "learning": {
@@ -1425,12 +1425,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【长度最小的子数组】 正数数组时可用滑窗的原因是？",
     "options": [
-      "窗口和随右移单调不减",
       "元素唯一",
-      "数组有序",
-      "可随机访问"
+      "可随机访问",
+      "窗口和随右移单调不减",
+      "数组有序"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "正数保证扩大窗口只会增大和。",
     "xp": 12,
     "learning": {
@@ -1466,12 +1466,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最大连续 1（可翻转 k 次）】 关键计数是？",
     "options": [
-      "窗口内 0 的个数",
       "窗口内 1 的个数",
+      "窗口最大值",
       "窗口和",
-      "窗口最大值"
+      "窗口内 0 的个数"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "当 0 的数量超过 k 时收缩。",
     "xp": 12,
     "learning": {
@@ -1507,12 +1507,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【串联所有单词的子串】 常见优化是？",
     "options": [
-      "按单词长度分组起点遍历",
       "暴力全排列",
+      "按单词长度分组起点遍历",
       "二分查找",
       "并查集"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "避免每次从头切分。",
     "xp": 12,
     "learning": {
@@ -1548,12 +1548,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【水果成篮】 对应的数据结构是？",
     "options": [
-      "最多容纳2种键的哈希计数",
-      "最小堆",
       "数组排序",
+      "最小堆",
+      "最多容纳2种键的哈希计数",
       "前缀和"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "本质是“最多含两种字符的最长子串”。",
     "xp": 12,
     "learning": {
@@ -1589,12 +1589,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【替换后的最长重复字符】 窗口是否必须实时维护精确 maxFreq？",
     "options": [
-      "不必须，可用历史最大值优化",
+      "需排序",
       "必须精确",
       "不能用频次",
-      "需排序"
+      "不必须，可用历史最大值优化"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "历史最大值不会影响正确性，仅可能延后收缩。",
     "xp": 12,
     "learning": {
@@ -1630,12 +1630,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【反转链表】 迭代解法每轮需要保存什么？",
     "options": [
-      "next 节点",
+      "随机节点",
       "head 长度",
       "尾指针值",
-      "随机节点"
+      "next 节点"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "先存 next 防止断链。",
     "xp": 14,
     "codeSnippet": {
@@ -1671,12 +1671,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【合并两个有序链表】 常用技巧是？",
     "options": [
-      "哑节点 dummy",
       "哈希表",
       "二分",
+      "哑节点 dummy",
       "栈"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "dummy 简化头节点处理。",
     "xp": 12,
     "learning": {
@@ -1719,12 +1719,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【链表有环】 为什么快慢指针可判环？",
     "options": [
-      "有环时相对速度差导致必相遇",
+      "链表有序",
       "快指针总能到尾",
       "慢指针更快",
-      "链表有序"
+      "有环时相对速度差导致必相遇"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "环中追及问题。",
     "xp": 12,
     "learning": {
@@ -1767,12 +1767,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【重排链表】 典型流程是？",
     "options": [
-      "找中点+反转后半+交替合并",
-      "排序后重建",
       "随机打乱",
-      "双重循环"
+      "排序后重建",
+      "双重循环",
+      "找中点+反转后半+交替合并"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "三步法是标准做法。",
     "xp": 12,
     "learning": {
@@ -1808,12 +1808,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【K 个一组翻转链表】 一般需要先确认什么？",
     "options": [
-      "剩余节点数是否 >= k",
-      "链表值是否递增",
       "头结点值",
-      "是否有环"
+      "是否有环",
+      "剩余节点数是否 >= k",
+      "链表值是否递增"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "不足 k 的尾部保持不变。",
     "xp": 12,
     "learning": {
@@ -1849,12 +1849,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【复制带随机指针的链表】 O(1) 额外空间做法是？",
     "options": [
-      "新节点插入旧节点后再拆分",
       "哈希映射旧新节点",
       "递归拷贝",
-      "排序"
+      "排序",
+      "新节点插入旧节点后再拆分"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "穿插复制可避免额外映射。",
     "xp": 12,
     "learning": {
@@ -1890,12 +1890,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【排序链表】 最常用达到 O(n log n) 的方法是？",
     "options": [
-      "归并排序",
-      "快速排序",
       "选择排序",
-      "计数排序"
+      "快速排序",
+      "计数排序",
+      "归并排序"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "链表适合归并，分割和合并都高效。",
     "xp": 12,
     "learning": {
@@ -1931,12 +1931,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【回文链表】 结束后是否建议恢复链表？",
     "options": [
-      "建议恢复，避免副作用",
       "必须不恢复",
       "恢复会错",
-      "无所谓"
+      "无所谓",
+      "建议恢复，避免副作用"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "面试中恢复可体现工程意识。",
     "xp": 12,
     "learning": {
@@ -1972,12 +1972,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【环形链表 II】 找入环点时的关键是？",
     "options": [
-      "相遇后一指针回头同时一步步走",
+      "随机跳",
       "继续快慢指针",
-      "哈希后排序",
-      "随机跳"
+      "相遇后一指针回头同时一步步走",
+      "哈希后排序"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "数学推导可得两者在入环点相遇。",
     "xp": 12,
     "learning": {
@@ -2020,12 +2020,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【删除排序链表重复元素 II】 需要删除哪些节点？",
     "options": [
-      "所有重复值节点",
-      "保留一个重复值",
       "只删相邻两项",
-      "只删首尾"
+      "只删首尾",
+      "保留一个重复值",
+      "所有重复值节点"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "题意是重复元素完全移除。",
     "xp": 12,
     "learning": {
@@ -2061,12 +2061,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【有效括号】 核心数据结构是？",
     "options": [
-      "栈",
-      "队列",
       "哈希",
+      "队列",
+      "栈",
       "堆"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "后进先出匹配括号。",
     "xp": 12,
     "learning": {
@@ -2102,12 +2102,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最小栈】 常见做法是？",
     "options": [
-      "辅助栈同步维护最小值",
       "每次遍历求最小",
-      "二分树",
-      "并查集"
+      "并查集",
+      "辅助栈同步维护最小值",
+      "二分树"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "push/pop 同步更新 min 栈。",
     "xp": 12,
     "learning": {
@@ -2143,12 +2143,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【每日温度】 为什么用单调递减栈？",
     "options": [
-      "可在出栈时确定下一个更大元素",
       "减少空间为 O(1)",
       "便于排序",
-      "避免循环"
+      "避免循环",
+      "可在出栈时确定下一个更大元素"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "每个元素最多进出栈一次。",
     "xp": 12,
     "learning": {
@@ -2184,12 +2184,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【柱状图最大矩形】 经典解法是？",
     "options": [
-      "单调栈求左右边界",
       "双指针夹逼",
       "哈希计数",
-      "前缀和"
+      "前缀和",
+      "单调栈求左右边界"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "栈维护递增高度。",
     "xp": 12,
     "learning": {
@@ -2232,12 +2232,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【逆波兰表达式求值】 遇到运算符时应？",
     "options": [
-      "弹出两个操作数计算后压回",
       "跳过",
-      "清空栈",
-      "入队"
+      "入队",
+      "弹出两个操作数计算后压回",
+      "清空栈"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "遵循后缀表达式规则。",
     "xp": 12,
     "learning": {
@@ -2273,12 +2273,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【字符串解码】 `3【a2【c】】` 推荐用什么实现？",
     "options": [
-      "双栈或递归",
       "并查集",
       "二分查找",
-      "最小堆"
+      "最小堆",
+      "双栈或递归"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "括号嵌套天然适合栈。",
     "xp": 12,
     "learning": {
@@ -2314,12 +2314,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【滑动窗口最大值】 O(n) 解法常用？",
     "options": [
-      "单调队列",
+      "并查集",
       "最小堆",
-      "哈希表",
-      "并查集"
+      "单调队列",
+      "哈希表"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "队列头始终是当前窗口最大值下标。",
     "xp": 12,
     "learning": {
@@ -2355,12 +2355,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【实现队列用栈】 摊还 O(1) 的关键是？",
     "options": [
-      "只在需要时把输入栈倒到输出栈",
+      "随机弹出",
       "每次操作都全倒",
       "保持两个队列",
-      "随机弹出"
+      "只在需要时把输入栈倒到输出栈"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "每个元素最多搬运一次。",
     "xp": 12,
     "learning": {
@@ -2396,12 +2396,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【二分查找】 mid 的安全写法是？",
     "options": [
-      "l + (r - l) / 2",
       "(l + r) / 2 永远安全",
       "l + r + 1",
-      "(l-r)/2"
+      "(l-r)/2",
+      "l + (r - l) / 2"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "防止整型溢出。",
     "xp": 13,
     "codeSnippet": {
@@ -2442,12 +2442,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【搜索旋转排序数组】 如何判断有序半边？",
     "options": [
-      "比较 nums[l] 与 nums[mid]",
-      "比较 nums[mid] 与 target",
       "比较 nums[r] 与 target",
-      "随机判断"
+      "比较 nums[mid] 与 target",
+      "随机判断",
+      "比较 nums[l] 与 nums[mid]"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "一侧一定有序，再判断 target 是否落入。",
     "xp": 12,
     "learning": {
@@ -2490,12 +2490,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【寻找峰值】 为什么可用二分？",
     "options": [
+      "只需一次比较",
       "根据 mid 与 mid+1 的趋势能确定峰值所在侧",
-      "数组有序",
       "值唯一",
-      "只需一次比较"
+      "数组有序"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "斜率方向可指导搜索区间。",
     "xp": 12,
     "learning": {
@@ -2531,12 +2531,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【在排序数组中查找元素首尾位置】 常见做法是？",
     "options": [
-      "两次二分找左边界和右边界",
+      "线性扫描",
       "一次二分即可",
-      "哈希统计",
-      "线性扫描"
+      "两次二分找左边界和右边界",
+      "哈希统计"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "lower_bound 与 upper_bound 思路。",
     "xp": 12,
     "learning": {
@@ -2572,12 +2572,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【x 的平方根】 二分答案空间时判定条件是？",
     "options": [
-      "mid*mid <= x",
+      "mid-mid <= x",
       "mid <= x",
       "mid+x <= x",
-      "mid-mid <= x"
+      "mid*mid <= x"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "找满足条件的最大 mid。",
     "xp": 12,
     "learning": {
@@ -2613,12 +2613,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【寻找旋转数组最小值】 判断依据是？",
     "options": [
-      "nums[mid] 与 nums[r] 比较",
-      "nums[mid] 与 nums[l] 比较即可",
       "target 比较",
-      "长度比较"
+      "nums[mid] 与 nums[r] 比较",
+      "长度比较",
+      "nums[mid] 与 nums[l] 比较即可"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "与右端比较可判断最小值在哪半边。",
     "xp": 12,
     "learning": {
@@ -2661,12 +2661,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【Koko 吃香蕉】 本质是什么？",
     "options": [
-      "最小可行速度的答案二分",
-      "排序问题",
+      "滑动窗口",
       "图最短路",
-      "滑动窗口"
+      "最小可行速度的答案二分",
+      "排序问题"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "速度越大耗时越短，具有单调性。",
     "xp": 12,
     "learning": {
@@ -2702,12 +2702,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【搜索二维矩阵】 若矩阵行首递增可视作？",
     "options": [
+      "链表",
       "一维有序数组",
-      "二叉树",
       "图",
-      "链表"
+      "二叉树"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "用下标映射 row/col 即可二分。",
     "xp": 12,
     "learning": {
@@ -2743,12 +2743,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【二叉树层序遍历】 典型结构是？",
     "options": [
-      "队列 BFS",
-      "栈 DFS",
       "哈希",
-      "堆"
+      "堆",
+      "栈 DFS",
+      "队列 BFS"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "按层推进天然使用队列。",
     "xp": 14,
     "codeSnippet": {
@@ -2784,12 +2784,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【验证二叉搜索树】 递归法常用约束是？",
     "options": [
+      "中序长度",
       "节点值在 (low, high) 开区间",
       "只比较父节点",
-      "只比较叶子",
-      "中序长度"
+      "只比较叶子"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "BST 每个子树都有全局上下界。",
     "xp": 12,
     "learning": {
@@ -2832,12 +2832,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最近公共祖先】 递归返回逻辑是？",
     "options": [
-      "左右子树各命中一个则当前为 LCA",
-      "谁大返回谁",
+      "哈希计数",
       "深度最小返回",
-      "哈希计数"
+      "谁大返回谁",
+      "左右子树各命中一个则当前为 LCA"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "后序遍历汇总命中信息。",
     "xp": 12,
     "learning": {
@@ -2873,12 +2873,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【翻转二叉树】 本质操作是？",
     "options": [
-      "交换每个节点左右子树",
-      "反转中序序列",
       "删除叶子",
-      "按值排序"
+      "按值排序",
+      "反转中序序列",
+      "交换每个节点左右子树"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "递归或迭代均可。",
     "xp": 12,
     "learning": {
@@ -2914,12 +2914,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【路径总和】 DFS 参数常用什么？",
     "options": [
+      "父节点值",
       "当前路径和",
       "节点层号",
-      "队列长度",
-      "父节点值"
+      "队列长度"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "到叶子时比较目标值。",
     "xp": 12,
     "learning": {
@@ -2955,12 +2955,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【二叉树直径】 需要在 DFS 中维护什么？",
     "options": [
+      "叶子值",
       "每个节点左右高度之和最大值",
-      "节点数量",
       "层序数组",
-      "叶子值"
+      "节点数量"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "直径可能不经过根。",
     "xp": 12,
     "learning": {
@@ -2996,12 +2996,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【平衡二叉树】 高效做法是？",
     "options": [
-      "后序返回高度并剪枝",
+      "哈希去重",
       "每层都重复计算高度",
       "排序节点",
-      "哈希去重"
+      "后序返回高度并剪枝"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "子树不平衡可提前返回。",
     "xp": 12,
     "learning": {
@@ -3037,12 +3037,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【二叉树最大路径和】 路径贡献如何定义？",
     "options": [
-      "max(0,leftGain/rightGain)",
-      "left+right 必须都取",
       "只取叶子",
+      "left+right 必须都取",
+      "max(0,leftGain/rightGain)",
       "只取根"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "负贡献应舍弃。",
     "xp": 12,
     "learning": {
@@ -3078,12 +3078,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【从前序与中序构造二叉树】 核心映射是？",
     "options": [
-      "中序值到下标哈希",
       "前序值到深度",
+      "层序映射",
       "后序值到下标",
-      "层序映射"
+      "中序值到下标哈希"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "通过中序下标切分左右子树。",
     "xp": 12,
     "learning": {
@@ -3119,12 +3119,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【二叉搜索树第 K 小】 中序遍历性质是？",
     "options": [
-      "得到递增序列",
-      "得到递减序列",
       "随机序列",
-      "层序序列"
+      "得到递增序列",
+      "层序序列",
+      "得到递减序列"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "BST 的中序是有序。",
     "xp": 12,
     "learning": {
@@ -3160,12 +3160,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【序列化二叉树】 需要记录空节点的原因是？",
     "options": [
-      "保证结构可唯一还原",
       "节省空间",
+      "保证结构可唯一还原",
       "避免递归",
       "提升排序"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "只存值会丢失形状信息。",
     "xp": 12,
     "learning": {
@@ -3201,12 +3201,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【对称二叉树】 递归比较哪两棵子树？",
     "options": [
-      "左子树的左与右子树的右，左子树的右与右子树的左",
-      "同侧比较",
       "只比较值集合",
-      "只比较深度"
+      "只比较深度",
+      "同侧比较",
+      "左子树的左与右子树的右，左子树的右与右子树的左"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "镜像比较。",
     "xp": 12,
     "learning": {
@@ -3242,12 +3242,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【岛屿数量】 访问陆地后为什么要立刻标记？",
     "options": [
-      "防止重复搜索",
       "提高精度",
       "减少递归栈",
-      "保证排序"
+      "保证排序",
+      "防止重复搜索"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "避免多次计数。",
     "xp": 14,
     "codeSnippet": {
@@ -3290,12 +3290,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【课程表】 判环通常用什么？",
     "options": [
-      "拓扑排序或 DFS 染色",
-      "并查集按值合并",
       "双指针",
-      "堆"
+      "堆",
+      "并查集按值合并",
+      "拓扑排序或 DFS 染色"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "有向图有环则无法完成课程。",
     "xp": 12,
     "learning": {
@@ -3338,12 +3338,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【克隆图】 为什么要哈希 old->new？",
     "options": [
-      "处理环和共享邻接节点",
-      "减少节点数",
       "便于排序",
-      "计算最短路"
+      "计算最短路",
+      "减少节点数",
+      "处理环和共享邻接节点"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "防止重复克隆与无限递归。",
     "xp": 12,
     "learning": {
@@ -3379,12 +3379,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【腐烂的橘子】 为什么是多源 BFS？",
     "options": [
-      "多个腐烂点同时扩散",
       "只需 DFS",
+      "必须并查集",
       "图有权",
-      "必须并查集"
+      "多个腐烂点同时扩散"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "每一层代表一分钟。",
     "xp": 12,
     "learning": {
@@ -3420,12 +3420,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【单词接龙】 适合哪种搜索？",
     "options": [
-      "BFS 最短步数",
       "DFS 最短步数",
-      "Dijkstra",
-      "A* 必须"
+      "A* 必须",
+      "BFS 最短步数",
+      "Dijkstra"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "无权图最短路径用 BFS。",
     "xp": 12,
     "learning": {
@@ -3461,12 +3461,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【被围绕的区域】 边界 O 处理思路是？",
     "options": [
-      "先标记边界连通 O，再翻转其余 O",
       "直接翻全部 O",
       "按行排序",
-      "哈希频次"
+      "哈希频次",
+      "先标记边界连通 O，再翻转其余 O"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "边界连通的不应被捕获。",
     "xp": 12,
     "learning": {
@@ -3502,12 +3502,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【冗余连接】 无向图找成环边常用？",
     "options": [
-      "并查集",
-      "拓扑排序",
+      "滑窗",
       "最小堆",
-      "滑窗"
+      "拓扑排序",
+      "并查集"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "加入边前若已连通则是冗余边。",
     "xp": 12,
     "learning": {
@@ -3543,12 +3543,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【网络延迟时间】 边权非负时常用算法？",
     "options": [
-      "Dijkstra",
       "Floyd 必须",
-      "KMP",
-      "单调栈"
+      "Dijkstra",
+      "单调栈",
+      "KMP"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "单源最短路径经典。",
     "xp": 12,
     "learning": {
@@ -3584,12 +3584,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【爬楼梯】 状态转移是？",
     "options": [
-      "dp[i]=dp[i-1]+dp[i-2]",
       "dp[i]=dp[i-1]*2",
-      "dp[i]=max(dp[i-1],dp[i-2])",
-      "dp[i]=1"
+      "dp[i]=1",
+      "dp[i]=dp[i-1]+dp[i-2]",
+      "dp[i]=max(dp[i-1],dp[i-2])"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "每一步来自前一阶或前两阶。",
     "xp": 13,
     "codeSnippet": {
@@ -3623,12 +3623,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【打家劫舍】 线性 DP 转移是？",
     "options": [
-      "dp[i]=max(dp[i-1],dp[i-2]+nums[i])",
-      "dp[i]=dp[i-1]+nums[i]",
+      "dp[i]=nums[i]",
       "dp[i]=min(...) ",
-      "dp[i]=nums[i]"
+      "dp[i]=max(dp[i-1],dp[i-2]+nums[i])",
+      "dp[i]=dp[i-1]+nums[i]"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "偷当前则不能偷前一间。",
     "xp": 12,
     "learning": {
@@ -3664,12 +3664,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【零钱兑换】 完全背包转移方向是？",
     "options": [
-      "金额从小到大",
-      "金额从大到小",
       "随意",
+      "金额从大到小",
+      "金额从小到大",
       "只更新一次"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "每个硬币可重复使用。",
     "xp": 15,
     "codeSnippet": {
@@ -3705,12 +3705,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最长递增子序列】 O(n log n) 优化依赖？",
     "options": [
-      "维护 tails 并二分",
       "前缀和",
       "并查集",
-      "单调队列"
+      "单调队列",
+      "维护 tails 并二分"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "tails[k] 是长度 k+1 子序列最小尾值。",
     "xp": 12,
     "learning": {
@@ -3753,12 +3753,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最长公共子序列】 当字符相等时？",
     "options": [
-      "dp[i][j]=dp[i-1][j-1]+1",
       "dp[i][j]=dp[i-1][j]",
       "dp[i][j]=dp[i][j-1]",
-      "dp[i][j]=0"
+      "dp[i][j]=0",
+      "dp[i][j]=dp[i-1][j-1]+1"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "相等就承接左上并 +1。",
     "xp": 12,
     "learning": {
@@ -3794,12 +3794,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【分割等和子集】 目标可转化为？",
     "options": [
-      "是否能凑出 sum/2",
-      "是否有连续子数组和为0",
       "是否排序后对称",
-      "是否有环"
+      "是否有环",
+      "是否有连续子数组和为0",
+      "是否能凑出 sum/2"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "典型 0/1 背包可达性。",
     "xp": 12,
     "learning": {
@@ -3842,12 +3842,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【编辑距离】 三种操作对应？",
     "options": [
-      "插入/删除/替换",
-      "交换/删除/反转",
+      "排序/查找/替换",
       "合并/拆分/复制",
-      "排序/查找/替换"
+      "交换/删除/反转",
+      "插入/删除/替换"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "dp 取三者最小 +1。",
     "xp": 12,
     "learning": {
@@ -3883,12 +3883,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【不同路径】 机器人只能右/下时转移是？",
     "options": [
-      "dp[i][j]=dp[i-1][j]+dp[i][j-1]",
-      "dp[i][j]=dp[i-1][j-1]",
+      "dp[i][j]=1",
       "dp[i][j]=max(...) ",
-      "dp[i][j]=1"
+      "dp[i][j]=dp[i-1][j-1]",
+      "dp[i][j]=dp[i-1][j]+dp[i][j-1]"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "到当前格路径来自上和左。",
     "xp": 12,
     "learning": {
@@ -3924,12 +3924,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最长回文子串】 中心扩展法复杂度通常是？",
     "options": [
-      "O(n^2)",
+      "O(n^3)",
       "O(n)",
       "O(log n)",
-      "O(n^3)"
+      "O(n^2)"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "每个中心向两侧扩展。",
     "xp": 12,
     "learning": {
@@ -3965,12 +3965,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【单词拆分】 常见状态定义是？",
     "options": [
+      "dp[i] 表示词典大小",
       "dp[i] 表示前 i 个字符可拆分",
       "dp[i] 表示第 i 字符是否元音",
-      "dp[i] 表示词典大小",
       "dp[i] 表示最短词"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "通过枚举断点转移。",
     "xp": 12,
     "learning": {
@@ -4006,12 +4006,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【最大正方形】 状态与哪个方向有关？",
     "options": [
-      "上、左、左上最小值+1",
+      "对角线和",
       "仅上方+1",
       "仅左方+1",
-      "对角线和"
+      "上、左、左上最小值+1"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "三者共同限制正方形边长。",
     "xp": 12,
     "learning": {
@@ -4047,12 +4047,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【买卖股票含冷冻期】 需要几个状态？",
     "options": [
-      "持有/不持有且可买/不持有且冷冻",
+      "与天数无关",
       "1 个",
       "2 个固定",
-      "与天数无关"
+      "持有/不持有且可买/不持有且冷冻"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "冷冻期引入额外状态。",
     "xp": 12,
     "learning": {
@@ -4088,12 +4088,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【全排列】 回溯模板关键是？",
     "options": [
-      "路径 path + 使用标记 used + 回退",
+      "二分",
       "仅双指针",
       "并查集",
-      "二分"
+      "路径 path + 使用标记 used + 回退"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "做选择、递归、撤销选择。",
     "xp": 14,
     "codeSnippet": {
@@ -4136,12 +4136,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【组合总和】 为避免重复组合，递归应？",
     "options": [
+      "随机选择",
       "传递 start 下标保证非递减选择",
       "每层从 0 开始",
-      "随机选择",
       "排序后去重即可"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "同一层从 start 开始可复用当前元素。",
     "xp": 12,
     "learning": {
@@ -4177,12 +4177,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【N 皇后】 剪枝时常维护哪些集合？",
     "options": [
-      "列、主对角线、副对角线",
       "行号和列号数组",
-      "层序队列",
-      "哈希频次"
+      "列、主对角线、副对角线",
+      "哈希频次",
+      "层序队列"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "O(1) 判断冲突。",
     "xp": 12,
     "learning": {
@@ -4225,12 +4225,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【前 K 个高频元素】 Python 中常见库是？",
     "options": [
-      "heapq",
       "bisect",
       "itertools",
-      "collections.deque"
+      "collections.deque",
+      "heapq"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "heapq.nlargest 可直接取前 K。",
     "xp": 14,
     "codeSnippet": {
@@ -4267,12 +4267,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【搜索插入位置】 二分查找的正确边界策略是？",
     "options": [
-      "使用 left<=right，最后返回 left 作为插入点",
+      "每次只移动一个指针，避免跳过",
       "使用 left<right，最后返回 right+1",
       "从中间向两边线性扩展",
-      "每次只移动一个指针，避免跳过"
+      "使用 left<=right，最后返回 left 作为插入点"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "标准二分：循环结束时 left 指向第一个 >= target 的位置（也就是插入位置）。",
     "xp": 12,
     "learning": {
@@ -4311,12 +4311,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【组合】 回溯中用于避免重复组合的关键是？",
     "options": [
-      "使用 startIndex 控制下一层从哪里选",
       "每层都从 1 重新开始选",
       "对 path 排序后再去重",
-      "用哈希表记录所有出现过的 path"
+      "用哈希表记录所有出现过的 path",
+      "使用 startIndex 控制下一层从哪里选"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "组合是“无序选择”，通过 startIndex 保证元素只向后选，从源头避免重复。",
     "xp": 14,
     "learning": {
@@ -4355,12 +4355,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【子集】 生成所有子集的回溯策略是？",
     "options": [
-      "每个元素都做“选/不选”的分支，并记录每个节点的 path",
-      "只记录长度为 n 的 path",
+      "用双指针滑窗扩展",
       "先排序再只取连续片段",
-      "用双指针滑窗扩展"
+      "只记录长度为 n 的 path",
+      "每个元素都做“选/不选”的分支，并记录每个节点的 path"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "子集枚举可视作一棵决策树，每个节点的 path 都是一个有效子集。",
     "xp": 14,
     "learning": {
@@ -4408,12 +4408,12 @@ module.exports = [
     },
     "question": "【二叉树最大深度】 DFS 递归的返回值通常表示？",
     "options": [
+      "树是否平衡",
       "以当前节点为根的最大深度",
-      "当前节点的值",
       "节点总数",
-      "树是否平衡"
+      "当前节点的值"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "递归函数返回“子树的答案”，当前节点只做组合：1 + max(left,right)。",
     "description": "给定二叉树 root，返回其最大深度（从根到最远叶子节点的最长路径节点数）。",
     "learning": {
@@ -4442,12 +4442,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【二叉树的最小深度】 为什么常用 BFS 而不是 DFS？",
     "options": [
-      "BFS 按层推进，第一次遇到叶子节点就是最小深度",
       "DFS 无法遍历二叉树",
-      "BFS 一定比 DFS 更省空间",
-      "DFS 只能求最大值"
+      "BFS 按层推进，第一次遇到叶子节点就是最小深度",
+      "DFS 只能求最大值",
+      "BFS 一定比 DFS 更省空间"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "最短路径/最小层数类问题，BFS 自带“最先到达即最短”的性质。",
     "xp": 14,
     "learning": {
@@ -4495,12 +4495,12 @@ module.exports = [
     },
     "question": "【股票 III】 最多两次交易的 DP 关键状态是？",
     "options": [
+      "并查集合并区间",
       "次数k + 是否持股 的状态机 DP",
-      "排序后贪心",
       "双指针夹逼",
-      "并查集合并区间"
+      "排序后贪心"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "经典股票 DP：dp[k][0/1] 表示完成 k 次交易后不持股/持股的最大利润。",
     "description": "给定 prices，最多完成两笔交易（买入+卖出为一笔），求最大利润（不能同时参与多笔交易）。",
     "learning": {
@@ -4538,12 +4538,12 @@ module.exports = [
     },
     "question": "【只出现一次的数字】 使用异或的关键性质是？",
     "options": [
-      "a^a=0 且 a^0=a",
+      "异或不满足交换律",
       "a&a=a",
       "a|a=0",
-      "异或不满足交换律"
+      "a^a=0 且 a^0=a"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "异或满足交换律/结合律，成对元素会抵消为 0，剩下的就是答案。",
     "description": "给定非空整数数组，除一个元素只出现一次外，其余元素均出现两次，找出只出现一次的元素。",
     "learning": {
@@ -4581,12 +4581,12 @@ module.exports = [
     },
     "question": "【二叉树前序遍历】 递归前序的“访问位置”是？",
     "options": [
-      "进入节点时（左右子树之前）",
-      "左子树之后",
       "右子树之后",
-      "任何时候都一样"
+      "左子树之后",
+      "任何时候都一样",
+      "进入节点时（左右子树之前）"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "前序遍历顺序：根-左-右，所以在递归一开始就把 node.val 加入结果。",
     "description": "给定二叉树 root，返回其节点值的前序遍历。",
     "learning": {
@@ -4624,12 +4624,12 @@ module.exports = [
     },
     "question": "【2 的幂】 位运算判断 2^k 的常用式子是？",
     "options": [
-      "n>0 且 (n & (n-1)) == 0",
-      "n%2==1",
+      "n==0",
       "(n| (n-1))==0",
-      "n==0"
+      "n>0 且 (n & (n-1)) == 0",
+      "n%2==1"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "2 的幂二进制只有一个 1，n & (n-1) 会把最低位 1 清零，因此结果为 0。",
     "description": "给定一个整数 n，判断它是否为 2 的幂。",
     "learning": {
@@ -4667,12 +4667,12 @@ module.exports = [
     },
     "question": "【丑数 II】 求第 n 个丑数的常用方法是？",
     "options": [
-      "三指针 DP 合并有序序列",
       "二分查找答案",
-      "并查集",
-      "单调栈"
+      "单调栈",
+      "三指针 DP 合并有序序列",
+      "并查集"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "用指针 i2/i3/i5 生成下一个最小丑数，避免重复。",
     "description": "给定正整数 n，返回第 n 个丑数。丑数是只包含质因数 2、3、5 的正整数。",
     "learning": {
@@ -4710,12 +4710,12 @@ module.exports = [
     },
     "question": "【数据流的中位数】 常用的数据结构组合是？",
     "options": [
-      "大顶堆 + 小顶堆",
       "单调栈",
-      "并查集",
-      "前缀和数组"
+      "大顶堆 + 小顶堆",
+      "前缀和数组",
+      "并查集"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "用两个堆维持左右两半：maxHeap 保存较小一半，minHeap 保存较大一半。",
     "description": "设计数据结构支持 addNum 与 findMedian，在不断添加数字的数据流中实时返回中位数。",
     "learning": {
@@ -4753,12 +4753,12 @@ module.exports = [
     },
     "question": "【二维区域和检索】 构建二维前缀和的核心公式是？",
     "options": [
-      "sum = A+B-C+D（包含-排除）",
-      "只累加行前缀",
       "只累加列前缀",
-      "用并查集维护区域"
+      "用并查集维护区域",
+      "sum = A+B-C+D（包含-排除）",
+      "只累加行前缀"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "二维前缀和用 inclusion-exclusion：S[i][j] = S[i-1][j]+S[i][j-1]-S[i-1][j-1]+matrix[i][j]。",
     "description": "给定二维矩阵，预处理后支持多次查询任意子矩形的元素和。",
     "learning": {
@@ -4796,12 +4796,12 @@ module.exports = [
     },
     "question": "【区间加法】 差分数组 diff 的含义是？",
     "options": [
-      "diff[i] = nums[i] - nums[i-1]",
       "diff 只记录最大值",
+      "diff[i] = nums[i] - nums[i-1]",
       "diff 记录前缀和",
       "diff 用来二分查找"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "对区间 [l,r] 加 val：diff[l]+=val, diff[r+1]-=val，最后对 diff 求前缀和还原。",
     "description": "给定长度为 length 的数组初始为 0，多次对区间 [start,end] 加上增量，返回最终数组。",
     "learning": {
@@ -4839,12 +4839,12 @@ module.exports = [
     },
     "question": "【零钱兑换 II】 组合数（不限次数）背包的遍历顺序是？",
     "options": [
+      "必须排序后双指针",
       "先遍历 coin 再遍历金额",
-      "先遍历金额再遍历 coin",
       "只能 DFS",
-      "必须排序后双指针"
+      "先遍历金额再遍历 coin"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "组合数避免排列重复：外层 coin，内层 amount 从 coin 到 target 递增。",
     "description": "给定硬币面额 coins 与总金额 amount，计算可以凑成 amount 的组合数（每种硬币可无限使用）。",
     "learning": {
@@ -4882,12 +4882,12 @@ module.exports = [
     },
     "question": "【字符串的排列】 滑动窗口需要维护的核心变量是？",
     "options": [
-      "window 计数与 need 计数",
-      "只维护 left 指针",
       "只维护 right 指针",
+      "只维护 left 指针",
+      "window 计数与 need 计数",
       "只维护排序后的字符串"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "这是固定长度窗口：移动 right 增加计数，必要时移动 left 缩小，并比较计数是否满足。",
     "description": "给定 s1 和 s2，判断 s2 是否包含 s1 的任意排列作为子串。",
     "learning": {
@@ -4926,12 +4926,12 @@ module.exports = [
     },
     "question": "【BST 插入】 插入操作的递归方向由什么决定？",
     "options": [
+      "节点个数奇偶",
       "与当前节点值比较大小",
       "树的高度",
-      "节点个数奇偶",
       "中序遍历序号"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "BST 性质：val < node.val 去左子树，否则去右子树，直到空位置挂新节点。",
     "description": "给定二叉搜索树 root 与插入值 val，返回插入后的 BST 根节点。",
     "learning": {
@@ -4960,12 +4960,12 @@ module.exports = [
     "type": "multiple_choice",
     "question": "【打开转盘锁】 BFS 的“去重”通常用什么结构？",
     "options": [
+      "栈",
       "visited 集合（哈希集合）",
       "优先队列",
-      "栈",
       "并查集"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "状态图 BFS 必须记录 visited，否则会在环上反复入队导致爆炸。",
     "xp": 16,
     "learning": {
@@ -5013,12 +5013,12 @@ module.exports = [
     },
     "question": "【链表的中间结点】 快慢指针的步速关系是？",
     "options": [
-      "fast 每次走两步，slow 每次走一步",
-      "fast 每次走一步，slow 每次走两步",
+      "slow 不动",
       "两者都走两步",
-      "slow 不动"
+      "fast 每次走一步，slow 每次走两步",
+      "fast 每次走两步，slow 每次走一步"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "当 fast 到达末尾，slow 正好在中点。",
     "description": "给定非空单链表 head，返回链表的中间结点；若有两个中间结点返回第二个。",
     "learning": {
@@ -5056,12 +5056,12 @@ module.exports = [
     },
     "question": "【有序数组的平方】 为什么可以用双指针从两端向中间？",
     "options": [
-      "最大平方一定来自两端的较大绝对值",
       "平方会保持原排序",
       "必须先排序再平方",
+      "最大平方一定来自两端的较大绝对值",
       "只能用堆做 TopK"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "因为负数平方后可能变大；两端绝对值最大，平方最大，倒序填充结果数组即可。",
     "description": "给定按非递减顺序排序的整数数组 nums，返回每个数字的平方组成的新数组，要求也按非递减顺序排序。",
     "learning": {

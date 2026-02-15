@@ -24,6 +24,16 @@
   font-weight: 500;
 }
 
+.path-hint {
+  margin-top: 20rpx;
+  padding: 14rpx 20rpx;
+  border-radius: 16rpx;
+  background: #eef8ff;
+  color: #2f6fb3;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
 .path-scroll {
   height: calc(100vh - 200rpx);
 }
@@ -174,6 +184,31 @@
   align-items: center;
 }
 
+.track-progress-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-top: 12rpx;
+}
+
+.track-progress {
+  font-size: 22rpx;
+  font-weight: 800;
+  border-radius: 999rpx;
+  padding: 4rpx 16rpx;
+}
+
+.track-progress.core {
+  color: #1f7a1f;
+  background: #e7f7dd;
+}
+
+.track-progress.extra {
+  color: #6f4f17;
+  background: #fff4dc;
+}
+
 .progress-track {
   flex: 1;
   height: 16rpx;
@@ -271,4 +306,3 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15rpx); }
 }
-

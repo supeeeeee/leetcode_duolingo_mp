@@ -1,6 +1,7 @@
 // pages/path/path.js
 const topics = require('../../data/topics');
 const storage = require('../../services/storage');
+const topicStats = require('../../services/topicStats');
 
 const topicEmojis = {
   ch01_two_pointers: '👆👇',
@@ -26,27 +27,44 @@ Page({
   onShow: function () {
     const userData = storage.getUserData();
     const progress = userData ? userData.topicProgress : {};
-    const completedCount = Object.values(progress).filter(v => v > 0).length;
-    
+    const topicProgressMap = topicStats.getTopicProgressMap();
+
     // Pre-calculate percentages and status
     const displayTopics = topics.map(topic => {
-      const lessonsDone = progress[topic.id] || 0;
-      const percent = topic.totalLessons > 0 ? Math.round((lessonsDone / topic.totalLessons) * 100) : 0;
-      const hasLessons = Number(topic.totalLessons) > 0;
+      const stats = topicProgressMap[topic.id] || {
+        coreDone: 0,
+        coreTotal: 0,
+        extraDone: 0,
+        extraTotal: 0,
+        totalDone: 0,
+        total: 0,
+        corePercent: 0,
+        totalPercent: 0
+      };
+      const hasLessons = Number(stats.total) > 0;
       return {
         ...topic,
-        lessonsDone,
-        percent,
-        isCompleted: lessonsDone > 0,
-        // Avoid marking empty chapters as mastered
-        isMastered: hasLessons && lessonsDone >= topic.totalLessons
+        lessonsDone: stats.totalDone,
+        percent: stats.totalPercent,
+        coreDone: stats.coreDone,
+        coreTotal: stats.coreTotal,
+        extraDone: stats.extraDone,
+        extraTotal: stats.extraTotal,
+        isCompleted: stats.totalDone > 0,
+        isMastered: hasLessons && stats.totalDone >= stats.total,
+        hasCore: stats.coreTotal > 0,
+        hasExtra: stats.extraTotal > 0
       };
     });
+
+    const topicsWithQuestions = displayTopics.filter(topic => (topic.coreTotal + topic.extraTotal) > 0);
+    const masteredCount = topicsWithQuestions.filter(topic => topic.isMastered).length;
 
     this.setData({
       topics: displayTopics,
       progress: progress,
-      isAllCompleted: completedCount >= topics.length
+      showCoreFirstHint: displayTopics.some(topic => topic.coreTotal > 0 && topic.coreDone < topic.coreTotal),
+      isAllCompleted: topicsWithQuestions.length > 0 && masteredCount >= topicsWithQuestions.length
     });
   },
 

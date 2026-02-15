@@ -8,10 +8,6 @@ const history = require('./history');
 // - 进入某个章节(topicId)时：优先抽取“未答对过”的核心题；核心做完后再抽扩展。
 // - 全局复习时：优先错题（wrongQuestions），再混合核心/扩展。
 
-function shuffle(arr) {
-  return arr.slice().sort(() => 0.5 - Math.random());
-}
-
 function getAnsweredCorrectSet() {
   const h = history.getHistory();
   const set = new Set();
@@ -28,34 +24,77 @@ function getWrongIdSet() {
   return set;
 }
 
+function getQuestionOrderMap() {
+  const order = new Map();
+  questions.forEach((q, idx) => {
+    order.set(q.id, idx);
+  });
+  return order;
+}
+
+function getIdTieBreak(id) {
+  const text = String(id || '');
+  const matched = text.match(/\d+/);
+  if (!matched) return Number.MAX_SAFE_INTEGER;
+  return Number(matched[0]);
+}
+
+function stableSortWithTieBreak(list, orderMap) {
+  return list
+    .slice()
+    .sort((a, b) => {
+      const orderA = orderMap.has(a.id) ? orderMap.get(a.id) : Number.MAX_SAFE_INTEGER;
+      const orderB = orderMap.has(b.id) ? orderMap.get(b.id) : Number.MAX_SAFE_INTEGER;
+      if (orderA !== orderB) return orderA - orderB;
+      const idA = getIdTieBreak(a.id);
+      const idB = getIdTieBreak(b.id);
+      if (idA !== idB) return idA - idB;
+      return String(a.id || '').localeCompare(String(b.id || ''));
+    });
+}
+
+function uniqueMergeGroups(groups) {
+  const seen = new Set();
+  const merged = [];
+  groups.forEach(group => {
+    group.forEach(item => {
+      if (!item || seen.has(item.id)) return;
+      seen.add(item.id);
+      merged.push(item);
+    });
+  });
+  return merged;
+}
+
 function getReviewSession(topicId = null, count = 5) {
   const correctSet = getAnsweredCorrectSet();
   const wrongSet = getWrongIdSet();
+  const orderMap = getQuestionOrderMap();
 
   let pool = topicId ? questions.filter(q => q.topicId === topicId) : questions;
   if (pool.length === 0) return [];
 
-  // Always prioritize wrong questions within the pool
-  const wrongPool = pool.filter(q => wrongSet.has(q.id));
-
-  // Separate core vs extra (default extra)
   const corePool = pool.filter(q => q.track === 'core');
   const extraPool = pool.filter(q => q.track !== 'core');
-
-  // "Due" core = core questions not answered correctly before
+  const wrongPool = pool.filter(q => wrongSet.has(q.id));
   const dueCore = corePool.filter(q => !correctSet.has(q.id));
 
-  let selected = [];
+  const topicOrdered = uniqueMergeGroups([
+    stableSortWithTieBreak(dueCore, orderMap),
+    stableSortWithTieBreak(wrongPool, orderMap),
+    stableSortWithTieBreak(extraPool, orderMap),
+    stableSortWithTieBreak(corePool, orderMap),
+    stableSortWithTieBreak(pool, orderMap)
+  ]);
 
-  if (topicId) {
-    // Topic session: core first, then extra
-    selected = shuffle(dueCore.length > 0 ? dueCore : (extraPool.length > 0 ? extraPool : corePool));
-  } else {
-    // Global: wrong first, then mix remaining
-    const rest = pool.filter(q => !wrongSet.has(q.id));
-    selected = shuffle([...wrongPool, ...rest]);
-  }
+  const globalOrdered = uniqueMergeGroups([
+    stableSortWithTieBreak(wrongPool, orderMap),
+    stableSortWithTieBreak(corePool, orderMap),
+    stableSortWithTieBreak(extraPool, orderMap),
+    stableSortWithTieBreak(pool, orderMap)
+  ]);
 
+  const selected = topicId ? topicOrdered : globalOrdered;
   return selected.slice(0, count);
 }
 

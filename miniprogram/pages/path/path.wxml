@@ -3,6 +3,9 @@
   <view class="path-header">
     <text class="path-title">学习路径</text>
     <text class="path-subtitle">按主题逐一攻克 LeetCode</text>
+    <view class="path-hint" wx:if="{{showCoreFirstHint}}">
+      <text>提示：先完成核心题，再拓展额外题，效率更高。</text>
+    </view>
   </view>
 
   <scroll-view scroll-y class="path-scroll">
@@ -35,6 +38,10 @@
               </view>
               <text class="progress-text">{{item.percent}}%</text>
             </view>
+            <view class="track-progress-row" wx:if="{{item.hasCore || item.hasExtra}}">
+              <text class="track-progress core" wx:if="{{item.hasCore}}">核心 {{item.coreDone}}/{{item.coreTotal}}</text>
+              <text class="track-progress extra" wx:if="{{item.hasExtra}}">扩展 {{item.extraDone}}/{{item.extraTotal}}</text>
+            </view>
           </view>
 
           <view class="topic-arrow">〉</view>
@@ -57,4 +64,3 @@
     </view>
   </scroll-view>
 </view>
-

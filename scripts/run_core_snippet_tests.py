@@ -78,9 +78,7 @@ def build_cases() -> dict[str, list[Case]]:
     c["two-sum"] = [
         Case(
             "basic",
-            lambda ns: assert_eq(
-                ns["twoSum"]([2, 7, 11, 15], 9), [0, 1], "twoSum"
-            ),
+            lambda ns: assert_eq(ns["twoSum"]([2, 7, 11, 15], 9), [0, 1], "twoSum"),
         )
     ]
 
@@ -90,20 +88,13 @@ def build_cases() -> dict[str, list[Case]]:
     ]
 
     c["best-time-to-buy-and-sell-stock-iii"] = [
-        Case("classic", lambda ns: assert_eq(ns["maxProfit"]([3, 3, 5, 0, 0, 3, 1, 4]), 6)),
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["maxProfit"]([3, 3, 5, 0, 0, 3, 1, 4]), 6),
+        ),
         Case("increasing", lambda ns: assert_eq(ns["maxProfit"]([1, 2, 3, 4, 5]), 4)),
     ]
 
-    c["linked-list-cycle"] = [
-        Case(
-            "has_cycle",
-            lambda ns: (
-                (lambda head: (setattr(head.next.next.next, "next", head.next), None))[1]
-                if False
-                else None
-            ),
-        )
-    ]
     # We'll implement linked list cycle tests with manual linking:
     def _cycle_true(ns):
         hasCycle = ns["hasCycle"]
@@ -150,7 +141,9 @@ def build_cases() -> dict[str, list[Case]]:
             "basic",
             lambda ns: assert_eq(
                 nodes_to_list(
-                    ns["mergeTwoLists"](list_to_nodes([1, 2, 4]), list_to_nodes([1, 3, 4]))
+                    ns["mergeTwoLists"](
+                        list_to_nodes([1, 2, 4]), list_to_nodes([1, 3, 4])
+                    )
                 ),
                 [1, 1, 2, 3, 4, 4],
             ),
@@ -161,7 +154,9 @@ def build_cases() -> dict[str, list[Case]]:
         Case(
             "basic",
             lambda ns: assert_eq(
-                nodes_to_list(ns["removeNthFromEnd"](list_to_nodes([1, 2, 3, 4, 5]), 2)),
+                nodes_to_list(
+                    ns["removeNthFromEnd"](list_to_nodes([1, 2, 3, 4, 5]), 2)
+                ),
                 [1, 2, 3, 5],
             ),
         )
@@ -170,11 +165,17 @@ def build_cases() -> dict[str, list[Case]]:
     c["middle-of-the-linked-list"] = [
         Case(
             "odd",
-            lambda ns: assert_eq(nodes_to_list(ns["middleNode"](list_to_nodes([1, 2, 3, 4, 5]))), [3, 4, 5]),
+            lambda ns: assert_eq(
+                nodes_to_list(ns["middleNode"](list_to_nodes([1, 2, 3, 4, 5]))),
+                [3, 4, 5],
+            ),
         ),
         Case(
             "even_second",
-            lambda ns: assert_eq(nodes_to_list(ns["middleNode"](list_to_nodes([1, 2, 3, 4, 5, 6]))), [4, 5, 6]),
+            lambda ns: assert_eq(
+                nodes_to_list(ns["middleNode"](list_to_nodes([1, 2, 3, 4, 5, 6]))),
+                [4, 5, 6],
+            ),
         ),
     ]
 
@@ -182,10 +183,10 @@ def build_cases() -> dict[str, list[Case]]:
         Case(
             "basic",
             lambda ns: (
-                (lambda a: (
-                    (lambda k: assert_eq(a[:k], [0, 1, 2, 3, 4]))(ns["removeDuplicates"](a))
-                ))([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
-            ),
+                lambda a: (lambda k: assert_eq(a[:k], [0, 1, 2, 3, 4]))(
+                    ns["removeDuplicates"](a)
+                )
+            )([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]),
         )
     ]
 
@@ -193,14 +194,13 @@ def build_cases() -> dict[str, list[Case]]:
         Case(
             "basic",
             lambda ns: (
-                (lambda res: (
-                    (lambda s: (
-                        (lambda _: None)()
-                    ))(set(tuple(x) for x in map(lambda t: tuple(sorted(t)), res)))
-                ))(ns["threeSum"]([-1, 0, 1, 2, -1, -4]))
-            ),
+                lambda res: (lambda s: (lambda _: None)())(
+                    set(tuple(x) for x in map(lambda t: tuple(sorted(t)), res))
+                )
+            )(ns["threeSum"]([-1, 0, 1, 2, -1, -4])),
         )
     ]
+
     # Validate 3sum by set equality
     def _three_sum(ns):
         res = ns["threeSum"]([-1, 0, 1, 2, -1, -4])
@@ -243,22 +243,34 @@ def build_cases() -> dict[str, list[Case]]:
     ]
 
     c["minimum-window-substring"] = [
-        Case("classic", lambda ns: assert_eq(ns["minWindow"]("ADOBECODEBANC", "ABC"), "BANC")),
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["minWindow"]("ADOBECODEBANC", "ABC"), "BANC"),
+        ),
         Case("none", lambda ns: assert_eq(ns["minWindow"]("a", "aa"), "")),
     ]
 
     c["longest-substring-without-repeating-characters"] = [
-        Case("abc", lambda ns: assert_eq(ns["lengthOfLongestSubstring"]("abcabcbb"), 3)),
+        Case(
+            "abc", lambda ns: assert_eq(ns["lengthOfLongestSubstring"]("abcabcbb"), 3)
+        ),
         Case("bb", lambda ns: assert_eq(ns["lengthOfLongestSubstring"]("bbbbb"), 1)),
     ]
 
     c["find-all-anagrams-in-a-string"] = [
-        Case("basic", lambda ns: assert_eq(ns["findAnagrams"]("cbaebabacd", "abc"), [0, 6])),
+        Case(
+            "basic",
+            lambda ns: assert_eq(ns["findAnagrams"]("cbaebabacd", "abc"), [0, 6]),
+        ),
     ]
 
     c["permutation-in-string"] = [
-        Case("true", lambda ns: assert_eq(ns["checkInclusion"]("ab", "eidbaooo"), True)),
-        Case("false", lambda ns: assert_eq(ns["checkInclusion"]("ab", "eidboaoo"), False)),
+        Case(
+            "true", lambda ns: assert_eq(ns["checkInclusion"]("ab", "eidbaooo"), True)
+        ),
+        Case(
+            "false", lambda ns: assert_eq(ns["checkInclusion"]("ab", "eidboaoo"), False)
+        ),
     ]
 
     c["combinations"] = [
@@ -350,10 +362,8 @@ def build_cases() -> dict[str, list[Case]]:
     c["minimum-depth-of-binary-tree"] = [
         Case(
             "chain",
-            lambda ns: (
-                (lambda root: assert_eq(ns["minDepth"](root), 3))(
-                    TreeNode(1, TreeNode(2, TreeNode(3), None), None)
-                )
+            lambda ns: (lambda root: assert_eq(ns["minDepth"](root), 3))(
+                TreeNode(1, TreeNode(2, TreeNode(3), None), None)
             ),
         )
     ]
@@ -361,10 +371,8 @@ def build_cases() -> dict[str, list[Case]]:
     c["maximum-depth-of-binary-tree"] = [
         Case(
             "basic",
-            lambda ns: (
-                (lambda root: assert_eq(ns["maxDepth"](root), 3))(
-                    TreeNode(1, TreeNode(2), TreeNode(3, TreeNode(4), None))
-                )
+            lambda ns: (lambda root: assert_eq(ns["maxDepth"](root), 3))(
+                TreeNode(1, TreeNode(2), TreeNode(3, TreeNode(4), None))
             ),
         )
     ]
@@ -373,28 +381,22 @@ def build_cases() -> dict[str, list[Case]]:
         Case(
             "basic",
             lambda ns: (
-                (lambda root: assert_eq(ns["preorderTraversal"](root), [1, 2, 3]))(
-                    TreeNode(1, None, TreeNode(2, TreeNode(3), None))
-                )
-            ),
+                lambda root: assert_eq(ns["preorderTraversal"](root), [1, 2, 3])
+            )(TreeNode(1, None, TreeNode(2, TreeNode(3), None))),
         )
     ]
 
     c["validate-binary-search-tree"] = [
         Case(
             "true",
-            lambda ns: (
-                (lambda root: assert_eq(ns["isValidBST"](root), True))(
-                    TreeNode(2, TreeNode(1), TreeNode(3))
-                )
+            lambda ns: (lambda root: assert_eq(ns["isValidBST"](root), True))(
+                TreeNode(2, TreeNode(1), TreeNode(3))
             ),
         ),
         Case(
             "false",
-            lambda ns: (
-                (lambda root: assert_eq(ns["isValidBST"](root), False))(
-                    TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))
-                )
+            lambda ns: (lambda root: assert_eq(ns["isValidBST"](root), False))(
+                TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))
             ),
         ),
     ]
@@ -403,26 +405,33 @@ def build_cases() -> dict[str, list[Case]]:
         Case(
             "insert",
             lambda ns: (
-                (lambda root: (
+                lambda root: (
                     ns["insertIntoBST"](root, 5),
                     assert_eq(root.right.left.val, 5),
-                ))(
-                    TreeNode(4, TreeNode(2, TreeNode(1), TreeNode(3)), TreeNode(7))
                 )
-            ),
+            )(TreeNode(4, TreeNode(2, TreeNode(1), TreeNode(3)), TreeNode(7))),
         )
     ]
 
     c["trapping-rain-water"] = [
-        Case("classic", lambda ns: assert_eq(ns["trap"]([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]), 6)),
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["trap"]([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]), 6),
+        ),
     ]
 
     c["maximum-subarray"] = [
-        Case("classic", lambda ns: assert_eq(ns["maxSubArray"]([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)),
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["maxSubArray"]([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6),
+        ),
     ]
 
     c["longest-increasing-subsequence"] = [
-        Case("classic", lambda ns: assert_eq(ns["lengthOfLIS"]([10, 9, 2, 5, 3, 7, 101, 18]), 4)),
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["lengthOfLIS"]([10, 9, 2, 5, 3, 7, 101, 18]), 4),
+        ),
     ]
 
     c["partition-equal-subset-sum"] = [
@@ -435,27 +444,30 @@ def build_cases() -> dict[str, list[Case]]:
     ]
 
     c["largest-rectangle-in-histogram"] = [
-        Case("classic", lambda ns: assert_eq(ns["largestRectangleArea"]([2, 1, 5, 6, 2, 3]), 10)),
+        Case(
+            "classic",
+            lambda ns: assert_eq(ns["largestRectangleArea"]([2, 1, 5, 6, 2, 3]), 10),
+        ),
     ]
 
     c["range-sum-query-2d-immutable"] = [
         Case(
             "classic",
             lambda ns: (
-                (lambda m: (
+                lambda m: (
                     assert_eq(m.sumRegion(2, 1, 4, 3), 8),
                     assert_eq(m.sumRegion(1, 1, 2, 2), 11),
                     assert_eq(m.sumRegion(1, 2, 2, 4), 12),
-                ))(
-                    ns["NumMatrix"](
-                        [
-                            [3, 0, 1, 4, 2],
-                            [5, 6, 3, 2, 1],
-                            [1, 2, 0, 1, 5],
-                            [4, 1, 0, 1, 7],
-                            [1, 0, 3, 0, 5],
-                        ]
-                    )
+                )
+            )(
+                ns["NumMatrix"](
+                    [
+                        [3, 0, 1, 4, 2],
+                        [5, 6, 3, 2, 1],
+                        [1, 2, 0, 1, 5],
+                        [4, 1, 0, 1, 7],
+                        [1, 0, 3, 0, 5],
+                    ]
                 )
             ),
         )
@@ -488,19 +500,24 @@ def build_cases() -> dict[str, list[Case]]:
         Case(
             "basic",
             lambda ns: (
-                (lambda mf: (
+                lambda mf: (
                     mf.addNum(1),
                     mf.addNum(2),
                     assert_eq(mf.findMedian(), 1.5),
                     mf.addNum(3),
                     assert_eq(mf.findMedian(), 2),
-                ))(ns["MedianFinder"]())
-            ),
+                )
+            )(ns["MedianFinder"]()),
         )
     ]
 
     c["squares-of-a-sorted-array"] = [
-        Case("basic", lambda ns: assert_eq(ns["sortedSquares"]([-4, -1, 0, 3, 10]), [0, 1, 9, 16, 100])),
+        Case(
+            "basic",
+            lambda ns: assert_eq(
+                ns["sortedSquares"]([-4, -1, 0, 3, 10]), [0, 1, 9, 16, 100]
+            ),
+        ),
     ]
 
     return c

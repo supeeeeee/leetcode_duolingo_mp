@@ -39,8 +39,14 @@
               <text class="progress-text">{{item.percent}}%</text>
             </view>
             <view class="track-progress-row" wx:if="{{item.hasCore || item.hasExtra}}">
-              <text class="track-progress core" wx:if="{{item.hasCore}}">核心 {{item.coreDone}}/{{item.coreTotal}}</text>
-              <text class="track-progress extra" wx:if="{{item.hasExtra}}">扩展 {{item.extraDone}}/{{item.extraTotal}}</text>
+              <view class="track-progress-item" wx:if="{{item.hasCore}}">
+                <text class="track-progress core">核心 {{item.coreDone}}/{{item.coreTotal}}</text>
+                <text class="track-progress-remaining">剩余 {{item.coreRemaining}} 题</text>
+              </view>
+              <view class="track-progress-item" wx:if="{{item.hasExtra}}">
+                <text class="track-progress extra">扩展 {{item.extraDone}}/{{item.extraTotal}}</text>
+                <text class="track-progress-remaining">剩余 {{item.extraRemaining}} 题</text>
+              </view>
             </view>
           </view>
 

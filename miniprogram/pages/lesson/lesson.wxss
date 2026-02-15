@@ -176,7 +176,7 @@
   text-align: right;
 }
 
-.wrong-review-banner {
+.session-banner {
   width: 100%;
   padding: 0 40rpx 8rpx;
   box-sizing: border-box;
@@ -185,13 +185,20 @@
   justify-content: space-between;
 }
 
-.wrong-review-title {
+.session-banner-text {
   font-size: 28rpx;
   font-weight: 800;
+}
+
+.session-banner.topic .session-banner-text {
+  color: #2b3a55;
+}
+
+.session-banner.wrong .session-banner-text {
   color: #b54708;
 }
 
-.wrong-review-count {
+.session-banner-count {
   font-size: 24rpx;
   color: #b54708;
   background: #fff4de;

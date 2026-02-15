@@ -192,6 +192,13 @@
   margin-top: 12rpx;
 }
 
+.track-progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4rpx;
+}
+
 .track-progress {
   font-size: 22rpx;
   font-weight: 800;
@@ -207,6 +214,13 @@
 .track-progress.extra {
   color: #6f4f17;
   background: #fff4dc;
+}
+
+.track-progress-remaining {
+  font-size: 20rpx;
+  color: var(--text-light);
+  font-weight: 600;
+  margin-left: 8rpx;
 }
 
 .progress-track {

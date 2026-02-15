@@ -60,6 +60,7 @@
 
       <view wx:if="{{wrongCount > 0}}" class="wrong-review-entry" bindtap="startWrongReview">
         <text class="wrong-review-entry-label">错题复习 {{wrongReviewSessionCount}} 题</text>
+        <text class="wrong-review-entry-sub">错题本剩余 {{wrongCount}}</text>
       </view>
 
       <view class="today-cta-row">

@@ -61,9 +61,9 @@
       <text class="quiz-progress-text">{{isWrongMode ? wrongAnsweredCount : (currentIndex + 1)}}/{{isWrongMode ? wrongSessionTarget : totalQuestions}}</text>
     </view>
 
-    <view wx:if="{{isWrongMode}}" class="wrong-review-banner">
-      <text class="wrong-review-title">错题复习</text>
-      <text class="wrong-review-count">剩余 {{wrongRemainingCount}} 题</text>
+    <view wx:if="{{sessionBannerText}}" class="session-banner {{isWrongMode ? 'wrong' : 'topic'}}">
+      <text class="session-banner-text">{{sessionBannerText}}</text>
+      <text wx:if="{{isWrongMode}}" class="session-banner-count">错题本剩余 {{wrongRemainingCount}}</text>
     </view>
 
     <!-- Question Area -->

@@ -39,7 +39,8 @@ Page({
     wrongPrimaryActionText: '继续错题复习',
     wrongPrimaryTopicId: '',
     wrongPrimaryHint: '',
-    completionTitle: '课程完成！'
+    completionTitle: '课程完成！',
+    sessionBannerText: ''
   },
 
   answerStartTime: 0,
@@ -90,7 +91,8 @@ Page({
       wrongPrimaryActionText: '继续错题复习',
       wrongPrimaryTopicId: '',
       wrongPrimaryHint: '',
-      completionTitle: isWrongMode ? '错题复习完成' : '课程完成！'
+      completionTitle: isWrongMode ? '错题复习完成' : '课程完成！',
+      sessionBannerText: this.getSessionBannerText(mode, questions.length, wrongSessionTarget)
     });
 
     this.answerStartTime = Date.now();
@@ -116,6 +118,16 @@ Page({
     if (mode === 'topic') return '返回学习路径';
     if (mode === 'wrong') return '去做每日挑战';
     return '前往学习路径';
+  },
+
+  getSessionBannerText: function(mode, totalQuestions, wrongSessionTarget) {
+    if (mode === 'wrong') {
+      return `本次错题复习 ${wrongSessionTarget} 题小回合`;
+    }
+    if (mode === 'topic') {
+      return `本次练习 ${totalQuestions} 题小回合，可完成后继续下一组`;
+    }
+    return '';
   },
 
   selectOption: function(e) {

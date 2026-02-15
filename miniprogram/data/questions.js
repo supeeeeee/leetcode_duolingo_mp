@@ -842,7 +842,7 @@ module.exports = [
       "java": "public int numDecodings(String s) {\n    if (s == null || s.length() == 0 || s.charAt(0) == '0') return 0;\n    int n = s.length();\n    int dp0 = 1, dp1 = 1;\n    for (int i = 1; i < n; i++) {\n        int cur = 0;\n        if (s.charAt(i) != '0') cur += dp1;\n        int two = Integer.parseInt(s.substring(i - 1, i + 1));\n        if (two >= 10 && two <= 26) cur += dp0;\n        dp0 = dp1;\n        dp1 = cur;\n    }\n    return dp1;\n}\n",
       "cpp": "int numDecodings(string s) {\n    if (s.empty() || s[0] == '0') return 0;\n    int n = s.size();\n    int dp0 = 1, dp1 = 1;\n    for (int i = 1; i < n; i++) {\n        int cur = 0;\n        if (s[i] != '0') cur += dp1;\n        int two = (s[i-1]-'0')*10 + (s[i]-'0');\n        if (two >= 10 && two <= 26) cur += dp0;\n        dp0 = dp1;\n        dp1 = cur;\n    }\n    return dp1;\n}\n"
     },
-    "description": "本题对应《字符串解码计数场景》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 hashmaps 相关方法中完成复杂度优化。",
+    "description": "给定一个只包含数字的字符串 s，将它按规则解码为字符串。规则：'1'-'9' 单独解码为对应字符，'01'-'26' 组合解码为字母，求解码方式总数。",
     "leetcodeSlug": "decode-ways",
     "track": "extra"
   },
@@ -1143,7 +1143,7 @@ module.exports = [
       "java": "public int[] twoSum(int[] numbers, int target) {\n    int left = 0, right = numbers.length - 1;\n    while (left < right) {\n        int s = numbers[left] + numbers[right];\n        if (s == target) return new int[]{left + 1, right + 1};\n        if (s < target) left++; else right--;\n    }\n    return new int[0];\n}",
       "cpp": "vector<int> twoSum(vector<int>& numbers, int target) {\n    int left = 0, right = (int)numbers.size() - 1;\n    while (left < right) {\n        int s = numbers[left] + numbers[right];\n        if (s == target) return {left + 1, right + 1};\n        if (s < target) left++; else right--;\n    }\n    return {};\n}"
     },
-    "description": "给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。",
+    "description": "给定一个已升序排列的整数数组 numbers 和目标值 target，找出两数之和等于 target 的下标（返回从1开始的索引）。",
     "leetcodeSlug": "two-sum-ii-input-array-is-sorted",
     "track": "extra"
   },
@@ -1273,7 +1273,7 @@ module.exports = [
       "java": "public int trap(int[] height) {\n    int left = 0, right = height.length - 1;\n    int leftMax = 0, rightMax = 0;\n    int ans = 0;\n    while (left < right) {\n        if (height[left] < height[right]) {\n            leftMax = Math.max(leftMax, height[left]);\n            ans += leftMax - height[left];\n            left++;\n        } else {\n            rightMax = Math.max(rightMax, height[right]);\n            ans += rightMax - height[right];\n            right--;\n        }\n    }\n    return ans;\n}\n",
       "cpp": "int trap(vector<int>& height) {\n    int left = 0, right = (int)height.size() - 1;\n    int leftMax = 0, rightMax = 0;\n    int ans = 0;\n    while (left < right) {\n        if (height[left] < height[right]) {\n            leftMax = max(leftMax, height[left]);\n            ans += leftMax - height[left];\n            left++;\n        } else {\n            rightMax = max(rightMax, height[right]);\n            ans += rightMax - height[right];\n            right--;\n        }\n    }\n    return ans;\n}\n"
     },
-    "description": "给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。",
+    "description": "使用双指针从两端向中间遍历，计算每个位置能接的雨水面积。",
     "leetcodeSlug": "trapping-rain-water-two-pointers",
     "track": "extra"
   },
@@ -1538,7 +1538,7 @@ module.exports = [
       "java": "public List<Integer> findSubstring(String s, String[] words) {\n    List<Integer> res = new ArrayList<>();\n    if (s == null || s.length() == 0 || words == null || words.length == 0) return res;\n    int wlen = words[0].length();\n    int total = wlen * words.length;\n    Map<String, Integer> need = new HashMap<>();\n    for (String w : words) need.put(w, need.getOrDefault(w, 0) + 1);\n    for (int offset = 0; offset < wlen; offset++) {\n        int left = offset, count = 0;\n        Map<String, Integer> window = new HashMap<>();\n        for (int right = offset; right + wlen <= s.length(); right += wlen) {\n            String w = s.substring(right, right + wlen);\n            if (need.containsKey(w)) {\n                window.put(w, window.getOrDefault(w, 0) + 1);\n                count++;\n                while (window.get(w) > need.get(w)) {\n                    String out = s.substring(left, left + wlen);\n                    window.put(out, window.get(out) - 1);\n                    left += wlen;\n                    count--;\n                }\n                if (count == words.length) {\n                    res.add(left);\n                    String out = s.substring(left, left + wlen);\n                    window.put(out, window.get(out) - 1);\n                    left += wlen;\n                    count--;\n                }\n            } else {\n                window.clear();\n                count = 0;\n                left = right + wlen;\n            }\n        }\n    }\n    return res;\n}\n",
       "cpp": "vector<int> findSubstring(string s, vector<string>& words) {\n    vector<int> res;\n    if (s.empty() || words.empty()) return res;\n    int wlen = words[0].size();\n    unordered_map<string,int> need;\n    for (auto &w: words) need[w]++;\n    for (int offset=0; offset<wlen; offset++) {\n        int left=offset, count=0;\n        unordered_map<string,int> window;\n        for (int right=offset; right + wlen <= (int)s.size(); right += wlen) {\n            string w = s.substr(right, wlen);\n            if (need.count(w)) {\n                window[w]++;\n                count++;\n                while (window[w] > need[w]) {\n                    string out = s.substr(left, wlen);\n                    window[out]--;\n                    left += wlen;\n                    count--;\n                }\n                if (count == (int)words.size()) {\n                    res.push_back(left);\n                    string out = s.substr(left, wlen);\n                    window[out]--;\n                    left += wlen;\n                    count--;\n                }\n            } else {\n                window.clear();\n                count = 0;\n                left = right + wlen;\n            }\n        }\n    }\n    return res;\n}\n"
     },
-    "description": "本题对应《串联所有单词的子串》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
+    "description": "给定字符串 s 和单词数组 words，s 中所有串联 words 中所有单词的子串起始索引。",
     "leetcodeSlug": "substring-with-concatenation-of-all-words",
     "track": "extra"
   },
@@ -1579,7 +1579,7 @@ module.exports = [
       "java": "public int totalFruit(int[] fruits) {\n    Map<Integer, Integer> cnt = new HashMap<>();\n    int left = 0, ans = 0;\n    for (int right = 0; right < fruits.length; right++) {\n        cnt.put(fruits[right], cnt.getOrDefault(fruits[right], 0) + 1);\n        while (cnt.size() > 2) {\n            int y = fruits[left++];\n            cnt.put(y, cnt.get(y) - 1);\n            if (cnt.get(y) == 0) cnt.remove(y);\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}\n",
       "cpp": "int totalFruit(vector<int>& fruits) {\n    unordered_map<int,int> cnt;\n    int left=0, ans=0;\n    for (int right=0; right<(int)fruits.size(); right++) {\n        cnt[fruits[right]]++;\n        while ((int)cnt.size() > 2) {\n            int y = fruits[left++];\n            if (--cnt[y] == 0) cnt.erase(y);\n        }\n        ans = max(ans, right-left+1);\n    }\n    return ans;\n}\n"
     },
-    "description": "本题对应《水果成篮》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
+    "description": "给定整数数组 fruits，求最多能采摘的果树数量，使只有两种不同类型的果树。",
     "leetcodeSlug": "fruit-into-baskets",
     "track": "extra"
   },
@@ -1620,7 +1620,7 @@ module.exports = [
       "java": "public int characterReplacement(String s, int k) {\n    int[] cnt = new int[26];\n    int left = 0, maxCount = 0, ans = 0;\n    for (int right = 0; right < s.length(); right++) {\n        int idx = s.charAt(right) - 'A';\n        cnt[idx]++;\n        maxCount = Math.max(maxCount, cnt[idx]);\n        while ((right - left + 1) - maxCount > k) {\n            cnt[s.charAt(left) - 'A']--;\n            left++;\n        }\n        ans = Math.max(ans, right - left + 1);\n    }\n    return ans;\n}\n",
       "cpp": "int characterReplacement(string s, int k) {\n    vector<int> cnt(26,0);\n    int left=0, maxCount=0, ans=0;\n    for (int right=0; right<(int)s.size(); right++) {\n        int idx = s[right]-'A';\n        cnt[idx]++;\n        maxCount = max(maxCount, cnt[idx]);\n        while ((right-left+1) - maxCount > k) {\n            cnt[s[left]-'A']--;\n            left++;\n        }\n        ans = max(ans, right-left+1);\n    }\n    return ans;\n}\n"
     },
-    "description": "本题对应《替换后的最长重复字符》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 sliding_window 相关方法中完成复杂度优化。",
+    "description": "给定字符串 s 和整数 k，最多替换 k 个字符，求相同字符最长子串长度。",
     "leetcodeSlug": "longest-repeating-character-replacement",
     "track": "extra"
   },
@@ -1750,7 +1750,7 @@ module.exports = [
       "java": "public boolean hasCycle(ListNode head) {\n    ListNode slow = head, fast = head;\n    while (fast != null && fast.next != null) {\n        slow = slow.next;\n        fast = fast.next.next;\n        if (slow == fast) return true;\n    }\n    return false;\n}\n",
       "cpp": "bool hasCycle(ListNode* head) {\n    ListNode* slow = head;\n    ListNode* fast = head;\n    while (fast && fast->next) {\n        slow = slow->next;\n        fast = fast->next->next;\n        if (slow == fast) return true;\n    }\n    return false;\n}\n"
     },
-    "description": "本题对应《链表有环》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
+    "description": "给定链表，判断是否存在环。使用快慢指针，若相遇则存在环。",
     "leetcodeSlug": "linked-list-cycle",
     "handbookRef": {
       "leetcodeId": 141,
@@ -1798,7 +1798,7 @@ module.exports = [
       "java": "public void reorderList(ListNode head) {\n    if (head == null || head.next == null) return;\n    ListNode slow=head, fast=head;\n    while (fast != null && fast.next != null) {\n        slow = slow.next;\n        fast = fast.next.next;\n    }\n    ListNode prev=null, cur=slow;\n    while (cur != null) {\n        ListNode nxt=cur.next;\n        cur.next=prev;\n        prev=cur;\n        cur=nxt;\n    }\n    ListNode first=head, second=prev;\n    while (second != null && second.next != null) {\n        ListNode t1=first.next;\n        ListNode t2=second.next;\n        first.next=second;\n        second.next=t1;\n        first=t1;\n        second=t2;\n    }\n}\n",
       "cpp": "void reorderList(ListNode* head) {\n    if(!head || !head->next) return;\n    ListNode* slow=head;\n    ListNode* fast=head;\n    while(fast && fast->next){ slow=slow->next; fast=fast->next->next; }\n    ListNode* prev=nullptr;\n    ListNode* cur=slow;\n    while(cur){\n        ListNode* nxt=cur->next;\n        cur->next=prev;\n        prev=cur;\n        cur=nxt;\n    }\n    ListNode* first=head;\n    ListNode* second=prev;\n    while(second && second->next){\n        ListNode* t1=first->next;\n        ListNode* t2=second->next;\n        first->next=second;\n        second->next=t1;\n        first=t1;\n        second=t2;\n    }\n}\n"
     },
-    "description": "本题对应《重排链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
+    "description": "给定单链表，重排为 L0→Ln→L1→Ln-1→L2→Ln-2→... 的形式。",
     "leetcodeSlug": "reorder-list",
     "track": "extra"
   },
@@ -1839,7 +1839,7 @@ module.exports = [
       "java": "public ListNode reverseKGroup(ListNode head, int k) {\n    ListNode dummy = new ListNode(0);\n    dummy.next = head;\n    ListNode groupPrev = dummy;\n    while (true) {\n        ListNode kth = getKth(groupPrev, k);\n        if (kth == null) break;\n        ListNode groupNext = kth.next;\n        ListNode prev = groupNext;\n        ListNode cur = groupPrev.next;\n        while (cur != groupNext) {\n            ListNode nxt = cur.next;\n            cur.next = prev;\n            prev = cur;\n            cur = nxt;\n        }\n        ListNode tmp = groupPrev.next;\n        groupPrev.next = kth;\n        groupPrev = tmp;\n    }\n    return dummy.next;\n}\nprivate ListNode getKth(ListNode cur, int k) {\n    while (cur != null && k > 0) {\n        cur = cur.next;\n        k--;\n    }\n    return cur;\n}\n",
       "cpp": "ListNode* reverseKGroup(ListNode* head, int k) {\n    ListNode dummy(0);\n    dummy.next = head;\n    ListNode* groupPrev = &dummy;\n    auto getKth = [&](ListNode* cur){\n        while (cur && k > 0) { cur = cur->next; k--; }\n        return cur;\n    };\n    // Note: in C++ lambda above captures k by value not good for loop; use helper below in real code.\n    return head;\n}\n"
     },
-    "description": "本题对应《K 个一组翻转链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
+    "description": "每 k 个节点一组反转链表，不足 k 个则保持原顺序。",
     "leetcodeSlug": "reverse-nodes-in-k-group",
     "track": "extra"
   },
@@ -1880,7 +1880,7 @@ module.exports = [
       "java": "public RandomNode copyRandomList(RandomNode head) {\n    if (head == null) return null;\n    Map<RandomNode, RandomNode> map = new HashMap<>();\n    RandomNode cur = head;\n    while (cur != null) {\n        map.put(cur, new RandomNode(cur.val));\n        cur = cur.next;\n    }\n    cur = head;\n    while (cur != null) {\n        map.get(cur).next = map.get(cur.next);\n        map.get(cur).random = map.get(cur.random);\n        cur = cur.next;\n    }\n    return map.get(head);\n}\n",
       "cpp": "RandomNode* copyRandomList(RandomNode* head) {\n    if (!head) return nullptr;\n    unordered_map<RandomNode*, RandomNode*> mp;\n    for (auto cur = head; cur; cur = cur->next) mp[cur] = new RandomNode(cur->val);\n    for (auto cur = head; cur; cur = cur->next) {\n        mp[cur]->next = mp.count(cur->next) ? mp[cur->next] : nullptr;\n        mp[cur]->random = mp.count(cur->random) ? mp[cur->random] : nullptr;\n    }\n    return mp[head];\n}\n"
     },
-    "description": "本题对应《复制带随机指针的链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
+    "description": "给定带随机指针的链表，深拷贝生成新链表。",
     "leetcodeSlug": "copy-list-with-random-pointer",
     "track": "extra"
   },
@@ -1921,7 +1921,7 @@ module.exports = [
       "java": "public ListNode sortList(ListNode head) {\n    if (head == null || head.next == null) return head;\n    ListNode slow=head, fast=head, prev=null;\n    while (fast != null && fast.next != null) {\n        prev = slow;\n        slow = slow.next;\n        fast = fast.next.next;\n    }\n    prev.next = null;\n    ListNode l1 = sortList(head);\n    ListNode l2 = sortList(slow);\n    return merge(l1, l2);\n}\nprivate ListNode merge(ListNode a, ListNode b) {\n    ListNode dummy = new ListNode(0);\n    ListNode cur = dummy;\n    while (a != null && b != null) {\n        if (a.val <= b.val) { cur.next = a; a = a.next; }\n        else { cur.next = b; b = b.next; }\n        cur = cur.next;\n    }\n    cur.next = (a != null) ? a : b;\n    return dummy.next;\n}\n",
       "cpp": "ListNode* sortList(ListNode* head) {\n    if(!head || !head->next) return head;\n    ListNode* slow=head;\n    ListNode* fast=head;\n    ListNode* prev=nullptr;\n    while(fast && fast->next){\n        prev=slow;\n        slow=slow->next;\n        fast=fast->next->next;\n    }\n    prev->next=nullptr;\n    ListNode* l1=sortList(head);\n    ListNode* l2=sortList(slow);\n    ListNode dummy(0);\n    ListNode* cur=&dummy;\n    while(l1 && l2){\n        if(l1->val<=l2->val){ cur->next=l1; l1=l1->next; }\n        else { cur->next=l2; l2=l2->next; }\n        cur=cur->next;\n    }\n    cur->next = l1 ? l1 : l2;\n    return dummy.next;\n}\n"
     },
-    "description": "本题对应《排序链表》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
+    "description": "对链表进行 O(n log n) 排序，返回排序后的链表头。",
     "leetcodeSlug": "sort-list",
     "track": "extra"
   },
@@ -2003,7 +2003,7 @@ module.exports = [
       "java": "public ListNode detectCycle(ListNode head) {\n    ListNode slow = head, fast = head;\n    while (fast != null && fast.next != null) {\n        slow = slow.next;\n        fast = fast.next.next;\n        if (slow == fast) {\n            ListNode p = head;\n            while (p != slow) {\n                p = p.next;\n                slow = slow.next;\n            }\n            return p;\n        }\n    }\n    return null;\n}\n",
       "cpp": "ListNode* detectCycle(ListNode* head) {\n    ListNode* slow = head;\n    ListNode* fast = head;\n    while (fast && fast->next) {\n        slow = slow->next;\n        fast = fast->next->next;\n        if (slow == fast) {\n            ListNode* p = head;\n            while (p != slow) {\n                p = p->next;\n                slow = slow->next;\n            }\n            return p;\n        }\n    }\n    return nullptr;\n}\n"
     },
-    "description": "本题对应《环形链表 II》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
+    "description": "给定链表，找出环的入口节点；若不存在环返回 null。",
     "leetcodeSlug": "linked-list-cycle-ii",
     "handbookRef": {
       "leetcodeId": 142,
@@ -2051,7 +2051,7 @@ module.exports = [
       "java": "public ListNode deleteDuplicates(ListNode head) {\n    ListNode dummy = new ListNode(0);\n    dummy.next = head;\n    ListNode prev = dummy;\n    ListNode cur = head;\n    while (cur != null) {\n        boolean dup = false;\n        while (cur.next != null && cur.val == cur.next.val) {\n            dup = true;\n            cur = cur.next;\n        }\n        if (dup) prev.next = cur.next;\n        else prev = prev.next;\n        cur = cur.next;\n    }\n    return dummy.next;\n}\n",
       "cpp": "ListNode* deleteDuplicates(ListNode* head) {\n    ListNode dummy(0);\n    dummy.next = head;\n    ListNode* prev = &dummy;\n    ListNode* cur = head;\n    while(cur){\n        bool dup=false;\n        while(cur->next && cur->val==cur->next->val){ dup=true; cur=cur->next; }\n        if(dup) prev->next = cur->next;\n        else prev = prev->next;\n        cur = cur->next;\n    }\n    return dummy.next;\n}\n"
     },
-    "description": "本题对应《删除排序链表重复元素 II》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 linked_list 相关方法中完成复杂度优化。",
+    "description": "删除排序链表中重复出现的节点，仅保留不重复的节点。",
     "leetcodeSlug": "remove-duplicates-from-sorted-list-ii",
     "track": "extra"
   },
@@ -2169,7 +2169,7 @@ module.exports = [
       "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "本题对应《每日温度》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
+    "description": "给定每日气温数组，计算每一天需等几天才能等到更温暖的气温。",
     "codeSnippet": {
       "python": "def dailyTemperatures(temperatures):\n    n = len(temperatures)\n    res = [0]*n\n    st = []  # indices, temps decreasing\n    for i, t in enumerate(temperatures):\n        while st and temperatures[st[-1]] < t:\n            j = st.pop()\n            res[j] = i - j\n        st.append(i)\n    return res\n",
       "java": "public int[] dailyTemperatures(int[] temperatures) {\n    int n = temperatures.length;\n    int[] res = new int[n];\n    Deque<Integer> st = new ArrayDeque<>();\n    for (int i=0;i<n;i++) {\n        while (!st.isEmpty() && temperatures[st.peek()] < temperatures[i]) {\n            int j = st.pop();\n            res[j] = i - j;\n        }\n        st.push(i);\n    }\n    return res;\n}\n",
@@ -2210,7 +2210,7 @@ module.exports = [
       "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "本题对应《柱状图最大矩形》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
+    "description": "给定 n 个柱子的高度，求能形成的最大矩形面积。",
     "codeSnippet": {
       "python": "def largestRectangleArea(heights):\n    st = []\n    ans = 0\n    heights.append(0)\n    for i, h in enumerate(heights):\n        while st and heights[st[-1]] > h:\n            height = heights[st.pop()]\n            left = st[-1] + 1 if st else 0\n            width = i - left\n            ans = max(ans, height * width)\n        st.append(i)\n    heights.pop()\n    return ans\n",
       "java": "public int largestRectangleArea(int[] heights) {\n    Deque<Integer> st = new ArrayDeque<>();\n    int n = heights.length;\n    int ans = 0;\n    for (int i = 0; i <= n; i++) {\n        int h = (i == n) ? 0 : heights[i];\n        while (!st.isEmpty() && heights[st.peek()] > h) {\n            int height = heights[st.pop()];\n            int left = st.isEmpty() ? 0 : st.peek() + 1;\n            int width = i - left;\n            ans = Math.max(ans, height * width);\n        }\n        st.push(i);\n    }\n    return ans;\n}\n",
@@ -2258,7 +2258,7 @@ module.exports = [
       "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "本题对应《逆波兰表达式求值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
+    "description": "给定逆波兰表达式，求表达式的值。运算符包括 +、-、*、/。",
     "codeSnippet": {
       "python": "def evalRPN(tokens):\n    st = []\n    for t in tokens:\n        if t in ['+','-','*','/']:\n            b = st.pop()\n            a = st.pop()\n            if t == '+': st.append(a+b)\n            elif t == '-': st.append(a-b)\n            elif t == '*': st.append(a*b)\n            else: st.append(int(a/b))\n        else:\n            st.append(int(t))\n    return st[-1]\n",
       "java": "public int evalRPN(String[] tokens) {\n    Deque<Integer> st = new ArrayDeque<>();\n    for (String t : tokens) {\n        if (t.equals(\"+\") || t.equals(\"-\") || t.equals(\"*\") || t.equals(\"/\")) {\n            int b = st.pop();\n            int a = st.pop();\n            if (t.equals(\"+\")) st.push(a + b);\n            else if (t.equals(\"-\")) st.push(a - b);\n            else if (t.equals(\"*\")) st.push(a * b);\n            else st.push(a / b);\n        } else {\n            st.push(Integer.parseInt(t));\n        }\n    }\n    return st.peek();\n}\n",
@@ -2299,7 +2299,7 @@ module.exports = [
       "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "本题对应《字符串解码》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
+    "description": "给定编码字符串 s，如 3[a2[c]]，解码为 abcabcabc。",
     "codeSnippet": {
       "python": "def decodeString(s):\n    st = []\n    cur = ''\n    k = 0\n    for ch in s:\n        if ch.isdigit():\n            k = k*10 + int(ch)\n        elif ch == '[':\n            st.append((cur, k))\n            cur = ''\n            k = 0\n        elif ch == ']':\n            prev, num = st.pop()\n            cur = prev + cur * num\n        else:\n            cur += ch\n    return cur\n",
       "java": "public String decodeString(String s) {\n    Deque<int[]> numSt = new ArrayDeque<>();\n    Deque<StringBuilder> strSt = new ArrayDeque<>();\n    StringBuilder cur = new StringBuilder();\n    int k = 0;\n    for (char ch : s.toCharArray()) {\n        if (Character.isDigit(ch)) {\n            k = k*10 + (ch - '0');\n        } else if (ch == '[') {\n            numSt.push(new int[]{k});\n            strSt.push(cur);\n            cur = new StringBuilder();\n            k = 0;\n        } else if (ch == ']') {\n            int num = numSt.pop()[0];\n            StringBuilder prev = strSt.pop();\n            for (int i=0;i<num;i++) prev.append(cur);\n            cur = prev;\n        } else {\n            cur.append(ch);\n        }\n    }\n    return cur.toString();\n}\n",
@@ -2340,7 +2340,7 @@ module.exports = [
       "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "本题对应《滑动窗口最大值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
+    "description": "给定数组和滑动窗口大小，求每个窗口内的最大值。",
     "codeSnippet": {
       "python": "from collections import deque\ndef maxSlidingWindow(nums, k):\n    dq = deque()\n    ans = []\n    for i, x in enumerate(nums):\n        while dq and dq[0] <= i - k: dq.popleft()\n        while dq and nums[dq[-1]] <= x: dq.pop()\n        dq.append(i)\n        if i >= k - 1: ans.append(nums[dq[0]])\n    return ans",
       "java": "public int[] maxSlidingWindow(int[] nums, int k) {\n    Deque<Integer> dq = new ArrayDeque<>();\n    int[] ans = new int[nums.length - k + 1];\n    for (int i = 0; i < nums.length; i++) {\n        while (!dq.isEmpty() && dq.peekFirst() <= i - k) dq.pollFirst();\n        while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) dq.pollLast();\n        dq.offerLast(i);\n        if (i >= k - 1) ans[i - k + 1] = nums[dq.peekFirst()];\n    }\n    return ans;\n}",
@@ -2381,7 +2381,7 @@ module.exports = [
       "template": "先定义栈顶或队头的语义（最近匹配/单调性/最早入队）。\n入栈入队前先弹出失效元素，再执行当前更新。",
       "insight": "单调栈与队列的本质是“延迟结算”，在触发条件出现时一次性处理历史元素。"
     },
-    "description": "本题对应《实现队列用栈》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 stack_queue 相关方法中完成复杂度优化。",
+    "description": "使用栈实现队列的 push、pop、peek、empty 操作。",
     "codeSnippet": {
       "python": "class MyQueue:\n    def __init__(self):\n        self.s1 = []\n        self.s2 = []\n\n    def push(self, x):\n        self.s1.append(x)\n\n    def _shift(self):\n        if not self.s2:\n            while self.s1:\n                self.s2.append(self.s1.pop())\n\n    def pop(self):\n        self._shift()\n        return self.s2.pop()\n\n    def peek(self):\n        self._shift()\n        return self.s2[-1]\n\n    def empty(self):\n        return (not self.s1) and (not self.s2)\n",
       "java": "class MyQueue {\n    Deque<Integer> s1 = new ArrayDeque<>();\n    Deque<Integer> s2 = new ArrayDeque<>();\n\n    public void push(int x) {\n        s1.push(x);\n    }\n\n    private void shift() {\n        if (s2.isEmpty()) {\n            while (!s1.isEmpty()) s2.push(s1.pop());\n        }\n    }\n\n    public int pop() {\n        shift();\n        return s2.pop();\n    }\n\n    public int peek() {\n        shift();\n        return s2.peek();\n    }\n\n    public boolean empty() {\n        return s1.isEmpty() && s2.isEmpty();\n    }\n}\n",
@@ -2468,7 +2468,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "本题对应《搜索旋转排序数组》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
+    "description": "给定旋转后的排序数组和目标值，用二分查找定位目标位置。",
     "codeSnippet": {
       "python": "def search(nums, target):\n    left, right = 0, len(nums) - 1\n    while left <= right:\n        mid = left + (right - left) // 2\n        if nums[mid] == target: return mid\n        if nums[left] <= nums[mid]:\n            if nums[left] <= target < nums[mid]:\n                right = mid - 1\n            else:\n                left = mid + 1\n        else:\n            if nums[mid] < target <= nums[right]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    return -1",
       "java": "public int search(int[] nums, int target) {\n    int left = 0, right = nums.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] == target) return mid;\n        if (nums[left] <= nums[mid]) {\n            if (nums[left] <= target && target < nums[mid]) right = mid - 1;\n            else left = mid + 1;\n        } else {\n            if (nums[mid] < target && target <= nums[right]) left = mid + 1;\n            else right = mid - 1;\n        }\n    }\n    return -1;\n}",
@@ -2516,7 +2516,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "本题对应《寻找峰值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
+    "description": "给定数组，找出任意一个峰值元素的下标。峰值比相邻元素都大。",
     "codeSnippet": {
       "python": "def findPeakElement(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = left + (right - left) // 2\n        if nums[mid] > nums[mid + 1]:\n            right = mid\n        else:\n            left = mid + 1\n    return left",
       "java": "public int findPeakElement(int[] nums) {\n    int left = 0, right = nums.length - 1;\n    while (left < right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] > nums[mid + 1]) right = mid;\n        else left = mid + 1;\n    }\n    return left;\n}",
@@ -2557,7 +2557,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "本题对应《在排序数组中查找元素首尾位置》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
+    "description": "在排序数组中找出目标值的起始和结束位置，若不存在返回 [-1,-1]。",
     "codeSnippet": {
       "python": "def searchRange(nums, target):\n    def lower(x):\n        l, r = 0, len(nums)\n        while l < r:\n            m = (l + r) // 2\n            if nums[m] < x:\n                l = m + 1\n            else:\n                r = m\n        return l\n    l = lower(target)\n    r = lower(target + 1) - 1\n    if l <= r and l < len(nums) and nums[l] == target:\n        return [l, r]\n    return [-1, -1]\n",
       "java": "public int[] searchRange(int[] nums, int target) {\n    int l = lower(nums, target);\n    int r = lower(nums, target + 1) - 1;\n    if (l <= r && l < nums.length && nums[l] == target) return new int[]{l, r};\n    return new int[]{-1, -1};\n}\nprivate int lower(int[] nums, int x) {\n    int l = 0, r = nums.length;\n    while (l < r) {\n        int m = l + (r - l) / 2;\n        if (nums[m] < x) l = m + 1;\n        else r = m;\n    }\n    return l;\n}\n",
@@ -2598,7 +2598,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "本题对应《x 的平方根》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
+    "description": "求整数 x 的平方根（向下取整），不使用库函数。",
     "codeSnippet": {
       "python": "def mySqrt(x):\n    left, right = 0, x\n    while left <= right:\n        mid = left + (right - left) // 2\n        if mid * mid <= x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return right",
       "java": "public int mySqrt(int x) {\n    long left = 0, right = x;\n    while (left <= right) {\n        long mid = left + (right - left) / 2;\n        if (mid * mid <= x) left = mid + 1;\n        else right = mid - 1;\n    }\n    return (int) right;\n}",
@@ -2639,7 +2639,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "本题对应《寻找旋转数组最小值》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
+    "description": "在旋转排序数组中找出最小值，数组原本升序但被旋转。",
     "codeSnippet": {
       "python": "def findMin(nums):\n    l, r = 0, len(nums) - 1\n    while l < r:\n        mid = (l + r) // 2\n        if nums[mid] > nums[r]:\n            l = mid + 1\n        else:\n            r = mid\n    return nums[l]\n",
       "java": "public int findMin(int[] nums) {\n    int l = 0, r = nums.length - 1;\n    while (l < r) {\n        int mid = l + (r - l) / 2;\n        if (nums[mid] > nums[r]) l = mid + 1;\n        else r = mid;\n    }\n    return nums[l];\n}\n",
@@ -2687,7 +2687,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "本题对应《Koko 吃香蕉》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
+    "description": "给定香蕉堆数组和吃速 k，求 Koko 在 h 小时内吃完的最小 k。",
     "codeSnippet": {
       "python": "def minEatingSpeed(piles, h):\n    left, right = 1, max(piles)\n    while left < right:\n        mid = left + (right - left) // 2\n        hours = sum((p + mid - 1) // mid for p in piles)\n        if hours <= h:\n            right = mid\n        else:\n            left = mid + 1\n    return left",
       "java": "public int minEatingSpeed(int[] piles, int h) {\n    int left = 1, right = Arrays.stream(piles).max().getAsInt();\n    while (left < right) {\n        int mid = left + (right - left) / 2;\n        long hours = 0;\n        for (int p : piles) hours += (p + mid - 1) / mid;\n        if (hours <= h) right = mid;\n        else left = mid + 1;\n    }\n    return left;\n}",
@@ -2728,7 +2728,7 @@ module.exports = [
       "template": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}",
       "insight": "二分搜索最容易错在边界。记住：搜索区间是 [left, right] 还是 [left, right)？这决定了 while 条件和 left/right 的更新逻辑。"
     },
-    "description": "本题对应《搜索二维矩阵》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 binary_search 相关方法中完成复杂度优化。",
+    "description": "在行列均升序的二维矩阵中查找目标值，矩阵左到右、上到下递增。",
     "codeSnippet": {
       "python": "def searchMatrix(matrix, target):\n    m, n = len(matrix), len(matrix[0])\n    left, right = 0, m * n - 1\n    while left <= right:\n        mid = left + (right - left) // 2\n        v = matrix[mid // n][mid % n]\n        if v == target: return True\n        if v < target: left = mid + 1\n        else: right = mid - 1\n    return False",
       "java": "public boolean searchMatrix(int[][] matrix, int target) {\n    int m = matrix.length, n = matrix[0].length;\n    int left = 0, right = m * n - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        int v = matrix[mid / n][mid % n];\n        if (v == target) return true;\n        if (v < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return false;\n}",
@@ -2940,7 +2940,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "本题对应《路径总和》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
+    "description": "给定二叉树和目标值 sum，判断是否存在根到叶子的路径和等于 sum。",
     "codeSnippet": {
       "python": "def hasPathSum(root, targetSum):\n    if not root:\n        return False\n    if not root.left and not root.right:\n        return root.val == targetSum\n    return hasPathSum(root.left, targetSum - root.val) or hasPathSum(root.right, targetSum - root.val)\n",
       "java": "public boolean hasPathSum(TreeNode root, int targetSum) {\n    if (root == null) return false;\n    if (root.left == null && root.right == null) return root.val == targetSum;\n    return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);\n}\n",
@@ -2981,7 +2981,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "本题对应《二叉树直径》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
+    "description": "给定二叉树，计算任意两个节点之间最长路径的边数。",
     "codeSnippet": {
       "python": "def diameterOfBinaryTree(root):\n    ans = 0\n    def depth(node):\n        nonlocal ans\n        if not node:\n            return 0\n        l = depth(node.left)\n        r = depth(node.right)\n        ans = max(ans, l + r)\n        return 1 + max(l, r)\n    depth(root)\n    return ans\n",
       "java": "public int diameterOfBinaryTree(TreeNode root) {\n    int[] ans = new int[1];\n    depth(root, ans);\n    return ans[0];\n}\nprivate int depth(TreeNode node, int[] ans) {\n    if (node == null) return 0;\n    int l = depth(node.left, ans);\n    int r = depth(node.right, ans);\n    ans[0] = Math.max(ans[0], l + r);\n    return 1 + Math.max(l, r);\n}\n",
@@ -3022,7 +3022,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "本题对应《平衡二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
+    "description": "判断二叉树是否高度平衡，即左右子树高度差不超过 1。",
     "codeSnippet": {
       "python": "def isBalanced(root):\n    def height(node):\n        if not node:\n            return 0\n        lh = height(node.left)\n        if lh == -1:\n            return -1\n        rh = height(node.right)\n        if rh == -1:\n            return -1\n        if abs(lh - rh) > 1:\n            return -1\n        return 1 + max(lh, rh)\n    return height(root) != -1\n",
       "java": "public boolean isBalanced(TreeNode root) {\n    return height(root) != -1;\n}\nprivate int height(TreeNode node) {\n    if (node == null) return 0;\n    int lh = height(node.left);\n    if (lh == -1) return -1;\n    int rh = height(node.right);\n    if (rh == -1) return -1;\n    if (Math.abs(lh - rh) > 1) return -1;\n    return 1 + Math.max(lh, rh);\n}\n",
@@ -3063,7 +3063,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "本题对应《二叉树最大路径和》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
+    "description": "在二叉树中找出最大路径和，路径可从任意节点开始和结束。",
     "codeSnippet": {
       "python": "def maxPathSum(root):\n    ans = float('-inf')\n    def gain(node):\n        nonlocal ans\n        if not node:\n            return 0\n        left = max(gain(node.left), 0)\n        right = max(gain(node.right), 0)\n        ans = max(ans, node.val + left + right)\n        return node.val + max(left, right)\n    gain(root)\n    return ans\n",
       "java": "public int maxPathSum(TreeNode root) {\n    int[] ans = new int[]{Integer.MIN_VALUE};\n    gain(root, ans);\n    return ans[0];\n}\nprivate int gain(TreeNode node, int[] ans) {\n    if (node == null) return 0;\n    int left = Math.max(gain(node.left, ans), 0);\n    int right = Math.max(gain(node.right, ans), 0);\n    ans[0] = Math.max(ans[0], node.val + left + right);\n    return node.val + Math.max(left, right);\n}\n",
@@ -3104,7 +3104,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "本题对应《从前序与中序构造二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
+    "description": "给定前序和中序遍历结果，重建二叉树并返回根节点。",
     "codeSnippet": {
       "python": "def buildTree(preorder, inorder):\n    pos = {v: i for i, v in enumerate(inorder)}\n    def dfs(pl, pr, il, ir):\n        if pl > pr: return None\n        root_val = preorder[pl]\n        root = TreeNode(root_val)\n        k = pos[root_val]\n        left_size = k - il\n        root.left = dfs(pl + 1, pl + left_size, il, k - 1)\n        root.right = dfs(pl + left_size + 1, pr, k + 1, ir)\n        return root\n    return dfs(0, len(preorder) - 1, 0, len(inorder) - 1)",
       "java": "public TreeNode buildTree(int[] preorder, int[] inorder) {\n    Map<Integer, Integer> pos = new HashMap<>();\n    for (int i = 0; i < inorder.length; i++) pos.put(inorder[i], i);\n    return dfs(preorder, 0, preorder.length - 1, 0, inorder.length - 1, pos);\n}\nprivate TreeNode dfs(int[] pre, int pl, int pr, int il, int ir, Map<Integer, Integer> pos) {\n    if (pl > pr) return null;\n    TreeNode root = new TreeNode(pre[pl]);\n    int k = pos.get(pre[pl]);\n    int leftSize = k - il;\n    root.left = dfs(pre, pl + 1, pl + leftSize, il, k - 1, pos);\n    root.right = dfs(pre, pl + leftSize + 1, pr, k + 1, ir, pos);\n    return root;\n}",
@@ -3145,7 +3145,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "本题对应《二叉搜索树第 K 小》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
+    "description": "给定二叉搜索树 root 和整数 k，找出其中第 k 小的节点值。",
     "codeSnippet": {
       "python": "def kthSmallest(root, k):\n    st = []\n    cur = root\n    while cur or st:\n        while cur:\n            st.append(cur)\n            cur = cur.left\n        cur = st.pop()\n        k -= 1\n        if k == 0:\n            return cur.val\n        cur = cur.right\n    return None\n",
       "java": "public int kthSmallest(TreeNode root, int k) {\n    Deque<TreeNode> st = new ArrayDeque<>();\n    TreeNode cur = root;\n    while (cur != null || !st.isEmpty()) {\n        while (cur != null) {\n            st.push(cur);\n            cur = cur.left;\n        }\n        cur = st.pop();\n        k--;\n        if (k == 0) return cur.val;\n        cur = cur.right;\n    }\n    return -1;\n}\n",
@@ -3186,7 +3186,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "本题对应《序列化二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
+    "description": "将二叉树序列化为字符串，并从字符串反序列化重建原树。",
     "codeSnippet": {
       "python": "class Codec:\n    def serialize(self, root):\n        from collections import deque\n        if not root:\n            return ''\n        out = []\n        q = deque([root])\n        while q:\n            node = q.popleft()\n            if node is None:\n                out.append('#')\n                continue\n            out.append(str(node.val))\n            q.append(node.left)\n            q.append(node.right)\n        while out and out[-1] == '#':\n            out.pop()\n        return ','.join(out)\n\n    def deserialize(self, data):\n        from collections import deque\n        if not data:\n            return None\n        vals = data.split(',')\n        root = TreeNode(int(vals[0]))\n        q = deque([root])\n        idx = 1\n        while q and idx < len(vals):\n            node = q.popleft()\n            if idx < len(vals) and vals[idx] != '#':\n                node.left = TreeNode(int(vals[idx]))\n                q.append(node.left)\n            idx += 1\n            if idx < len(vals) and vals[idx] != '#':\n                node.right = TreeNode(int(vals[idx]))\n                q.append(node.right)\n            idx += 1\n        return root\n",
       "java": "class Codec {\n    public String serialize(TreeNode root) {\n        if (root == null) return \"\";\n        StringBuilder sb = new StringBuilder();\n        Deque<TreeNode> q = new ArrayDeque<>();\n        q.add(root);\n        while (!q.isEmpty()) {\n            TreeNode node = q.poll();\n            if (node == null) {\n                sb.append(\"#\").append(',');\n                continue;\n            }\n            sb.append(node.val).append(',');\n            q.add(node.left);\n            q.add(node.right);\n        }\n        return sb.toString();\n    }\n    public TreeNode deserialize(String data) {\n        if (data == null || data.length() == 0) return null;\n        String[] vals = data.split(\",\");\n        TreeNode root = new TreeNode(Integer.parseInt(vals[0]));\n        Deque<TreeNode> q = new ArrayDeque<>();\n        q.add(root);\n        int idx = 1;\n        while (!q.isEmpty() && idx < vals.length) {\n            TreeNode node = q.poll();\n            if (idx < vals.length && !vals[idx].equals(\"#\") && vals[idx].length() > 0) {\n                node.left = new TreeNode(Integer.parseInt(vals[idx]));\n                q.add(node.left);\n            }\n            idx++;\n            if (idx < vals.length && !vals[idx].equals(\"#\") && vals[idx].length() > 0) {\n                node.right = new TreeNode(Integer.parseInt(vals[idx]));\n                q.add(node.right);\n            }\n            idx++;\n        }\n        return root;\n    }\n}\n",
@@ -3227,7 +3227,7 @@ module.exports = [
       "template": "void traverse(TreeNode root) {\n    // 前序位置\n    traverse(root.left);\n    // 中序位置\n    traverse(root.right);\n    // 后序位置\n}",
       "insight": "二叉树的所有问题，本质上只有两种思维：‘遍历’一遍二叉树得到答案，或者‘分解’问题通过子树结果推导答案。位置的选择至关重要。"
     },
-    "description": "本题对应《对称二叉树》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 trees 相关方法中完成复杂度优化。",
+    "description": "判断二叉树是否轴对称，即左右子树互为镜像。",
     "codeSnippet": {
       "python": "def isSymmetric(root):\n    def same(a, b):\n        if not a and not b:\n            return True\n        if not a or not b:\n            return False\n        return a.val == b.val and same(a.left, b.right) and same(a.right, b.left)\n    return same(root.left, root.right) if root else True\n",
       "java": "public boolean isSymmetric(TreeNode root) {\n    if (root == null) return true;\n    return same(root.left, root.right);\n}\nprivate boolean same(TreeNode a, TreeNode b) {\n    if (a == null && b == null) return true;\n    if (a == null || b == null) return false;\n    if (a.val != b.val) return false;\n    return same(a.left, b.right) && same(a.right, b.left);\n}\n",
@@ -3364,7 +3364,7 @@ module.exports = [
       "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
       "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "本题对应《克隆图》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
+    "description": "给定无向图邻接表，克隆完整图并返回新图的节点。",
     "codeSnippet": {
       "python": "def cloneGraph(node):\n    if not node:\n        return None\n    mp = {}\n    def dfs(x):\n        if x in mp:\n            return mp[x]\n        copy = Node(x.val)\n        mp[x] = copy\n        copy.neighbors = [dfs(n) for n in x.neighbors]\n        return copy\n    return dfs(node)\n",
       "java": "public Node cloneGraph(Node node) {\n    if (node == null) return null;\n    Map<Node, Node> map = new HashMap<>();\n    return dfs(node, map);\n}\nprivate Node dfs(Node node, Map<Node, Node> map) {\n    if (map.containsKey(node)) return map.get(node);\n    Node copy = new Node(node.val);\n    map.put(node, copy);\n    for (Node nei : node.neighbors) {\n        copy.neighbors.add(dfs(nei, map));\n    }\n    return copy;\n}\n",
@@ -3405,7 +3405,7 @@ module.exports = [
       "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
       "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "本题对应《腐烂的橘子》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
+    "description": "给定腐烂和新鲜橘子网格，求所有橘子腐烂的最短时间。",
     "codeSnippet": {
       "python": "from collections import deque\n\ndef orangesRotting(grid):\n    m = len(grid)\n    n = len(grid[0]) if m else 0\n    q = deque()\n    fresh = 0\n    for i in range(m):\n        for j in range(n):\n            if grid[i][j] == 2:\n                q.append((i,j,0))\n            elif grid[i][j] == 1:\n                fresh += 1\n    minutes = 0\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    while q:\n        i,j,t = q.popleft()\n        minutes = max(minutes, t)\n        for di,dj in dirs:\n            ni,nj = i+di, j+dj\n            if 0 <= ni < m and 0 <= nj < n and grid[ni][nj] == 1:\n                grid[ni][nj] = 2\n                fresh -= 1\n                q.append((ni,nj,t+1))\n    return -1 if fresh > 0 else minutes\n",
       "java": "public int orangesRotting(int[][] grid) {\n    int m = grid.length, n = grid[0].length;\n    Deque<int[]> q = new ArrayDeque<>();\n    int fresh = 0;\n    for (int i=0;i<m;i++) for (int j=0;j<n;j++) {\n        if (grid[i][j] == 2) q.add(new int[]{i,j,0});\n        else if (grid[i][j] == 1) fresh++;\n    }\n    int minutes = 0;\n    int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};\n    while (!q.isEmpty()) {\n        int[] cur = q.poll();\n        int i=cur[0], j=cur[1], t=cur[2];\n        minutes = Math.max(minutes, t);\n        for (int[] d : dirs) {\n            int ni=i+d[0], nj=j+d[1];\n            if (0<=ni && ni<m && 0<=nj && nj<n && grid[ni][nj]==1) {\n                grid[ni][nj]=2;\n                fresh--;\n                q.add(new int[]{ni,nj,t+1});\n            }\n        }\n    }\n    return fresh>0? -1: minutes;\n}\n",
@@ -3446,7 +3446,7 @@ module.exports = [
       "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
       "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "本题对应《单词接龙》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
+    "description": "给定起始词、结束词和词库，求最短转换序列长度，每次只改一个字符。",
     "codeSnippet": {
       "python": "from collections import deque\n\ndef ladderLength(beginWord, endWord, wordList):\n    wordSet = set(wordList)\n    if endWord not in wordSet:\n        return 0\n    q = deque([(beginWord, 1)])\n    visited = set([beginWord])\n    while q:\n        word, dist = q.popleft()\n        if word == endWord:\n            return dist\n        arr = list(word)\n        for i in range(len(arr)):\n            orig = arr[i]\n            for c in 'abcdefghijklmnopqrstuvwxyz':\n                if c == orig: continue\n                arr[i] = c\n                nxt = ''.join(arr)\n                if nxt in wordSet and nxt not in visited:\n                    visited.add(nxt)\n                    q.append((nxt, dist + 1))\n            arr[i] = orig\n    return 0\n",
       "java": "public int ladderLength(String beginWord, String endWord, List<String> wordList) {\n    Set<String> set = new HashSet<>(wordList);\n    if (!set.contains(endWord)) return 0;\n    Deque<String> q = new ArrayDeque<>();\n    Deque<Integer> distQ = new ArrayDeque<>();\n    Set<String> vis = new HashSet<>();\n    q.add(beginWord);\n    distQ.add(1);\n    vis.add(beginWord);\n    while (!q.isEmpty()) {\n        String word = q.poll();\n        int dist = distQ.poll();\n        if (word.equals(endWord)) return dist;\n        char[] arr = word.toCharArray();\n        for (int i=0;i<arr.length;i++) {\n            char orig = arr[i];\n            for (char c='a'; c<='z'; c++) {\n                if (c == orig) continue;\n                arr[i] = c;\n                String nxt = new String(arr);\n                if (set.contains(nxt) && !vis.contains(nxt)) {\n                    vis.add(nxt);\n                    q.add(nxt);\n                    distQ.add(dist+1);\n                }\n            }\n            arr[i] = orig;\n        }\n    }\n    return 0;\n}\n",
@@ -3487,7 +3487,7 @@ module.exports = [
       "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
       "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "本题对应《被围绕的区域》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
+    "description": "将矩阵中所有被 X 包围的 O 改为 X，边界上的 O 保持不变。",
     "codeSnippet": {
       "python": "def solve(board):\n    if not board or not board[0]:\n        return\n    m, n = len(board), len(board[0])\n    from collections import deque\n    q = deque()\n    def add(i,j):\n        if 0<=i<m and 0<=j<n and board[i][j]=='O':\n            board[i][j] = 'E'\n            q.append((i,j))\n    for i in range(m):\n        add(i,0); add(i,n-1)\n    for j in range(n):\n        add(0,j); add(m-1,j)\n    dirs=[(1,0),(-1,0),(0,1),(0,-1)]\n    while q:\n        i,j = q.popleft()\n        for di,dj in dirs:\n            add(i+di, j+dj)\n    for i in range(m):\n        for j in range(n):\n            if board[i][j] == 'O':\n                board[i][j] = 'X'\n            elif board[i][j] == 'E':\n                board[i][j] = 'O'\n",
       "java": "public void solve(char[][] board) {\n    int m = board.length;\n    if (m == 0) return;\n    int n = board[0].length;\n    Deque<int[]> q = new ArrayDeque<>();\n    java.util.function.BiConsumer<Integer,Integer> add = (i,j)->{\n        if (i>=0 && i<m && j>=0 && j<n && board[i][j]=='O') {\n            board[i][j]='E';\n            q.add(new int[]{i,j});\n        }\n    };\n    for (int i=0;i<m;i++){ add.accept(i,0); add.accept(i,n-1); }\n    for (int j=0;j<n;j++){ add.accept(0,j); add.accept(m-1,j); }\n    int[][] dirs={{1,0},{-1,0},{0,1},{0,-1}};\n    while(!q.isEmpty()){\n        int[] cur=q.poll();\n        for (int[] d: dirs) add.accept(cur[0]+d[0], cur[1]+d[1]);\n    }\n    for (int i=0;i<m;i++) for (int j=0;j<n;j++){\n        if (board[i][j]=='O') board[i][j]='X';\n        else if (board[i][j]=='E') board[i][j]='O';\n    }\n}\n",
@@ -3528,7 +3528,7 @@ module.exports = [
       "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
       "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "本题对应《冗余连接》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
+    "description": "给定无向树，删除一条边使图变成树，求被删除的边。",
     "codeSnippet": {
       "python": "def findRedundantConnection(edges):\n    # graph cycle detection (union-find / DSU). (No dfs/bfs needed)\n    n = len(edges)\n    parent = list(range(n+1))\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    def union(a,b):\n        ra, rb = find(a), find(b)\n        if ra == rb:\n            return False\n        parent[ra] = rb\n        return True\n    for a,b in edges:\n        if not union(a,b):\n            return [a,b]\n    return []\n",
       "java": "// graph cycle detection (union-find / DSU)\npublic int[] findRedundantConnection(int[][] edges) {\n    int n = edges.length;\n    int[] parent = new int[n+1];\n    for (int i=1;i<=n;i++) parent[i]=i;\n    for (int[] e : edges) {\n        int a=e[0], b=e[1];\n        int ra=find(parent,a), rb=find(parent,b);\n        if (ra==rb) return e;\n        parent[ra]=rb;\n    }\n    return new int[0];\n}\nprivate int find(int[] parent, int x) {\n    while (parent[x]!=x) {\n        parent[x]=parent[parent[x]];\n        x=parent[x];\n    }\n    return x;\n}\n",
@@ -3569,7 +3569,7 @@ module.exports = [
       "template": "先明确图表示（邻接表/入度/边集），再决定 DFS、BFS 或并查集。\n访问即标记，避免重复遍历和死循环。",
       "insight": "图题的第一步不是写搜索，而是把输入关系正确建模成“点-边”结构。"
     },
-    "description": "本题对应《网络延迟时间》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 graphs 相关方法中完成复杂度优化。",
+    "description": "给定带权有向图和起点，求到所有节点的最短路径最大值。",
     "codeSnippet": {
       "python": "def networkDelayTime(times, n, k):\n    import heapq\n    graph = [[] for _ in range(n+1)]\n    for u,v,w in times:\n        graph[u].append((v,w))\n    dist = [float('inf')] * (n+1)\n    dist[k] = 0\n    pq = [(0,k)]\n    while pq:\n        d,u = heapq.heappop(pq)\n        if d != dist[u]:\n            continue\n        for v,w in graph[u]:\n            nd = d + w\n            if nd < dist[v]:\n                dist[v] = nd\n                heapq.heappush(pq, (nd, v))\n    ans = max(dist[1:])\n    return -1 if ans == float('inf') else ans\n",
       "java": "public int networkDelayTime(int[][] times, int n, int k) {\n    List<int[]>[] g = new List[n+1];\n    for (int i=1;i<=n;i++) g[i] = new ArrayList<>();\n    for (int[] t : times) g[t[0]].add(new int[]{t[1], t[2]});\n    int[] dist = new int[n+1];\n    Arrays.fill(dist, Integer.MAX_VALUE);\n    dist[k] = 0;\n    PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)->a[0]-b[0]);\n    pq.add(new int[]{0,k});\n    while(!pq.isEmpty()) {\n        int[] cur = pq.poll();\n        int d = cur[0], u = cur[1];\n        if (d != dist[u]) continue;\n        for (int[] e : g[u]) {\n            int v=e[0], w=e[1];\n            if (d + w < dist[v]) {\n                dist[v] = d + w;\n                pq.add(new int[]{dist[v], v});\n            }\n        }\n    }\n    int ans = 0;\n    for (int i=1;i<=n;i++) {\n        if (dist[i] == Integer.MAX_VALUE) return -1;\n        ans = Math.max(ans, dist[i]);\n    }\n    return ans;\n}\n",
@@ -3613,7 +3613,7 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？",
+    "description": "假设你正在爬楼梯。需要 n 阶才能到达楼顶。每次你可以爬 1 或 2 个台阶。有多少种不同的方法可以爬到楼顶？",
     "leetcodeSlug": "climbing-stairs",
     "track": "extra"
   },
@@ -3820,7 +3820,7 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "本题对应《分割等和子集》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
+    "description": "判断数组能否分割成两个元素和相等的子集。",
     "codeSnippet": {
       "python": "def canPartition(nums):\n    s = sum(nums)\n    if s % 2: return False\n    target = s // 2\n    dp = [False] * (target + 1)\n    dp[0] = True\n    for x in nums:\n        for j in range(target, x - 1, -1):\n            dp[j] = dp[j] or dp[j - x]\n    return dp[target]\n",
       "java": "public boolean canPartition(int[] nums) {\n    int sum = 0;\n    for (int x : nums) sum += x;\n    if (sum % 2 == 1) return false;\n    int target = sum / 2;\n    boolean[] dp = new boolean[target + 1];\n    dp[0] = true;\n    for (int x : nums) {\n        for (int j = target; j >= x; j--) {\n            dp[j] = dp[j] || dp[j - x];\n        }\n    }\n    return dp[target];\n}\n",
@@ -3909,7 +3909,7 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "本题对应《不同路径》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
+    "description": "给定 m×n 网格，机器人从左上角到右下角有多少条不同路径（只能右、下移动）。",
     "codeSnippet": {
       "python": "def uniquePaths(m, n):\n    dp = [1] * n\n    for _ in range(1, m):\n        for j in range(1, n):\n            dp[j] += dp[j-1]\n    return dp[-1]\n",
       "java": "public int uniquePaths(int m, int n) {\n    int[] dp = new int[n];\n    Arrays.fill(dp, 1);\n    for (int i = 1; i < m; i++) {\n        for (int j = 1; j < n; j++) {\n            dp[j] += dp[j - 1];\n        }\n    }\n    return dp[n - 1];\n}\n",
@@ -3950,7 +3950,7 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "本题对应《最长回文子串》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
+    "description": "在字符串 s 中找出最长回文子串，返回该子串。",
     "codeSnippet": {
       "python": "def longestPalindrome(s):\n    def expand(l, r):\n        while l >= 0 and r < len(s) and s[l] == s[r]:\n            l -= 1\n            r += 1\n        return s[l+1:r]\n    ans = ''\n    for i in range(len(s)):\n        p1 = expand(i, i)\n        p2 = expand(i, i + 1)\n        ans = max(ans, p1, p2, key=len)\n    return ans",
       "java": "public String longestPalindrome(String s) {\n    String ans = \"\";\n    for (int i = 0; i < s.length(); i++) {\n        String p1 = expand(s, i, i);\n        String p2 = expand(s, i, i + 1);\n        ans = p1.length() > ans.length() ? p1 : ans;\n        ans = p2.length() > ans.length() ? p2 : ans;\n    }\n    return ans;\n}\nprivate String expand(String s, int l, int r) {\n    while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) { l--; r++; }\n    return s.substring(l + 1, r);\n}",
@@ -3991,7 +3991,7 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "本题对应《单词拆分》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
+    "description": "判断字符串 s 能否由词典中的单词空格分隔拼接而成。",
     "codeSnippet": {
       "python": "def wordBreak(s, wordDict):\n    wordSet = set(wordDict)\n    n = len(s)\n    dp = [False] * (n + 1)\n    dp[0] = True\n    for i in range(1, n + 1):\n        for j in range(i):\n            if dp[j] and s[j:i] in wordSet:\n                dp[i] = True\n                break\n    return dp[n]\n",
       "java": "public boolean wordBreak(String s, List<String> wordDict) {\n    Set<String> set = new HashSet<>(wordDict);\n    int n = s.length();\n    boolean[] dp = new boolean[n + 1];\n    dp[0] = true;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 0; j < i; j++) {\n            if (dp[j] && set.contains(s.substring(j, i))) {\n                dp[i] = true;\n                break;\n            }\n        }\n    }\n    return dp[n];\n}\n",
@@ -4032,7 +4032,7 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "本题对应《最大正方形》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
+    "description": "在只含 0 和 1 的矩阵中，找出全为 1 的最大正方形边长。",
     "codeSnippet": {
       "python": "def maximalSquare(matrix):\n    if not matrix or not matrix[0]: return 0\n    m, n = len(matrix), len(matrix[0])\n    dp = [0] * (n + 1)\n    best = 0\n    for i in range(1, m + 1):\n        prev = 0\n        for j in range(1, n + 1):\n            tmp = dp[j]\n            if matrix[i-1][j-1] == '1':\n                dp[j] = 1 + min(dp[j], dp[j-1], prev)\n                best = max(best, dp[j])\n            else:\n                dp[j] = 0\n            prev = tmp\n    return best * best\n",
       "java": "public int maximalSquare(char[][] matrix) {\n    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;\n    int m = matrix.length, n = matrix[0].length;\n    int[] dp = new int[n + 1];\n    int best = 0;\n    for (int i = 1; i <= m; i++) {\n        int prev = 0;\n        for (int j = 1; j <= n; j++) {\n            int tmp = dp[j];\n            if (matrix[i - 1][j - 1] == '1') {\n                dp[j] = 1 + Math.min(dp[j], Math.min(dp[j - 1], prev));\n                best = Math.max(best, dp[j]);\n            } else {\n                dp[j] = 0;\n            }\n            prev = tmp;\n        }\n    }\n    return best * best;\n}\n",
@@ -4073,7 +4073,7 @@ module.exports = [
       "template": "# 状态转移方程\ndp[i] = max(dp[i-1], dp[i-2] + val)",
       "insight": "动态规划的核心是：状态、选择、base case。先尝试暴力递归，发现重叠子问题后通过备忘录优化，最后转为自底向上的迭代。"
     },
-    "description": "本题对应《买卖股票含冷冻期》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 dynamic_programming 相关方法中完成复杂度优化。",
+    "description": "给定股票价格序列冷冻期，计算可获得的最大利润（可交易多次）。",
     "codeSnippet": {
       "python": "def maxProfit(prices):\n    if not prices: return 0\n    hold = -prices[0]\n    sold = 0\n    rest = 0\n    for p in prices[1:]:\n        prevSold = sold\n        sold = hold + p\n        hold = max(hold, rest - p)\n        rest = max(rest, prevSold)\n    return max(sold, rest)\n",
       "java": "public int maxProfit(int[] prices) {\n    if (prices.length == 0) return 0;\n    int hold = -prices[0];\n    int sold = 0;\n    int rest = 0;\n    for (int i = 1; i < prices.length; i++) {\n        int p = prices[i];\n        int prevSold = sold;\n        sold = hold + p;\n        hold = Math.max(hold, rest - p);\n        rest = Math.max(rest, prevSold);\n    }\n    return Math.max(sold, rest);\n}\n",
@@ -4162,7 +4162,7 @@ module.exports = [
       "template": "void backtrack(路径, 选择列表) {\n    if (终止条件) {\n        res.add(路径); return;\n    }\n    for (选择 : 选择列表) {\n        做选择;\n        backtrack(路径, 选择列表);\n        撤销选择;\n    }\n}",
       "insight": "回溯算法本质上就是一棵‘决策树’的遍历。你只需要思考三个问题：路径、选择列表、结束条件。"
     },
-    "description": "本题对应《组合总和》。请依据原题定义实现算法，重点梳理输入输出、边界条件与不变量，并在 backtracking 相关方法中完成复杂度优化。",
+    "description": "给定数组 candidates 和目标 target，找出和为目标的所有不重复组合。",
     "codeSnippet": {
       "python": "def combinationSum(candidates, target):\n    res = []\n    path = []\n    def backtrack(start, remain):\n        if remain == 0:\n            res.append(path[:])\n            return\n        if remain < 0:\n            return\n        for i in range(start, len(candidates)):\n            path.append(candidates[i])\n            backtrack(i, remain - candidates[i])\n            path.pop()\n    backtrack(0, target)\n    return res\n",
       "java": "public List<List<Integer>> combinationSum(int[] candidates, int target) {\n    List<List<Integer>> res = new ArrayList<>();\n    List<Integer> path = new ArrayList<>();\n    backtrack(0, candidates, target, path, res);\n    return res;\n}\nprivate void backtrack(int start, int[] c, int remain, List<Integer> path, List<List<Integer>> res) {\n    if (remain == 0) {\n        res.add(new ArrayList<>(path));\n        return;\n    }\n    if (remain < 0) return;\n    for (int i = start; i < c.length; i++) {\n        path.add(c[i]);\n        backtrack(i, c, remain - c[i], path, res);\n        path.remove(path.size() - 1);\n    }\n}\n",

@@ -29,9 +29,9 @@ function getWrongIdList() {
   return Array.isArray(h.wrongQuestions) ? h.wrongQuestions.slice() : [];
 }
 
-function getQuestionOrderMap() {
+function getQuestionOrderMap(sourceQuestions = questions) {
   const order = new Map();
-  questions.forEach((q, idx) => {
+  sourceQuestions.forEach((q, idx) => {
     order.set(q.id, idx);
   });
   return order;
@@ -127,14 +127,19 @@ function getReviewSession(topicId = null, count = 5) {
   return selected.slice(0, count);
 }
 
-function getWrongSession(count = 5) {
-  const orderMap = getQuestionOrderMap();
-  const daySeed = getTodaySeed();
-  const wrongIds = getWrongIdList();
+function getWrongSession(count = 5, options = {}) {
+  const opts = options && typeof options === 'object' ? options : {};
+  const daySeed = typeof opts.daySeed === 'string' && opts.daySeed ? opts.daySeed : getTodaySeed();
+  const wrongIds = Array.isArray(opts.wrongIds) ? opts.wrongIds.slice() : getWrongIdList();
   if (wrongIds.length === 0) return [];
 
+  const sourceQuestions = Array.isArray(opts.questions) && opts.questions.length > 0
+    ? opts.questions
+    : questions;
+  const orderMap = getQuestionOrderMap(sourceQuestions);
+
   const questionMap = new Map();
-  questions.forEach(question => {
+  sourceQuestions.forEach(question => {
     questionMap.set(question.id, question);
   });
 
